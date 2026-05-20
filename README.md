@@ -28,6 +28,9 @@ In ấn chuyên nghiệp (F10): Xuất báo cáo hóa đơn bán hàng dưới d
 Xử lý đổi trả (F11): Tra cứu lịch sử đơn hàng gốc để xác minh điều kiện. Lập phiếu đổi trả tự động hoàn kho (đối với hàng lỗi/trả lại) và xuất kho sản phẩm mới thay thế, điều chỉnh dòng tiền chênh lệch.
 # Thành Viên
 Tăng Khánh Nhi (Nhóm trưởng)
+
 Ngô Thị Thu Duyên
+
 Lê Thị Hồng Nhã
+
 Giáp Thị Thu Liễu
