@@ -8,5 +8,6 @@ namespace DTOQuanLyThoiTrang
 {
     internal class ChiTietPNDTO
     {
+
     }
 }

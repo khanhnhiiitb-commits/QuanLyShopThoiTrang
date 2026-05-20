@@ -6,7 +6,30 @@ using System.Threading.Tasks;
 
 namespace DTOQuanLyThoiTrang
 {
-    internal class HoaDonDTO
+    public class HoaDonDTO
     {
+        private string maHD;
+        private string maKH;
+        private string maNV;
+        private DateTime ngayLap;
+        private decimal tongTien;
+
+        public string MaHD { get; set; }
+        public string MaKH { get; set; }
+        public string MaNV { get; set; }
+        public DateTime NgayLap { get; set; }
+        public decimal TongTien { get; set; }
+
+        public HoaDonDTO() { }
+
+        public HoaDonDTO(string maHD, string maKH, string maNV,
+                         DateTime ngayLap, decimal tongTien)
+        {
+            this.MaHD = maHD;
+            this.MaKH = maKH;
+            this.MaNV = maNV;
+            this.NgayLap = ngayLap;
+            this.TongTien = tongTien;
+        }
     }
 }
