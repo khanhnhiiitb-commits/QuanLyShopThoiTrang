@@ -112,6 +112,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BUSShopThoiTrang\BUSShopThoiTrang.csproj">
+      <Project>{59f3e190-599e-4982-b838-73c299a496f7}</Project>
+      <Name>BUSShopThoiTrang</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DALShopThoiTrang\DALShopThoiTrang.csproj">
+      <Project>{8eac6734-3d35-450e-a90c-8bfd7e5140ea}</Project>
+      <Name>DALShopThoiTrang</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
