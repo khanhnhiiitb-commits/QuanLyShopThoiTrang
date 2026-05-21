@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DALShopThoiTrang
 {
-    internal class KhoHangRepository : DBConnection
+    public class KhoHangRepository : DBConnection
     {
         // Lấy toàn bộ tồn kho (kết hợp thông tin sản phẩm + biến thể)
         public DataTable LayDanhSachTonKho()
