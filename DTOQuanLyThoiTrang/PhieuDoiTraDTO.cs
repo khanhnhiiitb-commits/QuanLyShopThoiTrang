@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTOQuanLyThoiTrang
 {
-    internal class PhieuDoiTraDTO
+    public class PhieuDoiTraDTO
     {
         private string maPDT;
         private string maHD;
@@ -20,6 +20,15 @@ namespace DTOQuanLyThoiTrang
             public DateTime NgayDoiTra { get; set; }
             public string LyDo { get; set; }
             public decimal TongTienHoan { get; set; }
-        
+        public PhieuDoiTraDTO() { }
+        public PhieuDoiTraDTO(string maPDT, string maHD, string maNV, DateTime ngayDoiTra, string lyDo, decimal tongTienHoan)
+        {
+            this.MaPDT = maPDT;
+            this.MaHD = maHD;
+            this.MaNV = maNV;
+            this.NgayDoiTra = ngayDoiTra;
+            this.LyDo = lyDo;
+            this.TongTienHoan = tongTienHoan;
+        }
     }
 }

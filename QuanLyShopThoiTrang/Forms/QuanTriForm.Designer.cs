@@ -1,6 +1,6 @@
 ﻿namespace QuanLyShopThoiTrang
 {
-    partial class KhoHangForm
+    partial class QuanTriForm
     {
         /// <summary>
         /// Required designer variable.

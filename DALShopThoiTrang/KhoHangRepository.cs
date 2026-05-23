@@ -268,6 +268,35 @@ namespace DALShopThoiTrang
                 CloseConnection();
             }
         }
+
+        public int LaySoLuongTon(string maBienThe)
+        {
+            int soLuong = 0;
+            try
+            {
+                OpenConnection();
+                string query = "SELECT soLuongTon FROM BienTheSP WHERE maBienThe = @maBienThe";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@maBienThe", maBienThe);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        soLuong = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi kiểm tra số lượng tồn kho: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return soLuong;
+        }
     }
 }
 

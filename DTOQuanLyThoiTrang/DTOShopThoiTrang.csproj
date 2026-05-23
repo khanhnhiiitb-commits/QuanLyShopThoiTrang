@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BienTheDTO.cs" />
     <Compile Include="ChiTietHDDTO.cs" />
+    <Compile Include="ChiTietPDTDTO.cs" />
     <Compile Include="ChiTietPNDTO.cs" />
     <Compile Include="HoaDonDTO.cs" />
     <Compile Include="KhachHangDTO.cs" />

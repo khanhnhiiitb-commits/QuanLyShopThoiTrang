@@ -65,6 +65,10 @@
       <Project>{a8badf4d-0e4b-4a7a-a0ad-5b2126f36253}</Project>
       <Name>DTOShopThoiTrang</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UtilsShopThoiTrang\UtilsShopThoiTrang.csproj">
+      <Project>{49779a8d-24cd-48ea-96ba-fc2cb3547850}</Project>
+      <Name>UtilsShopThoiTrang</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
