@@ -96,6 +96,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Resource\Icon.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -131,6 +132,9 @@
       <Project>{a8badf4d-0e4b-4a7a-a0ad-5b2126f36253}</Project>
       <Name>DTOShopThoiTrang</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imagedesktop.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
