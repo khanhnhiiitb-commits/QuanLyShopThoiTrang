@@ -85,6 +85,9 @@
     <EmbeddedResource Include="Forms\BanHangForm.resx">
       <DependentUpon>BanHangForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DangNhapForm.resx">
+      <DependentUpon>DangNhapForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -123,6 +126,10 @@
     <ProjectReference Include="..\DALShopThoiTrang\DALShopThoiTrang.csproj">
       <Project>{8eac6734-3d35-450e-a90c-8bfd7e5140ea}</Project>
       <Name>DALShopThoiTrang</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTOQuanLyThoiTrang\DTOShopThoiTrang.csproj">
+      <Project>{a8badf4d-0e4b-4a7a-a0ad-5b2126f36253}</Project>
+      <Name>DTOShopThoiTrang</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
