@@ -1,10 +1,11 @@
-﻿using DTOShopThoiTrang;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTOQuanLyThoiTrang;
+using DTOShopThoiTrang;
 
 namespace DALShopThoiTrang
 { 
@@ -178,6 +179,92 @@ namespace DALShopThoiTrang
                 CloseConnection();
             }
             return list;
+        }
+
+        public SanPhamDTO LaySanPhamGoc(string maSP)
+        {
+            SanPhamDTO sp = null;
+            try
+            {
+                OpenConnection();
+                string query = "SELECT * FROM SanPham WHERE maSP = @maSP";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@maSP", maSP);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read()) // Nếu tìm thấy sản phẩm
+                        {
+                            sp = new SanPhamDTO
+                            {
+                                MaSP = reader["maSP"].ToString(),
+                                MaLoai = reader["maLoai"].ToString(),
+                                TenSP = reader["tenSP"].ToString(),
+                                GiaNhap = Convert.ToDecimal(reader["giaNhap"]),
+                                GiaBan = Convert.ToDecimal(reader["giaBan"]),
+                                MoTa = reader["moTa"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy thông tin sản phẩm gốc: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return sp; 
+        }
+
+        // Hàm lấy toàn bộ danh sách biến thể sản phẩm
+        public List<BienTheDTO> LayTatCaBienTheSanPham()
+        {
+            List<BienTheDTO> danhSachBienThe = new List<BienTheDTO>();
+            try
+            {
+                OpenConnection();
+
+                // Mẹo: Đối với màn hình bán hàng, bạn có thể thêm "WHERE soLuongTon > 0" 
+                // để ẩn đi các sản phẩm đã hết hàng. Ở đây mình tạm lấy hết.
+                string query = "SELECT * FROM BienTheSP";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read()) // Lặp qua từng dòng dữ liệu
+                        {
+                            BienTheDTO bt = new BienTheDTO
+                            {
+                                MaBienThe = reader["maBienThe"].ToString(),
+                                MaSP = reader["maSP"].ToString(),
+                                MauSac = reader["mauSac"].ToString(),
+                                KichCo = reader["kichCo"].ToString(),
+                                DinhMucToiThieu = Convert.ToInt32(reader["dinhMucToiThieu"]),
+                                SoLuongTon = Convert.ToInt32(reader["soLuongTon"]),
+                                MoTa = reader["moTa"].ToString()
+                            };
+                            danhSachBienThe.Add(bt); // Thêm vào danh sách
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy danh sách biến thể: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return danhSachBienThe;
         }
     }
 }

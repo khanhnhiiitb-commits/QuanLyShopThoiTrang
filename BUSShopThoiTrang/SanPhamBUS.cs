@@ -1,10 +1,11 @@
-﻿using DALShopThoiTrang;
-using DTOShopThoiTrang;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DALShopThoiTrang;
+using DTOQuanLyThoiTrang;
+using DTOShopThoiTrang;
 
 namespace BUSShopThoiTrang
 {
@@ -13,6 +14,23 @@ namespace BUSShopThoiTrang
         private SanPhamRepository _sanPhamRepo = new SanPhamRepository();
 
         // NHÓM 1: CÁC NGHIỆP VỤ CƠ BẢN (CRUD)
+        public SanPhamDTO LaySanPhamGoc(string maSP)
+        {
+            // Kiểm tra tính hợp lệ của dữ liệu đầu vào
+            if (string.IsNullOrEmpty(maSP))
+            {
+                return null;
+            }
+
+            return _sanPhamRepo.LaySanPhamGoc(maSP);
+        }
+        public List<BienTheDTO> LayTatCaBienTheSanPham()
+        {
+            // Nếu sau này bạn cần lọc thêm điều kiện (ví dụ: chỉ lấy hàng đang kinh doanh),
+            // bạn có thể viết logic kiểm tra (If/Else) ở đây trước khi gọi DAL.
+
+            return _sanPhamRepo.LayTatCaBienTheSanPham();
+        }
         // 1. Lấy danh sách sản phẩm
         public List<SanPhamDTO> LayDanhSachSanPham()
         {
