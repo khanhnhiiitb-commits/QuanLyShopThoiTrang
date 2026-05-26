@@ -1,4 +1,4 @@
-﻿using BUSShopThoiTrang;
+﻿using System.Drawing.Drawing2D;
 using QuanLyShopThoiTrang;
 using System;
 using System.Collections.Generic;
