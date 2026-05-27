@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -168,6 +169,13 @@ namespace BUSShopThoiTrang
 
             return tongVon;
         }
+        
+        public List<SanPhamDTO> LayTatCaSanPham()
+        {
+            return _sanPhamRepo.LayTatCaSanPham();
+        }
+
+        public List<BienTheDTO> LayBienTheTheoMaSP(string maSP) => _sanPhamRepo.LayBienTheTheoMaSP(maSP);
     }
 }
 

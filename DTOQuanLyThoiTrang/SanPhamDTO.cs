@@ -14,6 +14,8 @@ namespace DTOShopThoiTrang
         private decimal _giaNhap;
         private decimal _giaBan;
         private string _moTa;
+        private string _hinhAnh;
+        public string HinhAnh { get => _hinhAnh;  set => _hinhAnh = value; }
 
         public string MaSP { get => _maSP; set => _maSP = value; }
         public string MaLoai { get => _maLoai; set => _maLoai = value; }

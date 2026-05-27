@@ -28,39 +28,93 @@ namespace QuanLyShopThoiTrang
         }
         private void LoadSanPhamDong()
         {
-            // BƯỚC A: Clean - Xóa sạch các thẻ cũ trong rổ (nếu có)
             flpDanhSachSP.Controls.Clear();
 
-            // BƯỚC B: Gọi BUS lấy dữ liệu thực tế
-            // Giả sử BUS này trả về List<BienTheDTO> (chứa thông tin biến thể và sp gốc)
-            List<BienTheDTO> listBienThe = sanPhamBUS.LayTatCaBienTheSanPham();
+            // Yêu cầu BUS lấy danh sách SẢN PHẨM GỐC (Bảng SanPham)
+            List<SanPhamDTO> listSanPham = sanPhamBUS.LayTatCaSanPham();
 
-            // BƯỚC C: Vòng lặp "Thần thánh" để tạo thẻ
-            foreach (var bt in listBienThe)
+            foreach (var sp in listSanPham)
             {
-                // 1. Tạo mới một thẻ control
                 ProductCardControl card = new ProductCardControl();
+                card.SetData(sp);
 
-                // 2. Cung cấp dữ liệu cho thẻ
-                // (Giả sử bạn có hàm LaySanPhamGoc từ mã SP)
-                SanPhamDTO spGoc = sanPhamBUS.LaySanPhamGoc(bt.MaSP);
-                card.SetData(bt, spGoc);
-
-                // 3. Đăng ký sự kiện click (giỏ hàng)
+                // Đăng ký sự kiện click
                 card.OnProductSelected += Card_OnProductSelected;
 
-                // 4. CHÍNH SÁCH CHỐT: Ném vào FlowLayoutPanel
                 flpDanhSachSP.Controls.Add(card);
             }
         }
 
-        private void Card_OnProductSelected(object sender, EventArgs e)
+        private void Card_OnProductSelected(SanPhamDTO spDuocChon)
         {
-            // Nhận diện thẻ vừa bấm
-            ProductCardControl card = (ProductCardControl)sender;
+            // 1. Truyền thẳng đối tượng spDuocChon vào thay vì dùng spDuocChon.MaSP
+            FormChonBienThe frmPopup = new FormChonBienThe(spDuocChon);
 
-            // Xử lý thêm sản phẩm này vào DataGridView Giỏ hàng bên phải...
-            MessageBox.Show("Đã thêm sản phẩm vào giỏ hàng!");
+            // 2. Mở form lên dưới dạng hộp thoại bắt buộc (ShowDialog)
+            if (frmPopup.ShowDialog() == DialogResult.OK)
+            {
+                // 3. Gọi đúng tên biến mới mà chúng ta đã thiết lập bên form Popup
+                BienTheDTO bienTheDaChon = frmPopup.BienTheDaChon;
+                int soLuong = frmPopup.SoLuong;
+
+                // 4. TIẾN HÀNH THÊM VÀO GIỎ HÀNG BÊN PHẢI MÀN HÌNH
+                ThemVaoGioHang(spDuocChon, bienTheDaChon, soLuong);
+            }
+        }
+
+        // Hàm xử lý việc đưa sản phẩm lên lưới (DataGridView) giỏ hàng bên phải
+        private void ThemVaoGioHang(SanPhamDTO sp, BienTheDTO bt, int soLuong)
+        {
+            foreach (ProductCartControl item in flpCurrentOrder.Controls)
+            {
+                // Nếu mã biến thể vừa chọn đã tồn tại trong một thẻ nào đó
+                if (item.BienTheHienTai.MaBienThe == bt.MaBienThe)
+                {
+                    item.TangSoLuong(soLuong); // Chỉ tăng số lượng
+                    TinhTongTienHoaDon();      // Tính lại tổng tiền
+                    return;                    // Dừng hàm tại đây, KHÔNG tạo thẻ mới nữa
+                }
+            }
+            ProductCartControl itemTrongGio = new ProductCartControl();
+            itemTrongGio.SetData(sp, bt, soLuong);
+            
+            MessageBox.Show($"Đã thêm thành công!\nSản phẩm: {sp.TenSP}\nMàu: {bt.MauSac} - Size: {bt.KichCo}\nSố lượng: {soLuong}", "Thông báo");
+
+            itemTrongGio.OnQuantityChanged += (bienThe, soLuongMoi) =>
+            {
+                if (soLuongMoi == 0)
+                {
+                    flpCurrentOrder.Controls.Remove(itemTrongGio);
+                }
+                TinhTongTienHoaDon();
+            };
+            flpCurrentOrder.Controls.Add(itemTrongGio);
+
+            // Tính lại tổng tiền sau khi thêm món mới
+            TinhTongTienHoaDon();
+
+        }
+
+        private void TinhTongTienHoaDon()
+        {
+            decimal subTotal = 0;
+
+            // Quét tất cả các thẻ đang nằm trong khung chứa giỏ hàng (flpCurrentOrder)
+            foreach (ProductCartControl item in flpCurrentOrder.Controls)
+            {
+                subTotal += item.ThanhTien;
+            }
+
+            // Cập nhật lên nhãn Subtotal (Bạn nhớ đổi tên label cho khớp với UI nhé)
+            lblSubtotal.Text = "$" + subTotal.ToString("N0");
+
+            // Giả sử Thuế VAT là 10% (0.1)
+            decimal tax = subTotal * 0.1m;
+            lblTax.Text = "$" + tax.ToString("N0");
+
+            // Tính tổng cuối cùng
+            decimal total = subTotal + tax;
+            lblTotal.Text = "$" + total.ToString("N0");
         }
     }
 }

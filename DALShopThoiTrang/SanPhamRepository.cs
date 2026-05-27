@@ -266,5 +266,83 @@ namespace DALShopThoiTrang
 
             return danhSachBienThe;
         }
+        public List<SanPhamDTO> LayTatCaSanPham()
+        {
+            List<SanPhamDTO> danhSachSanPham = new List<SanPhamDTO>();
+
+            // Câu lệnh SQL lấy tất cả dữ liệu từ bảng gốc
+            string query = "SELECT maSP, maLoai, tenSP, giaNhap, giaBan, moTa, hinhAnh FROM SanPham";
+
+            try
+            {
+                // BƯỚC 2: Gọi hàm mở kết nối đã được viết sẵn bên DBConnection
+                OpenConnection();
+
+                // BƯỚC 3: Dùng thẳng biến 'conn' được thừa kế
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            SanPhamDTO sp = new SanPhamDTO();
+                            sp.MaSP = reader["maSP"].ToString();
+                            sp.MaLoai = reader["maLoai"].ToString();
+                            sp.TenSP = reader["tenSP"].ToString();
+                            sp.GiaNhap = Convert.ToDecimal(reader["giaNhap"]);
+                            sp.GiaBan = Convert.ToDecimal(reader["giaBan"]);
+
+                            // Xử lý an toàn khi cột bị Null
+                            sp.MoTa = reader["moTa"] != DBNull.Value ? reader["moTa"].ToString() : "";
+
+                            try
+                            {
+                                sp.HinhAnh = reader["hinhAnh"] != DBNull.Value ? reader["hinhAnh"].ToString() : "";
+                            }
+                            catch
+                            {
+                                sp.HinhAnh = "";
+                            }
+
+                            danhSachSanPham.Add(sp);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                // BƯỚC 4: Cuối cùng luôn đóng kết nối để tránh treo Database
+                CloseConnection();
+            }
+
+            return danhSachSanPham;
+        }
+        public List<BienTheDTO> LayBienTheTheoMaSP(string maSP)
+        {
+            List<BienTheDTO> list = new List<BienTheDTO>();
+            string query = "SELECT * FROM BienTheSP WHERE maSP = @maSP";
+
+            OpenConnection();
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@maSP", maSP);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new BienTheDTO
+                        {
+                            MaBienThe = reader["maBienThe"].ToString(),
+                            MaSP = reader["maSP"].ToString(),
+                            MauSac = reader["mauSac"].ToString(),
+                            KichCo = reader["kichCo"].ToString(),
+                            SoLuongTon = Convert.ToInt32(reader["soLuongTon"])
+                        });
+                    }
+                }
+            }
+            CloseConnection();
+            return list;
+        }
     }
 }

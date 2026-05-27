@@ -86,9 +86,9 @@
             this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Maroon;
-            this.label3.Location = new System.Drawing.Point(112, 65);
+            this.label3.Location = new System.Drawing.Point(72, 65);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(165, 32);
+            this.label3.Size = new System.Drawing.Size(244, 32);
             this.label3.TabIndex = 4;
             this.label3.Text = "quay trở lại";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
