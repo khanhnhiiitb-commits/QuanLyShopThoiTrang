@@ -30,13 +30,13 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.pnlContentQuanTri = new System.Windows.Forms.Panel();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnProducts = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
             this.btnStaff = new System.Windows.Forms.Button();
             this.btnReports = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.pnlContentQuanTri = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 675);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(230, 729);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -64,18 +64,10 @@
             this.label1.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(197, 72);
+            this.label1.Size = new System.Drawing.Size(227, 72);
             this.label1.TabIndex = 0;
             this.label1.Text = "MANAGEMENT SUITE";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pnlContentQuanTri
-            // 
-            this.pnlContentQuanTri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContentQuanTri.Location = new System.Drawing.Point(200, 0);
-            this.pnlContentQuanTri.Name = "pnlContentQuanTri";
-            this.pnlContentQuanTri.Size = new System.Drawing.Size(950, 675);
-            this.pnlContentQuanTri.TabIndex = 1;
             // 
             // btnDashboard
             // 
@@ -167,11 +159,19 @@
             this.button1.Text = "Settings";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // pnlContentQuanTri
+            // 
+            this.pnlContentQuanTri.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContentQuanTri.Location = new System.Drawing.Point(230, 0);
+            this.pnlContentQuanTri.Name = "pnlContentQuanTri";
+            this.pnlContentQuanTri.Size = new System.Drawing.Size(1192, 729);
+            this.pnlContentQuanTri.TabIndex = 1;
+            // 
             // QuanTriForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1150, 675);
+            this.ClientSize = new System.Drawing.Size(1422, 729);
             this.Controls.Add(this.pnlContentQuanTri);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "QuanTriForm";
