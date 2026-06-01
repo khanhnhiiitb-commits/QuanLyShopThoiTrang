@@ -6,122 +6,101 @@ namespace DALShopThoiTrang
 {
     public class ThongKeRepository : DBConnection
     {
+        private DataTable ExecuteQuery(string query)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                OpenConnection();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi truy vấn SQL: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return dt;
+        }
+
+        // ==============================================================
+        // CÁC HÀM CŨ CỦA BẠN (Tui giữ lại để không bị lỗi các Form khác)
+        // ==============================================================
         public DataTable ThongKeDoanhThu(DateTime tuNgay, DateTime denNgay)
         {
-            DataTable dt = new DataTable();
-            try
-            {
-                OpenConnection();
-                // Nhóm doanh thu theo từng ngày
-                string query = @"
-                    SELECT CAST(ngayLap AS DATE) AS Ngay, 
-                           COUNT(maHD) AS SoLuongDonHang, 
-                           SUM(tongTien) AS TongDoanhThu 
-                    FROM HoaDon 
-                    WHERE ngayLap >= @tuNgay AND ngayLap <= @denNgay 
-                    GROUP BY CAST(ngayLap AS DATE) 
-                    ORDER BY Ngay ASC";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    // Thiết lập giờ để lấy trọn vẹn ngày
-                    cmd.Parameters.AddWithValue("@tuNgay", tuNgay.Date);
-                    cmd.Parameters.AddWithValue("@denNgay", denNgay.Date.AddDays(1).AddTicks(-1));
-
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                    {
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi thống kê doanh thu: " + ex.Message);
-            }
-            finally
-            {
-                CloseConnection();
-            }
-            return dt;
+            string sql = $"SELECT * FROM HoaDon WHERE ngayLap >= '{tuNgay:yyyy-MM-dd}' AND ngayLap <= '{denNgay:yyyy-MM-dd}'";
+            return ExecuteQuery(sql);
         }
+
         public DataTable ThongKeSanPhamBanChay(DateTime tuNgay, DateTime denNgay, int top = 10)
         {
-            DataTable dt = new DataTable();
-            try
-            {
-                OpenConnection();
-                string query = $@"
-                    SELECT TOP (@top) 
-                           sp.tenSP AS TenSanPham, 
-                           bt.mauSac AS MauSac, 
-                           bt.kichCo AS KichCo, 
-                           SUM(ct.soLuongBan) AS TongSoLuongBan 
-                    FROM ChiTietHD ct 
-                    INNER JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe 
-                    INNER JOIN SanPham sp ON bt.maSP = sp.maSP 
-                    INNER JOIN HoaDon hd ON ct.maHD = hd.maHD 
-                    WHERE hd.ngayLap >= @tuNgay AND hd.ngayLap <= @denNgay
-                    GROUP BY sp.tenSP, bt.mauSac, bt.kichCo 
-                    ORDER BY TongSoLuongBan DESC";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@top", top);
-                    cmd.Parameters.AddWithValue("@tuNgay", tuNgay.Date);
-                    cmd.Parameters.AddWithValue("@denNgay", denNgay.Date.AddDays(1).AddTicks(-1));
-
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                    {
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi thống kê sản phẩm bán chạy: " + ex.Message);
-            }
-            finally
-            {
-                CloseConnection();
-            }
-            return dt;
+            string sql = $"SELECT TOP {top} sp.tenSP, SUM(ct.soLuongBan) as SoLuong FROM ChiTietHD ct JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe JOIN SanPham sp ON bt.maSP = sp.maSP JOIN HoaDon hd ON ct.maHD = hd.maHD WHERE hd.ngayLap >= '{tuNgay:yyyy-MM-dd}' AND hd.ngayLap <= '{denNgay:yyyy-MM-dd}' GROUP BY sp.tenSP ORDER BY SoLuong DESC";
+            return ExecuteQuery(sql);
         }
+
         public DataTable LayHangTonKhoDuoiDinhMuc()
         {
-            DataTable dt = new DataTable();
-            try
-            {
-                OpenConnection();
-                string query = @"
-                    SELECT sp.maSP AS MaSanPham,
-                           sp.tenSP AS TenSanPham, 
-                           bt.maBienThe AS MaBienThe,
-                           bt.mauSac AS MauSac, 
-                           bt.kichCo AS KichCo, 
-                           bt.soLuongTon AS TonKhoHienTai, 
-                           bt.dinhMucToiThieu AS DinhMucToiThieu
-                    FROM BienTheSP bt 
-                    INNER JOIN SanPham sp ON bt.maSP = sp.maSP 
-                    WHERE bt.soLuongTon <= bt.dinhMucToiThieu
-                    ORDER BY bt.soLuongTon ASC";
+            string sql = "SELECT * FROM BienTheSP WHERE soLuongTon <= dinhMucToiThieu";
+            return ExecuteQuery(sql);
+        }
 
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                    {
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi lấy báo cáo tồn kho: " + ex.Message);
-            }
-            finally
-            {
-                CloseConnection();
-            }
-            return dt;
+        // ==============================================================
+        // 3 HÀM MỚI DÀNH RIÊNG CHO MÀN HÌNH DASHBOARD (ucReports)
+        // ==============================================================
+        public DataTable LayDoanhThuTheoNgay()
+        {
+            string sql = @"
+                SELECT CONVERT(varchar, ngayLap, 103) AS Ngay, SUM(tongTien) AS DoanhThu 
+                FROM HoaDon 
+                GROUP BY CONVERT(varchar, ngayLap, 103)";
+            return ExecuteQuery(sql);
+        }
+
+        public DataTable LayTop5BanChay()
+        {
+            string sql = @"
+                SELECT TOP 5 
+                    sp.tenSP AS TenSanPham, 
+                    SUM(ct.soLuongBan) AS SoLuongBan, 
+                    SUM(ct.soLuongBan * ct.donGiaBan) AS DoanhThuSP
+                FROM ChiTietHD ct 
+                JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe
+                JOIN SanPham sp ON bt.maSP = sp.maSP
+                GROUP BY sp.tenSP
+                ORDER BY SoLuongBan DESC";
+            return ExecuteQuery(sql);
+        }
+
+        public DataTable LayBaoCaoTonKho()
+        {
+            string sql = @"
+                SELECT 
+                    sp.tenSP AS TenSanPham, 
+                    (bt.mauSac + ' / ' + bt.kichCo) AS PhanLoai, 
+                    bt.soLuongTon AS SoLuongTon, 
+                    bt.dinhMucToiThieu AS DinhMucToiThieu 
+                FROM BienTheSP bt
+                JOIN SanPham sp ON bt.maSP = sp.maSP";
+            return ExecuteQuery(sql);
+        }
+        public DataTable LayTiLeHoanHang()
+        {
+            // Lấy tổng số phiếu trả chia cho tổng số hóa đơn
+            string sql = @"
+        SELECT 
+            CASE 
+                WHEN (SELECT COUNT(*) FROM HoaDon) = 0 THEN 0
+                ELSE (SELECT COUNT(*) FROM PhieuDoiTra) * 100.0 / (SELECT COUNT(*) FROM HoaDon)
+            END AS TiLeHoan";
+            return ExecuteQuery(sql);
         }
     }
 }

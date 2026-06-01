@@ -5,39 +5,56 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace BUSShopThoiTrang
 {
     public class ThongKeBUS
     {
-        ThongKeRepository tkRepo = new ThongKeRepository();
+        // Khai báo DUY NHẤT 1 biến kết nối xuống tầng DAL
+        private ThongKeRepository _thongKeRepo = new ThongKeRepository();
 
-        // Thống kê doanh thu
+        // ==============================================================
+        // CÁC HÀM CŨ CỦA BẠN (Dùng cho các Form khác)
+        // ==============================================================
         public DataTable ThongKeDoanhThu(DateTime tuNgay, DateTime denNgay)
         {
             if (tuNgay > denNgay)
-            {
                 throw new Exception("Ngày bắt đầu không được lớn hơn ngày kết thúc!");
-            }
-
-            return tkRepo.ThongKeDoanhThu(tuNgay, denNgay);
+            return _thongKeRepo.ThongKeDoanhThu(tuNgay, denNgay);
         }
 
-        // Thống kê sản phẩm bán chạy
         public DataTable ThongKeSanPhamBanChay(DateTime tuNgay, DateTime denNgay, int top = 10)
         {
             if (tuNgay > denNgay)
-            {
                 throw new Exception("Ngày bắt đầu không được lớn hơn ngày kết thúc!");
-            }
-
-            return tkRepo.ThongKeSanPhamBanChay(tuNgay, denNgay, top);
+            return _thongKeRepo.ThongKeSanPhamBanChay(tuNgay, denNgay, top);
         }
 
-        // Lấy danh sách hàng tồn kho dưới định mức
         public DataTable LayHangTonKhoDuoiDinhMuc()
         {
-            return tkRepo.LayHangTonKhoDuoiDinhMuc();
+            return _thongKeRepo.LayHangTonKhoDuoiDinhMuc();
+        }
+
+        // ==============================================================
+        // CÁC HÀM MỚI DÀNH CHO DASHBOARD (ucReports)
+        // ==============================================================
+        public DataTable LayDoanhThuTheoNgay()
+        {
+            return _thongKeRepo.LayDoanhThuTheoNgay();
+        }
+
+        public DataTable LayTop5BanChay()
+        {
+            return _thongKeRepo.LayTop5BanChay();
+        }
+
+        public DataTable LayBaoCaoTonKho()
+        {
+            return _thongKeRepo.LayBaoCaoTonKho();
+        }
+
+        public DataTable LayTiLeHoanHang()
+        {
+            return _thongKeRepo.LayTiLeHoanHang();
         }
     }
 }

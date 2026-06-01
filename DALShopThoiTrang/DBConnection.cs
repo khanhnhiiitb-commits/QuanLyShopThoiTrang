@@ -11,7 +11,7 @@ namespace DALShopThoiTrang
         //private string connectionString = @"Server =.\SQLEXPRESS;Database=QuanLyShopThoiTrang;Integrated Security = True;";
         //private string connectionString = @"Data Source=.;Initial Catalog=QuanLyShopThoiTrang; Integrated Security=True; TrustServerCertificate=True"; //HongNha
         //private string connectionString = @"Data Source=LAPTOP-SAHSTOKR\SQLEXPRESS;Initial Catalog=QuanLyShopThoiTrang;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"; //Duyên
-        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QuanLyShopThoiTrang;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QuanLyShopThoiTrangg;Integrated Security=True;Encrypt=False;TrustServerCertificate=True"; // Liễu
         protected SqlConnection conn;
 
         public DBConnection()
