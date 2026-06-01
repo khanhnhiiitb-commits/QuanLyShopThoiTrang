@@ -244,5 +244,10 @@
   <ItemGroup>
     <None Include="Resources\settings_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\cancel_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" />
+    <None Include="Resources\save_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" />
+    <None Include="Resources\cancel_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz241.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

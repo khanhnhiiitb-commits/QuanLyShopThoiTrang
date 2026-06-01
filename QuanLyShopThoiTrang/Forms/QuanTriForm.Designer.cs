@@ -73,7 +73,7 @@
             // 
             this.btnDashboard.FlatAppearance.BorderSize = 0;
             this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.Font = new System.Drawing.Font("Nirmala Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDashboard.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnDashboard.Image = global::QuanLyShopThoiTrang.Properties.Resources.dashboard_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40;
             this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -88,7 +88,7 @@
             // 
             this.btnProducts.FlatAppearance.BorderSize = 0;
             this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProducts.Font = new System.Drawing.Font("Nirmala Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProducts.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnProducts.Image = global::QuanLyShopThoiTrang.Properties.Resources.box_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40;
             this.btnProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -103,7 +103,7 @@
             // 
             this.btnInventory.FlatAppearance.BorderSize = 0;
             this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventory.Font = new System.Drawing.Font("Nirmala Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInventory.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnInventory.Image = global::QuanLyShopThoiTrang.Properties.Resources.box_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40;
             this.btnInventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,12 +113,13 @@
             this.btnInventory.TabIndex = 3;
             this.btnInventory.Text = "Inventory";
             this.btnInventory.UseVisualStyleBackColor = true;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
             // 
             // btnStaff
             // 
             this.btnStaff.FlatAppearance.BorderSize = 0;
             this.btnStaff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStaff.Font = new System.Drawing.Font("Nirmala Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStaff.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnStaff.Image = global::QuanLyShopThoiTrang.Properties.Resources.person_apron_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40;
             this.btnStaff.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -133,7 +134,7 @@
             // 
             this.btnReports.FlatAppearance.BorderSize = 0;
             this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReports.Font = new System.Drawing.Font("Nirmala Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReports.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnReports.Image = global::QuanLyShopThoiTrang.Properties.Resources.analytics_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40;
             this.btnReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -148,7 +149,7 @@
             // 
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Nirmala Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Image = global::QuanLyShopThoiTrang.Properties.Resources.settings_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,6 +167,7 @@
             this.pnlContentQuanTri.Name = "pnlContentQuanTri";
             this.pnlContentQuanTri.Size = new System.Drawing.Size(1192, 729);
             this.pnlContentQuanTri.TabIndex = 1;
+            this.pnlContentQuanTri.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContentQuanTri_Paint);
             // 
             // QuanTriForm
             // 
