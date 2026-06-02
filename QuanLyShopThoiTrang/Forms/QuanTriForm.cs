@@ -67,5 +67,20 @@ namespace QuanLyShopThoiTrang
             // 4. Nhét nó vào cái Panel ở giữa màn hình
             pnlContentQuanTri.Controls.Add(uc);
         }
+
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            pnlContentQuanTri.Controls.Clear();
+
+            // 2. Lấy bức tranh ucInventory trong kho ra
+            UserControls.ucStaff uc = new UserControls.ucStaff();
+
+            // 3. Kéo giãn bức tranh cho vừa khít bức tường
+            uc.Dock = DockStyle.Fill;
+
+            // 4. Treo lên tường!
+            pnlContentQuanTri.Controls.Add(uc);
+        }
     }
-}
+    }
+
