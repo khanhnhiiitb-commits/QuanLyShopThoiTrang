@@ -48,7 +48,7 @@ namespace GUIShopThoiTrang
                 // STAFF
                 else if (nv.PhanQuyen == "Staff")
                 {
-                    BanHangForm f = new BanHangForm();
+                    BanHangForm f = new BanHangForm(nv);
 
                     this.Hide();
 

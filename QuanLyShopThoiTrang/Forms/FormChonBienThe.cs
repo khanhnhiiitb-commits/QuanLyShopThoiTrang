@@ -19,14 +19,43 @@ namespace QuanLyShopThoiTrang
 
         // Biến này để lưu giữ toàn bộ danh sách biến thể lấy từ SQL lên
         private List<BienTheDTO> _danhSachTatCaBienThe;
+        private SanPhamDTO _sanPhamGoc;
 
         public BienTheDTO BienTheDaChon { get; private set; }
         public int SoLuong { get; private set; }
+        private void LoadHinhAnh(string tenAnh)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tenAnh)) return;
 
+                string imagePath = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "Images", tenAnh);
+
+                // LƯU Ý: Thay 'picHinhAnh' bằng đúng tên cái PictureBox trên giao diện của bạn nhé
+                if (System.IO.File.Exists(imagePath))
+                {
+                    using (System.IO.FileStream fs = new System.IO.FileStream(imagePath, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                    {
+                        picHinhAnh.Image = System.Drawing.Image.FromStream(fs);
+                    }
+                    picHinhAnh.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    picHinhAnh.Image = null;
+                }
+            }
+            catch
+            {
+                picHinhAnh.Image = null;
+            }
+        }
         public FormChonBienThe(SanPhamDTO sp)
         {
             InitializeComponent();
             lblTenSP.Text = sp.TenSP;
+            _sanPhamGoc = sp;
+            LoadHinhAnh(_sanPhamGoc.HinhAnh);
 
             // 1. Lấy toàn bộ biến thể của cái áo/quần này từ SQL
             _danhSachTatCaBienThe = _bus.LayBienTheTheoMaSP(sp.MaSP);
@@ -51,7 +80,6 @@ namespace QuanLyShopThoiTrang
                 cboKichCo.DataSource = danhSachSize;
             }
         }
-        // 3.5 BẮT SỰ KIỆN: Khi người dùng chọn/đổi Kích cỡ
 
         private void cboKichCo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -65,9 +93,12 @@ namespace QuanLyShopThoiTrang
 
                 if (bienTheHienTai != null)
                 {
+                    string tenAnhCuaBienThe = !string.IsNullOrEmpty(bienTheHienTai.HinhAnh) ? bienTheHienTai.HinhAnh : _sanPhamGoc.HinhAnh;
+                    LoadHinhAnh(tenAnhCuaBienThe);
                     // Thiết lập giới hạn mua tối đa bằng đúng số lượng đang có trong kho
                     if (bienTheHienTai.SoLuongTon > 0)
                     {
+
                         nmSoLuong.Maximum = bienTheHienTai.SoLuongTon;
                         nmSoLuong.Minimum = 1;
                         nmSoLuong.Value = 1;

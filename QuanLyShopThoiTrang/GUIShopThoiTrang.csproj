@@ -64,6 +64,18 @@
     <Compile Include="Forms\DangNhapForm.Designer.cs">
       <DependentUpon>DangNhapForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormDoiTra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDoiTra.Designer.cs">
+      <DependentUpon>FormDoiTra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormThanhToanTienMat%27.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormThanhToanTienMat%27.Designer.cs">
+      <DependentUpon>FormThanhToanTienMat%27.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\QuanTriForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +147,12 @@
     <EmbeddedResource Include="Forms\DangNhapForm.resx">
       <DependentUpon>DangNhapForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDoiTra.resx">
+      <DependentUpon>FormDoiTra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormThanhToanTienMat%27.resx">
+      <DependentUpon>FormThanhToanTienMat%27.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\QuanTriForm.resx">
       <DependentUpon>QuanTriForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,6 +216,10 @@
       <Project>{a8badf4d-0e4b-4a7a-a0ad-5b2126f36253}</Project>
       <Name>DTOShopThoiTrang</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UtilsShopThoiTrang\UtilsShopThoiTrang.csproj">
+      <Project>{49779a8d-24cd-48ea-96ba-fc2cb3547850}</Project>
+      <Name>UtilsShopThoiTrang</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imagedesktop.jpg" />
@@ -244,5 +266,9 @@
   <ItemGroup>
     <None Include="Resources\settings_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_32dp_000000_FILL0_wght400_GRAD0_opsz40.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

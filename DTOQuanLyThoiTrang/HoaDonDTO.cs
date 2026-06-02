@@ -13,7 +13,13 @@ namespace DTOQuanLyThoiTrang
         private string maNV;
         private DateTime ngayLap;
         private decimal tongTien;
+        private string phuongthucThanhToan; 
 
+        public string PhuongThucThanhToan
+        {
+            get { return phuongthucThanhToan; }
+            set { phuongthucThanhToan = value; }
+        }   
         public string MaHD { get; set; }
         public string MaKH { get; set; }
         public string MaNV { get; set; }
@@ -30,6 +36,7 @@ namespace DTOQuanLyThoiTrang
             this.MaNV = maNV;
             this.NgayLap = ngayLap;
             this.TongTien = tongTien;
+            this.PhuongThucThanhToan = "Chưa xác định";
         }
     }
 }

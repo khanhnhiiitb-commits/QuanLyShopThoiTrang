@@ -125,15 +125,43 @@ namespace BUSShopThoiTrang
         }
 
         // 5. Tìm kiếm sản phẩm theo tên (Dùng Query SQL ở DAL)
-        public List<SanPhamDTO> TimKiemSanPhamTheoTen(string tuKhoa)
+        // 10. Tìm kiếm nâng cao (Kết hợp nhiều điều kiện)
+        // Dùng nullable (decimal?) để cho phép bỏ trống điều kiện giá
+        public List<SanPhamDTO> TimKiemNangCao(string tuKhoa, string maLoai, decimal? giaTu, decimal? giaDen)
         {
-            if (string.IsNullOrWhiteSpace(tuKhoa))
+            // Lấy toàn bộ danh sách lên bộ nhớ (RAM) để chuẩn bị lọc
+            var query = _sanPhamRepo.LayDanhSachSanPham().AsEnumerable();
+
+            // Dùng LINQ nối chuỗi. Các khối lệnh If dưới đây hoạt động như toán tử "AND"
+
+            // 1. Lọc theo Từ khóa (Tên sản phẩm có chứa từ khóa)
+            if (!string.IsNullOrWhiteSpace(tuKhoa))
             {
-                return _sanPhamRepo.LayDanhSachSanPham();
+                tuKhoa = tuKhoa.Trim().ToLower(); // Đưa về chữ thường để không phân biệt hoa/thường
+                query = query.Where(sp => sp.TenSP != null && sp.TenSP.ToLower().Contains(tuKhoa));
             }
 
-            tuKhoa = tuKhoa.Trim();
-            return _sanPhamRepo.TimKiemSanPhamTheoTen(tuKhoa);
+            if (!string.IsNullOrWhiteSpace(maLoai) && !maLoai.Equals("All", StringComparison.OrdinalIgnoreCase))
+            {
+                query = query.Where(sp => sp.MaLoai == maLoai);
+            }
+
+            if (giaTu.HasValue)
+            {
+                query = query.Where(sp => sp.GiaBan >= giaTu.Value);
+            }
+
+            if (giaDen.HasValue)
+            {
+                query = query.Where(sp => sp.GiaBan <= giaDen.Value);
+            }
+
+           
+               //query = query.Where(sp => (sp.TenSP.Contains(tuKhoa) || sp.MaSP.Contains(tuKhoa)) 
+                                      //   && sp.MaLoai != "L05");
+            
+
+            return query.ToList();
         }
 
         // NHÓM 2: CÁC NGHIỆP VỤ NÂNG CAO SỬ DỤNG LINQ (RAM Xử Lý)
@@ -169,7 +197,24 @@ namespace BUSShopThoiTrang
 
             return tongVon;
         }
-        
+        // 9. Lọc sản phẩm theo danh mục (Loại sản phẩm)
+        public List<SanPhamDTO> LocSanPhamTheoDanhMuc(string maLoai)
+        {
+            List<SanPhamDTO> tatCaSP = _sanPhamRepo.LayDanhSachSanPham();
+
+            // Nếu tham số truyền vào rỗng hoặc là "All", trả về toàn bộ danh sách
+            if (string.IsNullOrWhiteSpace(maLoai) || maLoai.Equals("All", StringComparison.OrdinalIgnoreCase))
+            {
+                return tatCaSP;
+            }
+
+            // Dùng LINQ để lọc ra các sản phẩm có MaLoai khớp với tham số truyền vào
+            var ketQua = tatCaSP.Where(sp => sp.MaLoai != null &&
+                                             sp.MaLoai.Equals(maLoai, StringComparison.OrdinalIgnoreCase))
+                                .ToList();
+
+            return ketQua;
+        }
         public List<SanPhamDTO> LayTatCaSanPham()
         {
             return _sanPhamRepo.LayTatCaSanPham();

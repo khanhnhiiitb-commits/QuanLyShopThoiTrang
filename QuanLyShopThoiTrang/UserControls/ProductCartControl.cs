@@ -18,6 +18,8 @@ namespace QuanLyShopThoiTrang
         private SanPhamDTO _sanPham;
         private BienTheDTO _bienThe;
         private int _soLuong;
+        public int SoLuongMua => _soLuong;
+        public SanPhamDTO SanPhamHienTai => _sanPham;
         public BienTheDTO BienTheHienTai => _bienThe;
         public decimal ThanhTien => _sanPham.GiaBan * _soLuong;
         public ProductCartControl()
@@ -34,26 +36,37 @@ namespace QuanLyShopThoiTrang
             // 1. Gán thông tin cơ bản
             lblTenSP.Text = sp.TenSP;
             lblBienThe.Text = $"{bt.MauSac} - Size {bt.KichCo}";
-            lblSoLuong.Text = soLuong.ToString(); 
+            lblSoLuong.Text = soLuong.ToString();
 
             decimal thanhTien = sp.GiaBan * soLuong;
-            lblGiaSP.Text =  thanhTien.ToString("N0") + "đ" ;
+            lblGiaSP.Text = thanhTien.ToString("N0") + "đ";
 
-            // 3. Xử lý load hình ảnh an toàn
+            // 2. Xử lý load hình ảnh thông minh (An toàn)
             try
             {
-                // Nối đường dẫn vào thư mục Images trong bin/Debug
-                string imagePath = System.Windows.Forms.Application.StartupPath + "\\Images\\" + sp.HinhAnh;
+                // Ưu tiên 1: Lấy tên ảnh riêng của biến thể (Ví dụ: áo màu đen)
+                // Ưu tiên 2: Nếu biến thể không có ảnh riêng, tự động lùi về dùng ảnh gốc của sản phẩm
+
+                string tenAnh = !string.IsNullOrEmpty(bt.HinhAnh) ? bt.HinhAnh : sp.HinhAnh;
+
+                string imagePath = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "Images", tenAnh);
 
                 if (System.IO.File.Exists(imagePath))
                 {
-                    picSP.Image = System.Drawing.Image.FromFile(imagePath);
+                    using (System.IO.FileStream fs = new System.IO.FileStream(imagePath, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                    {
+                        picSP.Image = System.Drawing.Image.FromStream(fs);
+                    }
                     picSP.SizeMode = PictureBoxSizeMode.Zoom; // Căn ảnh gọn vào khung
+                }
+                else
+                {
+                    picSP.Image = null;
                 }
             }
             catch
             {
-                // Nếu có lỗi (ví dụ file ảnh bị hỏng), hệ thống sẽ bỏ qua và giữ khung trắng
+                picSP.Image = null;
             }
         }
         // Khai báo sự kiện để báo cho Form chính biết khi số lượng thay đổi
@@ -62,9 +75,28 @@ namespace QuanLyShopThoiTrang
         // Sự kiện cho nút GIẢM (-)
         private void btnGiam_Click(object sender, EventArgs e)
         {
-            if (_soLuong > 1)
+            _soLuong--; // Giảm số lượng đi 1
+
+            if (_soLuong == 0)
             {
-                _soLuong--;
+                // 1. Bắn sự kiện ra Form chính truyền số lượng = 0 
+                // (Để Form chính biết mà trừ đi phần tiền của món này và xóa khỏi danh sách lưu trữ)
+                if (OnQuantityChanged != null)
+                {
+                    OnQuantityChanged(_bienThe, 0);
+                }
+
+                //Tự động gỡ bản thân cái thẻ này khỏi giao diện giỏ hàng
+                if (this.Parent != null)
+                {
+                    this.Parent.Controls.Remove(this);
+                }
+
+                //Giải phóng hoàn toàn khỏi bộ nhớ
+                this.Dispose();
+            }
+            else
+            {
                 CapNhatGiaoDienSuaSoLuong();
             }
         }

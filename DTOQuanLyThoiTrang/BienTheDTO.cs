@@ -15,6 +15,9 @@ namespace DTOQuanLyThoiTrang
         private int _dinhMucToiThieu;
         private int _soLuongTon;
         private string _moTa;
+        private string _hinhAnh;
+       
+        public string HinhAnh { get => _hinhAnh; set => _hinhAnh = value; }
 
         public string MaBienThe { get => _maBienThe; set => _maBienThe = value; }
         public string MaSP { get => _maSP; set => _maSP = value; }
@@ -24,7 +27,7 @@ namespace DTOQuanLyThoiTrang
         public int SoLuongTon { get => _soLuongTon; set => _soLuongTon = value; }
         public string MoTa { get => _moTa; set => _moTa = value; }
 
-        public BienTheDTO(string MaBienThe, string MaSP, string MauSac, string KichCo, int DinhMucToiThieu, int SoLuongTon, string MoTa)
+        public BienTheDTO(string MaBienThe, string MaSP, string MauSac, string KichCo, int DinhMucToiThieu, int SoLuongTon, string MoTa, string HinhAnh)
         {
             _maBienThe = MaBienThe;
             _maSP = MaSP;
@@ -33,6 +36,8 @@ namespace DTOQuanLyThoiTrang
             _moTa = MoTa;
             _dinhMucToiThieu = DinhMucToiThieu;
             _soLuongTon = SoLuongTon;
+            _moTa = MoTa;
+           _hinhAnh = HinhAnh; 
         }
 
         public BienTheDTO()

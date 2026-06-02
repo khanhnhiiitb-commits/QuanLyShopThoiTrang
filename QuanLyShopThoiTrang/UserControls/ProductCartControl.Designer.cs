@@ -42,9 +42,10 @@
             // 
             this.lblTenSP.AutoSize = true;
             this.lblTenSP.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenSP.Location = new System.Drawing.Point(159, 14);
+            this.lblTenSP.Location = new System.Drawing.Point(179, 17);
+            this.lblTenSP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTenSP.Name = "lblTenSP";
-            this.lblTenSP.Size = new System.Drawing.Size(34, 22);
+            this.lblTenSP.Size = new System.Drawing.Size(45, 27);
             this.lblTenSP.TabIndex = 1;
             this.lblTenSP.Text = "Tên";
             // 
@@ -52,18 +53,20 @@
             // 
             this.lblBienThe.AutoSize = true;
             this.lblBienThe.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienThe.Location = new System.Drawing.Point(159, 45);
+            this.lblBienThe.Location = new System.Drawing.Point(179, 54);
+            this.lblBienThe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBienThe.Name = "lblBienThe";
-            this.lblBienThe.Size = new System.Drawing.Size(65, 22);
+            this.lblBienThe.Size = new System.Drawing.Size(86, 27);
             this.lblBienThe.TabIndex = 2;
             this.lblBienThe.Text = "Biến thể";
             // 
             // lblGiaSP
             // 
             this.lblGiaSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGiaSP.Location = new System.Drawing.Point(317, 117);
+            this.lblGiaSP.Location = new System.Drawing.Point(373, 119);
+            this.lblGiaSP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGiaSP.Name = "lblGiaSP";
-            this.lblGiaSP.Size = new System.Drawing.Size(101, 22);
+            this.lblGiaSP.Size = new System.Drawing.Size(164, 27);
             this.lblGiaSP.TabIndex = 3;
             this.lblGiaSP.Text = "...";
             this.lblGiaSP.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -71,9 +74,10 @@
             // lblSoLuong
             // 
             this.lblSoLuong.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.lblSoLuong.Location = new System.Drawing.Point(201, 117);
+            this.lblSoLuong.Location = new System.Drawing.Point(233, 120);
+            this.lblSoLuong.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSoLuong.Name = "lblSoLuong";
-            this.lblSoLuong.Size = new System.Drawing.Size(61, 21);
+            this.lblSoLuong.Size = new System.Drawing.Size(81, 26);
             this.lblSoLuong.TabIndex = 6;
             this.lblSoLuong.Text = "...";
             this.lblSoLuong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -84,11 +88,13 @@
             this.btnTru.FlatAppearance.BorderSize = 0;
             this.btnTru.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTru.Image = global::QuanLyShopThoiTrang.Properties.Resources.remove_20dp_FFFFFF_FILL0_wght400_GRAD0_opsz20;
-            this.btnTru.Location = new System.Drawing.Point(163, 115);
+            this.btnTru.Location = new System.Drawing.Point(182, 118);
+            this.btnTru.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTru.Name = "btnTru";
-            this.btnTru.Size = new System.Drawing.Size(32, 22);
+            this.btnTru.Size = new System.Drawing.Size(43, 27);
             this.btnTru.TabIndex = 5;
             this.btnTru.UseVisualStyleBackColor = false;
+            this.btnTru.Click += new System.EventHandler(this.btnGiam_Click);
             // 
             // btnCong
             // 
@@ -96,23 +102,26 @@
             this.btnCong.FlatAppearance.BorderSize = 0;
             this.btnCong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCong.Image = global::QuanLyShopThoiTrang.Properties.Resources.add_20dp_FFFFFF_FILL0_wght400_GRAD0_opsz20;
-            this.btnCong.Location = new System.Drawing.Point(268, 115);
+            this.btnCong.Location = new System.Drawing.Point(322, 118);
+            this.btnCong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCong.Name = "btnCong";
-            this.btnCong.Size = new System.Drawing.Size(32, 22);
+            this.btnCong.Size = new System.Drawing.Size(43, 27);
             this.btnCong.TabIndex = 4;
             this.btnCong.UseVisualStyleBackColor = false;
+            this.btnCong.Click += new System.EventHandler(this.btnTang_Click);
             // 
             // picSP
             // 
-            this.picSP.Location = new System.Drawing.Point(3, 3);
+            this.picSP.Location = new System.Drawing.Point(4, 4);
+            this.picSP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picSP.Name = "picSP";
-            this.picSP.Size = new System.Drawing.Size(150, 144);
+            this.picSP.Size = new System.Drawing.Size(167, 142);
             this.picSP.TabIndex = 0;
             this.picSP.TabStop = false;
             // 
             // ProductCartControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblSoLuong);
             this.Controls.Add(this.btnTru);
@@ -121,8 +130,9 @@
             this.Controls.Add(this.lblBienThe);
             this.Controls.Add(this.lblTenSP);
             this.Controls.Add(this.picSP);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ProductCartControl";
-            this.Size = new System.Drawing.Size(432, 150);
+            this.Size = new System.Drawing.Size(554, 155);
             ((System.ComponentModel.ISupportInitialize)(this.picSP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

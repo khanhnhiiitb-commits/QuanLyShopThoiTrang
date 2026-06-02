@@ -37,41 +37,39 @@
             // 
             // picAnhSP
             // 
-            this.picAnhSP.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.picAnhSP.Location = new System.Drawing.Point(10, 0);
-            this.picAnhSP.Margin = new System.Windows.Forms.Padding(2);
+            this.picAnhSP.BackColor = System.Drawing.SystemColors.Control;
+            this.picAnhSP.Location = new System.Drawing.Point(13, 0);
+            this.picAnhSP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picAnhSP.Name = "picAnhSP";
-            this.picAnhSP.Size = new System.Drawing.Size(220, 300);
+            this.picAnhSP.Size = new System.Drawing.Size(201, 208);
             this.picAnhSP.TabIndex = 0;
             this.picAnhSP.TabStop = false;
             // 
             // lblTenSP
             // 
             this.lblTenSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenSP.Location = new System.Drawing.Point(7, 307);
-            this.lblTenSP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTenSP.Location = new System.Drawing.Point(9, 222);
             this.lblTenSP.Name = "lblTenSP";
-            this.lblTenSP.Size = new System.Drawing.Size(126, 18);
+            this.lblTenSP.Size = new System.Drawing.Size(168, 22);
             this.lblTenSP.TabIndex = 1;
             this.lblTenSP.Text = "Tên";
             // 
             // lblGiaSP
             // 
             this.lblGiaSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGiaSP.Location = new System.Drawing.Point(137, 305);
-            this.lblGiaSP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblGiaSP.Location = new System.Drawing.Point(90, 244);
             this.lblGiaSP.Name = "lblGiaSP";
-            this.lblGiaSP.Size = new System.Drawing.Size(93, 18);
+            this.lblGiaSP.Size = new System.Drawing.Size(124, 22);
             this.lblGiaSP.TabIndex = 2;
             this.lblGiaSP.Text = "Giá";
             this.lblGiaSP.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(161, 325);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Location = new System.Drawing.Point(122, 268);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(69, 28);
+            this.btnAdd.Size = new System.Drawing.Size(92, 34);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -79,16 +77,16 @@
             // 
             // ProductCardControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblGiaSP);
             this.Controls.Add(this.lblTenSP);
             this.Controls.Add(this.picAnhSP);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ProductCardControl";
-            this.Size = new System.Drawing.Size(241, 356);
+            this.Size = new System.Drawing.Size(229, 308);
             ((System.ComponentModel.ISupportInitialize)(this.picAnhSP)).EndInit();
             this.ResumeLayout(false);
 

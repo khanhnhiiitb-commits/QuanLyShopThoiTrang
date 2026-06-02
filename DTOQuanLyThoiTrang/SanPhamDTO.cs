@@ -24,14 +24,15 @@ namespace DTOShopThoiTrang
         public decimal GiaBan { get => _giaBan; set => _giaBan = value; }
         public string MoTa { get => _moTa; set => _moTa = value; }
 
-        public SanPhamDTO(string maSP, string maLoai, string tenSP, decimal giaBan, decimal giaNhap, string moTa)
+        public SanPhamDTO(string maSP, string maLoai, string tenSP, decimal giaBan, decimal giaNhap, string moTa, string hinhAnh)
         {
-            _maSP = maSP;
-            _maLoai = maLoai;
-            _tenSP = tenSP;
-            _giaNhap = giaNhap;
-            _giaBan = giaBan;
-            _moTa = moTa;
+            MaSP = maSP;
+            MaLoai = maLoai;
+            TenSP = tenSP;
+            GiaNhap = giaNhap;
+            GiaBan = giaBan;
+            MoTa = moTa;
+            HinhAnh = hinhAnh;
         }
 
         public SanPhamDTO()

@@ -346,8 +346,62 @@ namespace DALShopThoiTrang
 
             return dt;
         }
+        public bool ThanhToanGiaoDich(HoaDonDTO hd, List<ChiTietHDDTO> listChiTiet)
+        {
+            OpenConnection();
+            // Khởi tạo Transaction để đảm bảo an toàn dữ liệu
+            using (SqlTransaction trans = conn.BeginTransaction())
+            {
+                try
+                {
+                    // 1. Lưu Hóa Đơn
+                    string sqlHD = "INSERT INTO HoaDon (maHD, maKH, maNV, ngayLap, tongTien, phuongThucThanhToan) VALUES (@maHD, @maKH, @maNV, @ngayLap, @tongTien, @phuongThuc)";
+                    SqlCommand cmdHD = new SqlCommand(sqlHD, conn, trans);
+                    cmdHD.Parameters.AddWithValue("@maHD", hd.MaHD);
+                    cmdHD.Parameters.AddWithValue("@maKH", hd.MaKH);
+                    cmdHD.Parameters.AddWithValue("@maNV", hd.MaNV);
+                    cmdHD.Parameters.AddWithValue("@ngayLap", hd.NgayLap);
+                    cmdHD.Parameters.AddWithValue("@tongTien", hd.TongTien);
+                    cmdHD.Parameters.AddWithValue("@phuongThuc", hd.PhuongThucThanhToan);
+                    cmdHD.ExecuteNonQuery();
 
-        
+                    // 2. Lưu từng Chi tiết Hóa Đơn & Trừ Tồn Kho
+                    foreach (var ct in listChiTiet)
+                    {
+                        // Thêm chi tiết
+                        string sqlCT = "INSERT INTO ChiTietHD (maHD, maBienThe, soLuongBan, donGiaBan) VALUES (@maHD, @maBienThe, @sl, @donGia)";
+                        SqlCommand cmdCT = new SqlCommand(sqlCT, conn, trans);
+                        cmdCT.Parameters.AddWithValue("@maHD", ct.MaHD);
+                        cmdCT.Parameters.AddWithValue("@maBienThe", ct.MaBienThe);
+                        cmdCT.Parameters.AddWithValue("@sl", ct.SoLuongBan);
+                        cmdCT.Parameters.AddWithValue("@donGia", ct.DonGiaBan);
+                        cmdCT.ExecuteNonQuery();
+
+                        // Trừ tồn kho trong bảng BienTheSP
+                        string sqlKho = "UPDATE BienTheSP SET soLuongTon = soLuongTon - @sl WHERE maBienThe = @maBienThe";
+                        SqlCommand cmdKho = new SqlCommand(sqlKho, conn, trans);
+                        cmdKho.Parameters.AddWithValue("@sl", ct.SoLuongBan);
+                        cmdKho.Parameters.AddWithValue("@maBienThe", ct.MaBienThe);
+                        cmdKho.ExecuteNonQuery();
+                    }
+
+                    // Nếu mọi thứ trót lọt, chốt lưu dữ liệu!
+                    trans.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    // Có lỗi thì quay xe (Rollback)
+                    trans.Rollback();
+                    throw new Exception("Lỗi khi lưu hóa đơn: " + ex.Message);
+                }
+                finally
+                {
+                    CloseConnection();
+                }
+            }
+        }
+
     }
 
 

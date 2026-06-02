@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using DALShopThoiTrang;
 using DTOQuanLyThoiTrang;
@@ -42,7 +43,10 @@ namespace BUSShopThoiTrang
             }
             return giaoDichDAL.ThemHoaDon(hoaDon, danhSachChiTiet);
         }
-
+        public bool ThanhToanGiaoDich(HoaDonDTO hd, List<ChiTietHDDTO> listChiTiet)
+        {
+            return giaoDichDAL.ThanhToanGiaoDich(hd, listChiTiet);
+        }
         //Xử lý thanh toán MoMo
         public async Task<string> YeuCauThanhToanMoMo(string maHD, decimal tongTien)
         {
@@ -73,6 +77,14 @@ namespace BUSShopThoiTrang
             
             return giaoDichDAL.ThemPhieuDoiTra(phieuDoiTra, danhSachChiTietDoiTra);
         }
-        
+        public DataTable TimHoaDon(string maHD)
+        {
+            return giaoDichDAL.TimHoaDon(maHD);
+        }
+
+        public DataTable LayChiTietHoaDon(string maHD)
+        {
+            return giaoDichDAL.LayChiTietHoaDon(maHD);
+        }
     }
 }

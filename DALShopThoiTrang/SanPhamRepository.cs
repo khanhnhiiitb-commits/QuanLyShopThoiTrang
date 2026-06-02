@@ -18,8 +18,7 @@ namespace DALShopThoiTrang
             try
             {
                 OpenConnection();
-                string query = "SELECT maSP, maLoai, tenSP, giaNhap, giaBan, moTa FROM SanPham";
-
+                string query = "SELECT * FROM SanPham";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -32,7 +31,8 @@ namespace DALShopThoiTrang
                             TenSP = reader["tenSP"].ToString(),
                             GiaNhap = Convert.ToDecimal(reader["giaNhap"]),
                             GiaBan = Convert.ToDecimal(reader["giaBan"]),
-                            MoTa = reader["moTa"].ToString()
+                            MoTa = reader["moTa"].ToString(),
+                            HinhAnh = reader["hinhAnh"] != DBNull.Value ? reader["hinhAnh"].ToString() : ""
                         });
                     }
                 }
@@ -248,7 +248,8 @@ namespace DALShopThoiTrang
                                 KichCo = reader["kichCo"].ToString(),
                                 DinhMucToiThieu = Convert.ToInt32(reader["dinhMucToiThieu"]),
                                 SoLuongTon = Convert.ToInt32(reader["soLuongTon"]),
-                                MoTa = reader["moTa"].ToString()
+                                MoTa = reader["moTa"].ToString(),
+                                HinhAnh = reader["hinhAnh"] != DBNull.Value ? reader["hinhAnh"].ToString() : ""
                             };
                             danhSachBienThe.Add(bt); // Thêm vào danh sách
                         }
@@ -336,7 +337,9 @@ namespace DALShopThoiTrang
                             MaSP = reader["maSP"].ToString(),
                             MauSac = reader["mauSac"].ToString(),
                             KichCo = reader["kichCo"].ToString(),
-                            SoLuongTon = Convert.ToInt32(reader["soLuongTon"])
+                            SoLuongTon = Convert.ToInt32(reader["soLuongTon"]),
+                            MoTa = reader["moTa"].ToString(),
+                            HinhAnh = reader["hinhAnh"] != DBNull.Value ? reader["hinhAnh"].ToString() : ""
                         });
                     }
                 }
