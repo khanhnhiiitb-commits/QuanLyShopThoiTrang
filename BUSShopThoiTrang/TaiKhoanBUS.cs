@@ -2,6 +2,7 @@
 using DTOShopThoiTrang;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,35 @@ namespace BUSShopThoiTrang
             }
 
             return tkRepo.KiemTraDangNhap(username, password);
+        }
+        public DataTable LayDanhSachNhanVien()
+        {
+            return tkRepo.LayDanhSachNhanVien();
+        }
+
+        public bool ThemNhanVien(NhanVienDTO nv)
+        {
+            return tkRepo.ThemNhanVien(nv);
+        }
+
+        public bool SuaNhanVien(NhanVienDTO nv)
+        {
+            return tkRepo.SuaNhanVien(nv);
+        }
+
+        public DataTable TimNhanVien(string tuKhoa)
+        {
+            return tkRepo.TimNhanVien(tuKhoa);
+        }
+
+        public bool KhoaNhanVien(string maNV)
+        {
+            return tkRepo.KhoaNhanVien(maNV);
+        }
+
+        public bool MoKhoaNhanVien(string maNV)
+        {
+            return tkRepo.MoKhoaNhanVien(maNV);
         }
     }
 }

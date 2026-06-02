@@ -9,7 +9,7 @@ using DALShopThoiTrang;
 
 namespace BUSShopThoiTrang
 {
-    internal class KhoHangBUS
+    public class KhoHangBUS
     {
         private readonly KhoHangRepository _khoHangRepo = new KhoHangRepository();
 

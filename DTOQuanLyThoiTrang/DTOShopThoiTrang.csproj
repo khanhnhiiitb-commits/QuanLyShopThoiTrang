@@ -52,6 +52,7 @@
     <Compile Include="ChiTietPNDTO.cs" />
     <Compile Include="HoaDonDTO.cs" />
     <Compile Include="KhachHangDTO.cs" />
+    <Compile Include="LoaiSPDTO.cs" />
     <Compile Include="NhanVienDTO.cs" />
     <Compile Include="PhieuDoiTraDTO.cs" />
     <Compile Include="PhieuNhapDTO.cs" />
