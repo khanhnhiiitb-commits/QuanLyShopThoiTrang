@@ -98,6 +98,7 @@
             this.btnProducts.TabIndex = 2;
             this.btnProducts.Text = "Products";
             this.btnProducts.UseVisualStyleBackColor = true;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
             // btnInventory
             // 
@@ -168,7 +169,6 @@
             this.pnlContentQuanTri.Name = "pnlContentQuanTri";
             this.pnlContentQuanTri.Size = new System.Drawing.Size(1192, 729);
             this.pnlContentQuanTri.TabIndex = 1;
-            this.pnlContentQuanTri.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContentQuanTri_Paint);
             // 
             // QuanTriForm
             // 

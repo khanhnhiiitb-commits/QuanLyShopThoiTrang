@@ -33,11 +33,20 @@ namespace QuanLyShopThoiTrang
             // 4. Treo lên tường!
             pnlContentQuanTri.Controls.Add(uc);
         }
-        
 
-        private void pnlContentQuanTri_Paint(object sender, PaintEventArgs e)
+        private void btnProducts_Click(object sender, EventArgs e)
         {
+            // 1. Dọn dẹp sạch sẽ bức tường (xóa các giao diện cũ đang hiển thị nếu có)
+            pnlContentQuanTri.Controls.Clear();
 
+            // 2. Lấy bức tranh ucInventory trong kho ra
+            UserControls.ucProducts uc = new UserControls.ucProducts();
+
+            // 3. Kéo giãn bức tranh cho vừa khít bức tường
+            uc.Dock = DockStyle.Fill;
+
+            // 4. Treo lên tường!
+            pnlContentQuanTri.Controls.Add(uc);
         }
         private void btnReports_Click(object sender, EventArgs e)
         {
