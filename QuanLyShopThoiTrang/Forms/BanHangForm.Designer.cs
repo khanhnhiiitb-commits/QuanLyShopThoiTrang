@@ -32,14 +32,14 @@
             this.lblReturnsExchanges = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblTax = new System.Windows.Forms.Label();
-            this.lblMDiscount = new System.Windows.Forms.Label();
+            this.lblMembershipDiscount = new System.Windows.Forms.Label();
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.btnFinalizeTransaction = new System.Windows.Forms.Button();
             this.btnCash = new System.Windows.Forms.Button();
             this.btnMomo = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblMaHD = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.btnJeans = new System.Windows.Forms.Button();
             this.btnJacket = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblCustomer = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -72,14 +72,14 @@
             this.panel2.Controls.Add(this.lblReturnsExchanges);
             this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Controls.Add(this.lblTax);
-            this.panel2.Controls.Add(this.lblMDiscount);
+            this.panel2.Controls.Add(this.lblMembershipDiscount);
             this.panel2.Controls.Add(this.lblSubtotal);
             this.panel2.Controls.Add(this.btnFinalizeTransaction);
             this.panel2.Controls.Add(this.btnCash);
             this.panel2.Controls.Add(this.btnMomo);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.label);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(977, 353);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -119,16 +119,16 @@
             this.lblTax.Text = "...";
             this.lblTax.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblMDiscount
+            // lblMembershipDiscount
             // 
-            this.lblMDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMDiscount.Location = new System.Drawing.Point(392, 32);
-            this.lblMDiscount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMDiscount.Name = "lblMDiscount";
-            this.lblMDiscount.Size = new System.Drawing.Size(171, 28);
-            this.lblMDiscount.TabIndex = 11;
-            this.lblMDiscount.Text = "...";
-            this.lblMDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblMembershipDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMembershipDiscount.Location = new System.Drawing.Point(392, 32);
+            this.lblMembershipDiscount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMembershipDiscount.Name = "lblMembershipDiscount";
+            this.lblMembershipDiscount.Size = new System.Drawing.Size(171, 28);
+            this.lblMembershipDiscount.TabIndex = 11;
+            this.lblMembershipDiscount.Text = "...";
+            this.lblMembershipDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblSubtotal
             // 
@@ -215,15 +215,15 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Tax";
             // 
-            // label4
+            // label
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(182, 23);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Membership Discount";
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(9, 38);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(182, 23);
+            this.label.TabIndex = 4;
+            this.label.Text = "Membership Discount";
             // 
             // label3
             // 
@@ -444,7 +444,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.lblCustomer);
             this.panel4.Controls.Add(this.lblMaHD);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Location = new System.Drawing.Point(977, 1);
@@ -453,17 +453,18 @@
             this.panel4.Size = new System.Drawing.Size(576, 59);
             this.panel4.TabIndex = 6;
             // 
-            // label2
+            // lblCustomer
             // 
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Image = global::QuanLyShopThoiTrang.Properties.Resources.person_24dp_000000_FILL0_wght400_GRAD0_opsz24;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(15, 28);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(232, 26);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Customer name";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCustomer.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomer.Image = global::QuanLyShopThoiTrang.Properties.Resources.person_24dp_000000_FILL0_wght400_GRAD0_opsz24;
+            this.lblCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCustomer.Location = new System.Drawing.Point(15, 28);
+            this.lblCustomer.Name = "lblCustomer";
+            this.lblCustomer.Size = new System.Drawing.Size(232, 26);
+            this.lblCustomer.TabIndex = 2;
+            this.lblCustomer.Text = "Customer name";
+            this.lblCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCustomer.Click += new System.EventHandler(this.lblCustomer_Click);
             // 
             // BanHangForm
             // 
@@ -499,10 +500,10 @@
         private System.Windows.Forms.FlowLayoutPanel flpCurrentOrder;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button btnAll;
@@ -517,7 +518,7 @@
         private System.Windows.Forms.Label lblSubtotal;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblTax;
-        private System.Windows.Forms.Label lblMDiscount;
+        private System.Windows.Forms.Label lblMembershipDiscount;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblReturnsExchanges;
         private System.Windows.Forms.TextBox txtTimKiem;

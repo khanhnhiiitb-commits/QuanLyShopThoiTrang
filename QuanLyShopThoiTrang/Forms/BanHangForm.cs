@@ -22,6 +22,7 @@ namespace QuanLyShopThoiTrang
         private NhanVienDTO nhanVienHienTai;
         private string _maLoaiHienTai = "All";
         private string _phuongThucThanhToan = "";
+        private KhachHangDTO khachHangHienTai = null;
         public BanHangForm(NhanVienDTO nhanVienHienTai)
         {
             InitializeComponent();
@@ -328,6 +329,80 @@ namespace QuanLyShopThoiTrang
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Lỗi Hệ Thống");
+            }
+        }
+        private string ShowInputDialog(string text, string caption)
+        {
+            Form prompt = new Form()
+            {
+                Width = 400,
+                Height = 160,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = caption,
+                StartPosition = FormStartPosition.CenterScreen,
+                MaximizeBox = false
+            };
+            Label textLabel = new Label() { Left = 20, Top = 20, Text = text, Width = 350 };
+            TextBox textBox = new TextBox() { Left = 20, Top = 50, Width = 340 };
+            Button confirmation = new Button() { Text = "Xác nhận", Left = 260, Width = 100, Top = 85, DialogResult = DialogResult.OK };
+
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.AcceptButton = confirmation; // Nhấn Enter là tự ấn Xác nhận
+
+            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text.Trim() : "";
+        }
+        private void lblCustomer_Click(object sender, EventArgs e)
+        {
+            string sdt = ShowInputDialog("Nhập số điện thoại khách hàng:", "Tra cứu thành viên");
+
+            if (string.IsNullOrEmpty(sdt)) return;
+
+            // 2. Tìm trong DB
+            KhachHangDTO kh = giaoDichBUS.TimKhachHangTheoSDT(sdt);
+
+            if (kh != null)
+            {
+                khachHangHienTai = kh;
+                lblCustomer.Text = kh.TenKH;
+                label.Text = "10%"; // Hiển thị 10%
+
+                MessageBox.Show($"Chào mừng khách hàng {kh.TenKH} trở lại!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Cập nhật lại hóa đơn (bạn cần viết thêm hàm giảm 10% vào tổng tiền của bạn)
+                // CapNhatTongTien(); 
+            }
+            else
+            {
+                // TRƯỜNG HỢP 2: CHƯA CÓ TRONG HỆ THỐNG
+                DialogResult result = MessageBox.Show("Số điện thoại này chưa đăng ký. Bạn có muốn thêm thành viên mới không?",
+                                                      "Khách hàng mới", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Hỏi tên khách hàng
+                    string tenKH = ShowInputDialog("Nhập TÊN khách hàng mới:", "Thêm thành viên");
+                    if (!string.IsNullOrEmpty(tenKH))
+                    {
+                        KhachHangDTO khMoi = new KhachHangDTO();
+                        khMoi.MaKH = giaoDichBUS.TaoMaKhachHangMoi(); // Gọi hàm tự tăng mã (KH06, KH07...)
+                        khMoi.TenKH = tenKH;
+                        khMoi.SoDienThoai = sdt;
+
+                        // Lưu xuống DB
+                        if (giaoDichBUS.ThemKhachHang(khMoi))
+                        {
+                            khachHangHienTai = khMoi;
+                            lblCustomer.Text = khMoi.TenKH;
+                            label.Text = "10%";
+
+                            MessageBox.Show($"Đăng ký thành viên thành công! Mã KH: {khMoi.MaKH}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // CapNhatTongTien(); 
+                        }
+                    }
+                }
             }
         }
     }

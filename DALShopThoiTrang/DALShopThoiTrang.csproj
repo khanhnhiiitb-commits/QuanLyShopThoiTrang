@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="DBConnection.cs" />
     <Compile Include="GiaoDichRepository.cs" />
+    <Compile Include="KhachHangRepository.cs" />
     <Compile Include="KhoHangRepository.cs" />
     <Compile Include="LoaiSPRepository.cs" />
     <Compile Include="SanPhamRepository.cs" />

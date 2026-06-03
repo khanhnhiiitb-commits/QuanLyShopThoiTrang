@@ -50,6 +50,7 @@ namespace DALShopThoiTrang
 
             return dt;
         }
+        // 1. Lấy danh sách chi tiết và TỰ ĐỘNG tính số lượng đã trả bằng Sub-Query
         public DataTable LayDanhSachChiTietDeTraHang(string maHD)
         {
             DataTable dt = new DataTable();
@@ -57,35 +58,38 @@ namespace DALShopThoiTrang
             {
                 OpenConnection();
                 string sql = @"
-            SELECT 
-                hd.ngayLap,
-                hd.tongTien,
-                ct.maBienThe, 
-                sp.tenSP, 
-                bt.mauSac, 
-                bt.kichCo, 
-                ct.soLuongBan, 
-                ct.donGiaBan 
-            FROM ChiTietHD ct
-            JOIN HoaDon hd ON ct.maHD = hd.maHD
-            JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe
-            JOIN SanPham sp ON bt.maSP = sp.maSP
-            WHERE ct.maHD = @maHD";
-
+                    SELECT 
+                        hd.ngayLap,           
+                        hd.tongTien,          
+                        ct.maBienThe,         
+                        sp.tenSP,             
+                        bt.mauSac,            
+                        bt.kichCo, 
+                        ct.soLuongBan, 
+                        ct.donGiaBan,
+                        -- Dùng truy vấn con tính tổng số lượng đã trả từ bảng ChiTietPDT
+                        ISNULL((
+                            SELECT SUM(ctpdt.soLuong) 
+                            FROM ChiTietPDT ctpdt
+                            JOIN PhieuDoiTra pdt ON ctpdt.maPDT = pdt.maPDT
+                            WHERE pdt.maHD = ct.maHD AND ctpdt.maBienThe = ct.maBienThe
+                        ), 0) AS soLuongTra 
+                    FROM ChiTietHD ct
+                    JOIN HoaDon hd ON ct.maHD = hd.maHD   
+                    JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe
+                    JOIN SanPham sp ON bt.maSP = sp.maSP
+                    WHERE ct.maHD = @maHD";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@maHD", maHD);
-
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi tải chi tiết: " + ex.Message);
-            }
+            catch (Exception ex) { throw new Exception("Lỗi tải chi tiết: " + ex.Message); }
             finally { CloseConnection(); }
-
             return dt;
         }
+
+        
         // Thêm hóa đơn
         public bool ThemHoaDon(HoaDonDTO hd, List<ChiTietHDDTO> danhSachChiTiet)
         {
@@ -265,16 +269,16 @@ namespace DALShopThoiTrang
                 {
                     // 1. THÊM DỮ LIỆU VÀO BẢNG PHIEUDOITRA
                     string queryPDT = @"
-                        INSERT INTO PhieuDoiTra (maPDT, maHD, maNV, ngayDoiTra, lyDo, tongTienHoan)
-                        VALUES (@maPDT, @maHD, @maNV, @ngayDoiTra, @lyDo, @tongTienHoan)";
+                        INSERT INTO PhieuDoiTra (maPDT, maHD, maNV, ngayLap, ghiChu, tongTienHoan)
+                        VALUES (@maPDT, @maHD, @maNV, @ngayLap, @ghiChu, @tongTienHoan)";
 
                     using (SqlCommand cmdPDT = new SqlCommand(queryPDT, conn, transaction))
                     {
                         cmdPDT.Parameters.AddWithValue("@maPDT", pdt.MaPDT);
                         cmdPDT.Parameters.AddWithValue("@maHD", pdt.MaHD);
                         cmdPDT.Parameters.AddWithValue("@maNV", pdt.MaNV);
-                        cmdPDT.Parameters.AddWithValue("@ngayDoiTra", pdt.NgayDoiTra);
-                        cmdPDT.Parameters.AddWithValue("@lyDo", string.IsNullOrEmpty(pdt.LyDo) ? (object)DBNull.Value : pdt.LyDo);
+                        cmdPDT.Parameters.AddWithValue("@ngayLap", pdt.NgayLap);
+                        cmdPDT.Parameters.AddWithValue("@ghiChu", string.IsNullOrEmpty(pdt.GhiChu) ? (object)DBNull.Value : pdt.GhiChu);
                         cmdPDT.Parameters.AddWithValue("@tongTienHoan", pdt.TongTienHoan);
 
                         cmdPDT.ExecuteNonQuery();
