@@ -33,16 +33,15 @@ namespace QuanLyShopThoiTrang.Forms
             }
 
             // Lấy thông tin hóa đơn gốc
-            DataTable dtHoaDon = giaoDichBUS.TimHoaDon(maHD);
-            if (dtHoaDon.Rows.Count > 0)
+            DataTable dtChiTiet = giaoDichBUS.LayDanhSachChiTietDeTraHang(maHD); if (dtChiTiet.Rows.Count > 0)
             {
                 // Hiển thị thông tin lên Label
-                ngayLapHoaDonGoc = Convert.ToDateTime(dtHoaDon.Rows[0]["ngayLap"]);
+                ngayLapHoaDonGoc = Convert.ToDateTime(dtChiTiet.Rows[0]["ngayLap"]);
                 lblNgayMua.Text = "Ngày mua: " + ngayLapHoaDonGoc.ToString("dd/MM/yyyy HH:mm");
-                lblTongTien.Text = "Tổng tiền HĐ: " + Convert.ToDecimal(dtHoaDon.Rows[0]["tongTien"]).ToString("N0") + "đ";
+                lblTongTien.Text = "Tổng tiền HĐ: " + Convert.ToDecimal(dtChiTiet.Rows[0]["tongTien"]).ToString("N0") + "đ";
 
                 // Đổ chi tiết vào GridView
-                dgvChiTietHD.DataSource = giaoDichBUS.LayChiTietHoaDon(maHD);
+                dgvChiTietHD.DataSource = giaoDichBUS.LayDanhSachChiTietDeTraHang(maHD);
             }
             else
             {

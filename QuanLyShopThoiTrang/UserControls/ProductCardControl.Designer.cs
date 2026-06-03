@@ -38,10 +38,10 @@
             // picAnhSP
             // 
             this.picAnhSP.BackColor = System.Drawing.SystemColors.Control;
-            this.picAnhSP.Location = new System.Drawing.Point(13, 0);
+            this.picAnhSP.Location = new System.Drawing.Point(3, 2);
             this.picAnhSP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picAnhSP.Name = "picAnhSP";
-            this.picAnhSP.Size = new System.Drawing.Size(201, 208);
+            this.picAnhSP.Size = new System.Drawing.Size(223, 206);
             this.picAnhSP.TabIndex = 0;
             this.picAnhSP.TabStop = false;
             // 

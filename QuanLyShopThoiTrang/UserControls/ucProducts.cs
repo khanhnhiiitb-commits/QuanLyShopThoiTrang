@@ -137,7 +137,7 @@ namespace QuanLyShopThoiTrang.UserControls
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var tuKhoa = txtSearch.Text.Trim();
-            var ketQuaTimKiem = _spBus.TimKiemSanPhamTheoTen(tuKhoa);
+            var ketQuaTimKiem = _spBus.TimKiemSPTheoTen(tuKhoa);
             dgvDanhsachSP.DataSource = ketQuaTimKiem;
         }
 

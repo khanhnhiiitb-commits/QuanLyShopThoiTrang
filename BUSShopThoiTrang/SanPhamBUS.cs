@@ -125,6 +125,11 @@ namespace BUSShopThoiTrang
         }
 
         // 5. Tìm kiếm sản phẩm theo tên (Dùng Query SQL ở DAL)
+        public List<SanPhamDTO> TimKiemSPTheoTen(string tuKhoa)
+        {
+            string tuKhoaChuan = tuKhoa.Trim();
+            return _sanPhamRepo.TimKiemSanPhamTheoTen(tuKhoaChuan);
+        }
         // 10. Tìm kiếm nâng cao (Kết hợp nhiều điều kiện)
         // Dùng nullable (decimal?) để cho phép bỏ trống điều kiện giá
         public List<SanPhamDTO> TimKiemNangCao(string tuKhoa, string maLoai, decimal? giaTu, decimal? giaDen)

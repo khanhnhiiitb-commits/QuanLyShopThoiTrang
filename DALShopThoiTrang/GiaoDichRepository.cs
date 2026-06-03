@@ -50,7 +50,42 @@ namespace DALShopThoiTrang
 
             return dt;
         }
+        public DataTable LayDanhSachChiTietDeTraHang(string maHD)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                OpenConnection();
+                string sql = @"
+            SELECT 
+                hd.ngayLap,
+                hd.tongTien,
+                ct.maBienThe, 
+                sp.tenSP, 
+                bt.mauSac, 
+                bt.kichCo, 
+                ct.soLuongBan, 
+                ct.donGiaBan 
+            FROM ChiTietHD ct
+            JOIN HoaDon hd ON ct.maHD = hd.maHD
+            JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe
+            JOIN SanPham sp ON bt.maSP = sp.maSP
+            WHERE ct.maHD = @maHD";
 
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@maHD", maHD);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi tải chi tiết: " + ex.Message);
+            }
+            finally { CloseConnection(); }
+
+            return dt;
+        }
         // Thêm hóa đơn
         public bool ThemHoaDon(HoaDonDTO hd, List<ChiTietHDDTO> danhSachChiTiet)
         {
