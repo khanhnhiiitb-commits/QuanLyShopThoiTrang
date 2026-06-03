@@ -48,6 +48,10 @@ namespace QuanLyShopThoiTrang.UserControls
             // Sử dụng var hứng kết quả
             var dsSanPham = _spBus.LayTatCaSanPham();
             dgvDanhsachSP.DataSource = dsSanPham;
+            if (dgvDanhsachSP.Columns["HinhAnh"] != null)
+            {
+                dgvDanhsachSP.Columns["HinhAnh"].Visible = false;
+            }
         }
         private void LoadComboBox()
         {
@@ -91,6 +95,8 @@ namespace QuanLyShopThoiTrang.UserControls
                 txtMaSP.Text = sp.MaSP;
                 txtTenSP.Text = sp.TenSP;
                 txtGia.Text = sp.GiaBan.ToString("N0");
+                txtGiaNhap.Text = sp.GiaNhap.ToString("N0"); // Thêm dòng này
+                txtMota.Text = sp.MoTa;
 
                 // Ô Danh mục: Tạm thời hiển thị Mã Loại (L05). 
                 // (Nếu sau này bạn muốn hiện "Áo Khoác" thay vì "L05", bạn sẽ cần đổi ô này thành ComboBox)
@@ -100,6 +106,10 @@ namespace QuanLyShopThoiTrang.UserControls
                 // 2. Load biến thể và Tính tổng TỒN KHO bằng LINQ
                 var dsBienThe = _spBus.LayBienTheTheoMaSP(sp.MaSP);
                 dgvBienThe.DataSource = dsBienThe;
+                if (dgvBienThe.Columns["HinhAnh"] != null)
+                {
+                    dgvBienThe.Columns["HinhAnh"].Visible = false;
+                }
 
                 // Dùng LINQ Sum để cộng tất cả thuộc tính SoLuongTon của danh sách biến thể lại
                 var tongTon = dsBienThe.Sum(bt => bt.SoLuongTon);
@@ -137,8 +147,12 @@ namespace QuanLyShopThoiTrang.UserControls
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var tuKhoa = txtSearch.Text.Trim();
-            var ketQuaTimKiem = _spBus.TimKiemSPTheoTen(tuKhoa);
+            var ketQuaTimKiem = _spBus.TimKiemNangCao(tuKhoa, "", null, null);
             dgvDanhsachSP.DataSource = ketQuaTimKiem;
+            if (dgvDanhsachSP.Columns["HinhAnh"] != null)
+            {
+                dgvDanhsachSP.Columns["HinhAnh"].Visible = false;
+            }
         }
 
         private void cbBoxDanhmuc_SelectedIndexChanged(object sender, EventArgs e)
@@ -158,6 +172,10 @@ namespace QuanLyShopThoiTrang.UserControls
                 var dsLoc = tatCaSP.Where(sp => sp.MaLoai == maLoaiDuocChon).ToList();
                 dgvDanhsachSP.DataSource = dsLoc;
             }
+            if (dgvDanhsachSP.Columns["HinhAnh"] != null)
+            {
+                dgvDanhsachSP.Columns["HinhAnh"].Visible = false;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -170,8 +188,8 @@ namespace QuanLyShopThoiTrang.UserControls
                     TenSP = txtTenSP.Text.Trim(),
                     MaLoai = "L01", // Thay bằng: cboDanhMucInfo.SelectedValue.ToString(),
                     GiaBan = string.IsNullOrEmpty(txtGia.Text) ? 0 : Convert.ToDecimal(txtGia.Text),
-                    GiaNhap = 0, // Giao diện không có ô nhập Giá Nhập, set tạm bằng 0 hoặc bạn tự bổ sung
-                    MoTa = ""
+                    GiaNhap = string.IsNullOrEmpty(txtGiaNhap.Text) ? 0 : Convert.ToDecimal(txtGiaNhap.Text),
+                    MoTa = txtMota.Text.Trim()
                 };
 
                 var ketQua = _spBus.ThemSanPham(spMoi);
@@ -202,8 +220,8 @@ namespace QuanLyShopThoiTrang.UserControls
                     TenSP = txtTenSP.Text.Trim(),
                     MaLoai = "L01", // Thay bằng giá trị thực tế của ComboBox
                     GiaBan = Convert.ToDecimal(txtGia.Text),
-                    GiaNhap = 0,
-                    MoTa = ""
+                    GiaNhap = Convert.ToDecimal(txtGiaNhap.Text),
+                    MoTa = txtMota.Text.Trim()
                 };
 
                 var ketQua = _spBus.SuaSanPham(spSua);
@@ -274,6 +292,14 @@ namespace QuanLyShopThoiTrang.UserControls
             else
             {
                 MessageBox.Show(ketQua, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if (txtMaDM.Enabled == false)
+            {
+                txtMaDM.Clear();
+                txtTenDM.Clear();
+                txtMaDM.Enabled = true;
+                txtMaDM.Focus(); // Đưa con trỏ chuột vào ô nhập
+                return; // Dừng hàm lại, chờ người dùng nhập
             }
         }
 
