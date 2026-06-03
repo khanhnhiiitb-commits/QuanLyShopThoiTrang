@@ -149,6 +149,7 @@
             // 
             // btnMoKhoa
             // 
+            this.btnMoKhoa.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnMoKhoa.BackColor = System.Drawing.Color.RosyBrown;
             this.btnMoKhoa.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoKhoa.Location = new System.Drawing.Point(377, 542);
@@ -161,6 +162,7 @@
             // 
             // btnKhoa
             // 
+            this.btnKhoa.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnKhoa.BackColor = System.Drawing.Color.RosyBrown;
             this.btnKhoa.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKhoa.Location = new System.Drawing.Point(258, 542);
@@ -173,6 +175,7 @@
             // 
             // btnSua
             // 
+            this.btnSua.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnSua.BackColor = System.Drawing.Color.RosyBrown;
             this.btnSua.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.Location = new System.Drawing.Point(143, 540);
@@ -185,6 +188,7 @@
             // 
             // btnThem
             // 
+            this.btnThem.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnThem.BackColor = System.Drawing.Color.RosyBrown;
             this.btnThem.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThem.Location = new System.Drawing.Point(40, 540);
@@ -227,6 +231,7 @@
             // 
             // cboGioiTinh
             // 
+            this.cboGioiTinh.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cboGioiTinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboGioiTinh.FormattingEnabled = true;
             this.cboGioiTinh.Items.AddRange(new object[] {
@@ -239,6 +244,7 @@
             // 
             // cboChucVu
             // 
+            this.cboChucVu.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cboChucVu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboChucVu.FormattingEnabled = true;
             this.cboChucVu.Items.AddRange(new object[] {
@@ -254,6 +260,7 @@
             // 
             // txtMatKhau
             // 
+            this.txtMatKhau.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMatKhau.Location = new System.Drawing.Point(391, 442);
             this.txtMatKhau.Name = "txtMatKhau";
@@ -262,6 +269,7 @@
             // 
             // txtSDT
             // 
+            this.txtSDT.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSDT.Location = new System.Drawing.Point(162, 289);
             this.txtSDT.Name = "txtSDT";
@@ -270,6 +278,7 @@
             // 
             // txtTenNV
             // 
+            this.txtTenNV.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtTenNV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenNV.Location = new System.Drawing.Point(162, 215);
             this.txtTenNV.Name = "txtTenNV";
@@ -278,6 +287,7 @@
             // 
             // txtMaNV
             // 
+            this.txtMaNV.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtMaNV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaNV.Location = new System.Drawing.Point(162, 134);
             this.txtMaNV.Name = "txtMaNV";
@@ -286,6 +296,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(278, 452);
@@ -296,6 +307,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(36, 373);
@@ -306,6 +318,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(36, 452);
@@ -316,6 +329,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(32, 299);
@@ -326,6 +340,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(32, 225);
@@ -336,6 +351,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(32, 144);

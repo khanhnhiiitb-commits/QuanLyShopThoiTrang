@@ -12,7 +12,7 @@ namespace BUSShopThoiTrang
     public class TaiKhoanBUS
     {
         TaiKhoanRepository tkRepo = new TaiKhoanRepository();
-
+        public static NhanVienDTO TaiKhoanHienTai;
         // Kiểm tra đăng nhập
         public NhanVienDTO DangNhap(string username, string password)
         {
@@ -53,6 +53,10 @@ namespace BUSShopThoiTrang
         public bool MoKhoaNhanVien(string maNV)
         {
             return tkRepo.MoKhoaNhanVien(maNV);
+        }
+        public bool CapNhatTaiKhoan(NhanVienDTO nv)
+        {
+            return tkRepo.CapNhatTaiKhoan(nv);
         }
     }
 }

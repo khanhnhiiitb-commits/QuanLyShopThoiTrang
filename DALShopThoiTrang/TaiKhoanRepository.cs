@@ -227,5 +227,35 @@ VALUES
                 CloseConnection();
             }
         }
+        public bool CapNhatTaiKhoan(NhanVienDTO nv)
+        {
+            try
+            {
+                OpenConnection();
+
+                string query = @"
+            UPDATE NhanVien
+            SET tenNV = @tenNV,
+                soDienThoai = @soDienThoai,
+                gioiTinh = @gioiTinh,
+                matKhau = @matKhau
+            WHERE maNV = @maNV";
+
+                SqlCommand cmd =
+                    new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@maNV", nv.MaNV);
+                cmd.Parameters.AddWithValue("@tenNV", nv.TenNV);
+                cmd.Parameters.AddWithValue("@soDienThoai", nv.SoDienThoai);
+                cmd.Parameters.AddWithValue("@gioiTinh", nv.GioiTinh);
+                cmd.Parameters.AddWithValue("@matKhau", nv.MatKhau);
+
+                return cmd.ExecuteNonQuery() > 0;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
     }
 }

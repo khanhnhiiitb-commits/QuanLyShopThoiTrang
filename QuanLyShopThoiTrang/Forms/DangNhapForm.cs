@@ -32,6 +32,7 @@ namespace GUIShopThoiTrang
             if (nv != null)
             {
                 MessageBox.Show("Đăng nhập thành công!");
+                TaiKhoanBUS.TaiKhoanHienTai = nv;
 
                 // ADMIN
                 if (nv.PhanQuyen == "Admin")
