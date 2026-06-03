@@ -38,6 +38,7 @@
             this.btnTimHD = new System.Windows.Forms.Button();
             this.txtMaHD = new System.Windows.Forms.TextBox();
             this.dgvChiTietHD = new System.Windows.Forms.DataGridView();
+            this.colChonTra = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.txtLyDo = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.colChonTra = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -143,6 +144,7 @@
             // 
             // dgvChiTietHD
             // 
+            this.dgvChiTietHD.AllowUserToAddRows = false;
             this.dgvChiTietHD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTietHD.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChonTra});
@@ -152,6 +154,13 @@
             this.dgvChiTietHD.RowTemplate.Height = 24;
             this.dgvChiTietHD.Size = new System.Drawing.Size(558, 204);
             this.dgvChiTietHD.TabIndex = 1;
+            // 
+            // colChonTra
+            // 
+            this.colChonTra.HeaderText = "Đổi trả";
+            this.colChonTra.MinimumWidth = 6;
+            this.colChonTra.Name = "colChonTra";
+            this.colChonTra.Width = 70;
             // 
             // txtLyDo
             // 
