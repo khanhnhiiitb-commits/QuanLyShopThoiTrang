@@ -61,7 +61,9 @@ namespace DALShopThoiTrang
             {
                 OpenConnection();
 
-                string query = "SELECT * FROM NhanVien";
+                string query = @"SELECT *
+                         FROM NhanVien
+                         WHERE phanQuyen = 'Staff'";
 
                 SqlDataAdapter adapter =
                     new SqlDataAdapter(query, conn);
@@ -156,9 +158,13 @@ VALUES
                 OpenConnection();
 
                 string query = @"SELECT *
-                         FROM NhanVien
-                         WHERE maNV LIKE @tuKhoa
-                            OR tenNV LIKE @tuKhoa";
+                               FROM NhanVien
+                               WHERE phanQuyen='Staff'
+                               AND (
+                               maNV LIKE @tuKhoa
+                               OR tenNV LIKE @tuKhoa
+                               OR soDienThoai LIKE @tuKhoa
+                               )";
 
                 SqlCommand cmd =
                     new SqlCommand(query, conn);

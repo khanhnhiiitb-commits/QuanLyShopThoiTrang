@@ -41,8 +41,8 @@ namespace QuanLyShopThoiTrang.UserControls
             nv.SoDienThoai = txtSDT.Text;
             nv.ChucVu = cboChucVu.Text;
             nv.GioiTinh = cboGioiTinh.Text;
-            nv.PhanQuyen = cboPhanQuyen.Text;
             nv.TrangThai = "Đang làm việc";
+            nv.PhanQuyen = "Staff";
             nv.MatKhau = txtMatKhau.Text;
 
             if (tkBUS.ThemNhanVien(nv))
@@ -60,8 +60,8 @@ namespace QuanLyShopThoiTrang.UserControls
             nv.TenNV = txtTenNV.Text;
             nv.SoDienThoai = txtSDT.Text;
             nv.ChucVu = cboChucVu.Text;
+            nv.PhanQuyen = "Staff";
             nv.GioiTinh = cboGioiTinh.Text;
-            nv.PhanQuyen = cboPhanQuyen.Text;
            
             nv.MatKhau = txtMatKhau.Text;
 
@@ -116,10 +116,6 @@ namespace QuanLyShopThoiTrang.UserControls
 
             cboGioiTinh.Text =
                 row.Cells["gioiTinh"].Value.ToString();
-
-            cboPhanQuyen.Text =
-                row.Cells["phanQuyen"].Value.ToString();
-
          
             txtMatKhau.Text =
                 row.Cells["matKhau"].Value.ToString();
