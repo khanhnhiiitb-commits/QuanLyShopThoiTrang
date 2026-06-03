@@ -11,23 +11,23 @@ namespace DTOQuanLyThoiTrang
         private string maPDT;
         private string maHD;
         private string maNV;
-        private DateTime ngayDoiTra;
-        private string lyDo;
+        private DateTime ngayLap;
+        private string ghiChu;
         private decimal tongTienHoan;
         public string MaPDT { get; set; }
             public string MaHD { get; set; }
             public string MaNV { get; set; }
-            public DateTime NgayDoiTra { get; set; }
-            public string LyDo { get; set; }
+            public DateTime NgayLap { get; set; }
+            public string GhiChu { get; set; }
             public decimal TongTienHoan { get; set; }
         public PhieuDoiTraDTO() { }
-        public PhieuDoiTraDTO(string maPDT, string maHD, string maNV, DateTime ngayDoiTra, string lyDo, decimal tongTienHoan)
+        public PhieuDoiTraDTO(string maPDT, string maHD, string maNV, DateTime ngayLap, string ghiChu, decimal tongTienHoan)
         {
             this.MaPDT = maPDT;
             this.MaHD = maHD;
             this.MaNV = maNV;
-            this.NgayDoiTra = ngayDoiTra;
-            this.LyDo = lyDo;
+            this.ngayLap = ngayLap;
+            this.ghiChu = ghiChu;
             this.TongTienHoan = tongTienHoan;
         }
     }

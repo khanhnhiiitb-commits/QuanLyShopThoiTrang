@@ -13,13 +13,28 @@ namespace BUSShopThoiTrang
     {
         private GiaoDichRepository giaoDichDAL;
         private KhoHangRepository khoHangDAL;
+        private KhachHangRepository khachHangDAL;
 
         public GiaoDichBUS()
         {
             giaoDichDAL = new GiaoDichRepository();
             khoHangDAL = new KhoHangRepository();
+            khachHangDAL = new KhachHangRepository();
+        }
+        public KhachHangDTO TimKhachHangTheoSDT(string sdt)
+        {
+            return khachHangDAL.TimKhachHangTheoSDT(sdt);
         }
 
+        public string TaoMaKhachHangMoi()
+        {
+            return khachHangDAL.TaoMaKhachHangMoi();
+        }
+
+        public bool ThemKhachHang(KhachHangDTO kh)
+        {
+            return khachHangDAL.ThemKhachHang(kh);
+        }
         //Lập hóa đơn bán hàng 
         public bool LapHoaDon(HoaDonDTO hoaDon, List<ChiTietHDDTO> danhSachChiTiet)
         {
@@ -54,8 +69,6 @@ namespace BUSShopThoiTrang
             {
                 throw new Exception("Dữ liệu thanh toán MoMo không hợp lệ.");
             }
-
-            // Gọi thẳng sang hàm API vừa viết
             string payUrl = await UtilsMoMoAPI.CreatePaymentRequest(maHD, tongTien);
             return payUrl;
         }
@@ -68,7 +81,7 @@ namespace BUSShopThoiTrang
             {
                 throw new Exception("Phiếu đổi trả phải chứa ít nhất một sản phẩm!");
             }
-            TimeSpan khoangCachNgay = phieuDoiTra.NgayDoiTra - ngayLapHoaDonGoc;
+            TimeSpan khoangCachNgay = phieuDoiTra.NgayLap - ngayLapHoaDonGoc;
             if (khoangCachNgay.TotalDays > 7)
             {
                 throw new Exception("Đã quá hạn 7 ngày theo chính sách. Không thể thực hiện đổi trả cho hóa đơn này!");
@@ -86,5 +99,6 @@ namespace BUSShopThoiTrang
         {
             return giaoDichDAL.LayChiTietHoaDon(maHD);
         }
+
     }
 }

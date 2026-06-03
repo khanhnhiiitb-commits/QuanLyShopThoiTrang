@@ -57,11 +57,11 @@ namespace QuanLyShopThoiTrang.Forms
             // BƯỚC A: Tạo dữ liệu Phiếu Đổi Trả DTO
             PhieuDoiTraDTO pdt = new PhieuDoiTraDTO
             {
-                MaPDT = "PDT" + DateTime.Now.ToString("yyMMddHHmmss"), // Tạo mã ngẫu nhiên theo thời gian
+                MaPDT = "PDT" + DateTime.Now.ToString("HHmmss"),// Tạo mã ngẫu nhiên theo thời gian
                 MaHD = txtMaHD.Text.Trim(),
                 MaNV = maNhanVienHienTai,
-                NgayDoiTra = DateTime.Now,
-                LyDo = txtLyDo.Text.Trim(),
+                NgayLap = DateTime.Now,
+                GhiChu = txtLyDo.Text.Trim(),
                 TongTienHoan = 0 // Sẽ cộng dồn ở bước sau
             };
 
