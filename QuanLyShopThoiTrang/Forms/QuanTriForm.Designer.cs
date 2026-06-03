@@ -79,7 +79,7 @@
             this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDashboard.Location = new System.Drawing.Point(3, 75);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(197, 56);
+            this.btnDashboard.Size = new System.Drawing.Size(227, 56);
             this.btnDashboard.TabIndex = 1;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@
             this.btnProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProducts.Location = new System.Drawing.Point(3, 137);
             this.btnProducts.Name = "btnProducts";
-            this.btnProducts.Size = new System.Drawing.Size(197, 56);
+            this.btnProducts.Size = new System.Drawing.Size(227, 56);
             this.btnProducts.TabIndex = 2;
             this.btnProducts.Text = "Products";
             this.btnProducts.UseVisualStyleBackColor = true;
@@ -110,7 +110,7 @@
             this.btnInventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventory.Location = new System.Drawing.Point(3, 199);
             this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(197, 56);
+            this.btnInventory.Size = new System.Drawing.Size(227, 56);
             this.btnInventory.TabIndex = 3;
             this.btnInventory.Text = "Inventory";
             this.btnInventory.UseVisualStyleBackColor = true;
@@ -126,7 +126,7 @@
             this.btnStaff.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStaff.Location = new System.Drawing.Point(3, 261);
             this.btnStaff.Name = "btnStaff";
-            this.btnStaff.Size = new System.Drawing.Size(197, 56);
+            this.btnStaff.Size = new System.Drawing.Size(227, 56);
             this.btnStaff.TabIndex = 4;
             this.btnStaff.Text = "Staff";
             this.btnStaff.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@
             this.btnReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReports.Location = new System.Drawing.Point(3, 323);
             this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(197, 56);
+            this.btnReports.Size = new System.Drawing.Size(227, 56);
             this.btnReports.TabIndex = 5;
             this.btnReports.Text = "Reports";
             this.btnReports.UseVisualStyleBackColor = true;
@@ -158,24 +158,25 @@
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(3, 385);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(197, 56);
+            this.button1.Size = new System.Drawing.Size(227, 56);
             this.button1.TabIndex = 6;
             this.button1.Text = "Settings";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pnlContentQuanTri
             // 
             this.pnlContentQuanTri.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContentQuanTri.Location = new System.Drawing.Point(230, 0);
             this.pnlContentQuanTri.Name = "pnlContentQuanTri";
-            this.pnlContentQuanTri.Size = new System.Drawing.Size(1192, 729);
+            this.pnlContentQuanTri.Size = new System.Drawing.Size(1286, 729);
             this.pnlContentQuanTri.TabIndex = 1;
             // 
             // QuanTriForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1422, 729);
+            this.ClientSize = new System.Drawing.Size(1516, 729);
             this.Controls.Add(this.pnlContentQuanTri);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "QuanTriForm";

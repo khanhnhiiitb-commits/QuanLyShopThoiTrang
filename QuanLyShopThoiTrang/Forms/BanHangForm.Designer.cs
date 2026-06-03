@@ -302,7 +302,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(8, 25);
+            this.label8.Location = new System.Drawing.Point(3, 29);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 20);
             this.label8.TabIndex = 3;
@@ -317,9 +317,9 @@
             "Dưới 200.000đ",
             "Từ 200.000đ - 500.000đ",
             "Trên 500.000đ"});
-            this.cboGia.Location = new System.Drawing.Point(87, 25);
+            this.cboGia.Location = new System.Drawing.Point(77, 25);
             this.cboGia.Name = "cboGia";
-            this.cboGia.Size = new System.Drawing.Size(153, 24);
+            this.cboGia.Size = new System.Drawing.Size(163, 24);
             this.cboGia.TabIndex = 2;
             this.cboGia.SelectedIndexChanged += new System.EventHandler(this.cboGia_SelectedIndexChanged);
             // 

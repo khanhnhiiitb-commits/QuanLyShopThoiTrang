@@ -106,6 +106,7 @@
             this.btnHuy.TabIndex = 6;
             this.btnHuy.Text = "Hủy";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnXacNhan
             // 
@@ -115,12 +116,13 @@
             this.btnXacNhan.TabIndex = 7;
             this.btnXacNhan.Text = "Xác Nhận";
             this.btnXacNhan.UseVisualStyleBackColor = true;
+            this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
             // 
             // FormThanhToanTienMat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 252);
+            this.ClientSize = new System.Drawing.Size(451, 252);
             this.Controls.Add(this.btnXacNhan);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.lblTienThoi);

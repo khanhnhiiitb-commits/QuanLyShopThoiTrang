@@ -72,13 +72,21 @@ namespace QuanLyShopThoiTrang
         {
             pnlContentQuanTri.Controls.Clear();
 
-            // 2. Lấy bức tranh ucInventory trong kho ra
             UserControls.ucStaff uc = new UserControls.ucStaff();
 
-            // 3. Kéo giãn bức tranh cho vừa khít bức tường
             uc.Dock = DockStyle.Fill;
 
-            // 4. Treo lên tường!
+            pnlContentQuanTri.Controls.Add(uc);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pnlContentQuanTri.Controls.Clear();
+
+            UserControls.ucSettings uc = new UserControls.ucSettings();
+
+            uc.Dock = DockStyle.Fill;
+
             pnlContentQuanTri.Controls.Add(uc);
         }
     }

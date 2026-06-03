@@ -77,9 +77,9 @@ namespace BUSShopThoiTrang
             
             return giaoDichDAL.ThemPhieuDoiTra(phieuDoiTra, danhSachChiTietDoiTra);
         }
-        public DataTable TimHoaDon(string maHD)
+        public DataTable LayDanhSachChiTietDeTraHang(string maHD)
         {
-            return giaoDichDAL.TimHoaDon(maHD);
+            return giaoDichDAL.LayDanhSachChiTietDeTraHang(maHD);
         }
 
         public DataTable LayChiTietHoaDon(string maHD)
