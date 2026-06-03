@@ -41,7 +41,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblMaHD = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.flpDanhSachSP = new System.Windows.Forms.FlowLayoutPanel();
             this.flpCurrentOrder = new System.Windows.Forms.FlowLayoutPanel();
@@ -234,18 +233,6 @@
             this.label3.Size = new System.Drawing.Size(75, 23);
             this.label3.TabIndex = 3;
             this.label3.Text = "Subtotal";
-            // 
-            // lblMaHD
-            // 
-            this.lblMaHD.AutoSize = true;
-            this.lblMaHD.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblMaHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaHD.Location = new System.Drawing.Point(253, 6);
-            this.lblMaHD.Name = "lblMaHD";
-            this.lblMaHD.Size = new System.Drawing.Size(20, 24);
-            this.lblMaHD.TabIndex = 1;
-            this.lblMaHD.Text = "#";
-            this.lblMaHD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
@@ -445,7 +432,6 @@
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel4.Controls.Add(this.lblCustomer);
-            this.panel4.Controls.Add(this.lblMaHD);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Location = new System.Drawing.Point(977, 1);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
@@ -487,14 +473,12 @@
             this.panel3.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lblMaHD;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flpDanhSachSP;
         private System.Windows.Forms.FlowLayoutPanel flpCurrentOrder;
