@@ -67,18 +67,18 @@ namespace DALShopThoiTrang
         public DataTable LayTop5BanChay()
         {
             string sql = @"
-                SELECT TOP 5 
-                    sp.tenSP AS TenSanPham, 
-                    SUM(ct.soLuongBan) AS SoLuongBan, 
-                    SUM(ct.soLuongBan * ct.donGiaBan) AS DoanhThuSP
-                FROM ChiTietHD ct 
-                JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe
-                JOIN SanPham sp ON bt.maSP = sp.maSP
-                GROUP BY sp.tenSP
-                ORDER BY SoLuongBan DESC";
+        SELECT TOP 5 
+            sp.tenSP AS TenSanPham, 
+            sp.HinhAnh,  -- ĐÃ THÊM CỘT LẤY HÌNH ẢNH Ở ĐÂY
+            SUM(ct.soLuongBan) AS SoLuongBan, 
+            SUM(ct.soLuongBan * ct.donGiaBan) AS DoanhThuSP
+        FROM ChiTietHD ct 
+        JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe
+        JOIN SanPham sp ON bt.maSP = sp.maSP
+        GROUP BY sp.tenSP, sp.HinhAnh  -- BẮT BUỘC PHẢI THÊM VÀO GROUP BY
+        ORDER BY SoLuongBan DESC";
             return ExecuteQuery(sql);
         }
-
         public DataTable LayBaoCaoTonKho()
         {
             string sql = @"

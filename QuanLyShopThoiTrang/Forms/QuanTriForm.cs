@@ -89,6 +89,21 @@ namespace QuanLyShopThoiTrang
 
             pnlContentQuanTri.Controls.Add(uc);
         }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            // 1. Xóa cái màn hình cũ đang hiển thị đi
+            pnlContentQuanTri.Controls.Clear();
+
+            // 2. Khởi tạo màn hình Báo Cáo (ucReports) bạn vừa làm
+            ucDashboard uc = new ucDashboard();
+
+            // 3. Cho nó phình to ra lấp đầy cái khoảng trống của Panel
+            uc.Dock = DockStyle.Fill;
+
+            // 4. Nhét nó vào cái Panel ở giữa màn hình
+            pnlContentQuanTri.Controls.Add(uc);
+        }
     }
     }
 
