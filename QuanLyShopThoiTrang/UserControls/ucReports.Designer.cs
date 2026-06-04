@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblTongDoanhThu = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,12 +43,13 @@
             this.flpTopSanPham = new System.Windows.Forms.FlowLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvTonKho = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
             this.TenSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhanLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoLuongTon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DinhMucToiThieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnXuatBaoCao = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).BeginInit();
@@ -139,17 +140,17 @@
             // 
             // chartDoanhThu
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartDoanhThu.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartDoanhThu.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartDoanhThu.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartDoanhThu.Legends.Add(legend2);
             this.chartDoanhThu.Location = new System.Drawing.Point(22, 70);
             this.chartDoanhThu.Margin = new System.Windows.Forms.Padding(2);
             this.chartDoanhThu.Name = "chartDoanhThu";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartDoanhThu.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartDoanhThu.Series.Add(series2);
             this.chartDoanhThu.Size = new System.Drawing.Size(463, 229);
             this.chartDoanhThu.TabIndex = 5;
             this.chartDoanhThu.Text = "chart1";
@@ -174,6 +175,7 @@
             this.flpTopSanPham.Size = new System.Drawing.Size(463, 436);
             this.flpTopSanPham.TabIndex = 6;
             this.flpTopSanPham.WrapContents = false;
+            this.flpTopSanPham.Paint += new System.Windows.Forms.PaintEventHandler(this.flpTopSanPham_Paint);
             // 
             // label5
             // 
@@ -210,23 +212,9 @@
             this.dgvTonKho.RowHeadersWidth = 51;
             this.dgvTonKho.RowTemplate.Height = 24;
             this.dgvTonKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTonKho.Size = new System.Drawing.Size(416, 654);
+            this.dgvTonKho.Size = new System.Drawing.Size(416, 592);
             this.dgvTonKho.TabIndex = 8;
             this.dgvTonKho.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTonKho_CellFormatting);
-            // 
-            // label6
-            // 
-            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label6.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.label6.Location = new System.Drawing.Point(18, 0);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(242, 50);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "THỐNG KÊ DOANH THU";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TenSanPham
             // 
@@ -268,10 +256,40 @@
             this.TrangThai.Name = "TrangThai";
             this.TrangThai.Width = 125;
             // 
+            // label6
+            // 
+            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label6.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.label6.Location = new System.Drawing.Point(18, 0);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(242, 50);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "THỐNG KÊ DOANH THU";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnXuatBaoCao
+            // 
+            this.btnXuatBaoCao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXuatBaoCao.BackColor = System.Drawing.Color.RosyBrown;
+            this.btnXuatBaoCao.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatBaoCao.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnXuatBaoCao.Location = new System.Drawing.Point(825, 716);
+            this.btnXuatBaoCao.Margin = new System.Windows.Forms.Padding(2);
+            this.btnXuatBaoCao.Name = "btnXuatBaoCao";
+            this.btnXuatBaoCao.Size = new System.Drawing.Size(93, 27);
+            this.btnXuatBaoCao.TabIndex = 10;
+            this.btnXuatBaoCao.Text = "Xuất Excel";
+            this.btnXuatBaoCao.UseVisualStyleBackColor = false;
+            this.btnXuatBaoCao.Click += new System.EventHandler(this.btnXuatBaoCao_Click);
+            // 
             // ucReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnXuatBaoCao);
             this.Controls.Add(this.dgvTonKho);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -314,5 +332,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongTon;
         private System.Windows.Forms.DataGridViewTextBoxColumn DinhMucToiThieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
+        private System.Windows.Forms.Button btnXuatBaoCao;
     }
 }
