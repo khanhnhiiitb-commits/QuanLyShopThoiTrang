@@ -315,13 +315,19 @@ namespace QuanLyShopThoiTrang
                 bool ketQua = giaoDichBUS.ThanhToanGiaoDich(hd, danhSachChiTiet);
                 if (ketQua)
                 {
-                    MessageBox.Show($"Lưu hóa đơn thành công!\nMã hóa đơn: {hd.MaHD}", "Hoàn tất");
+                    // THAY THẾ MESSAGEBOX BẰNG FORM HÓA ĐƠN
+                    FormHoaDon frmInHoaDon = new FormHoaDon(hd, danhSachChiTiet, khachHangHienTai);
+                    frmInHoaDon.ShowDialog(); // Sẽ mở Pop-up hóa đơn lên. Đóng hóa đơn mới reset giỏ hàng.
 
-                    // Reset lại giao diện sau khi thanh toán xong
+                    // Reset lại giao diện sau khi thanh toán và xem bill xong
                     flpCurrentOrder.Controls.Clear();
                     _phuongThucThanhToan = "";
                     btnCash.BackColor = Color.WhiteSmoke;
-                    btnMomo.BackColor = Color.WhiteSmoke; // Mình thấy bạn đổi nút Card thành Momo rồi nè, rất hợp lý!
+                    btnMomo.BackColor = Color.WhiteSmoke;
+
+                    khachHangHienTai = null; // Reset khách hàng
+                    lblCustomer.Text = "Customer name";
+                    label.Text = ""; // Reset % giảm giá
 
                     TinhTongTienHoaDon();
                 }
