@@ -37,15 +37,15 @@
             this.rtbHoaDon.Location = new System.Drawing.Point(12, 12);
             this.rtbHoaDon.Name = "rtbHoaDon";
             this.rtbHoaDon.ReadOnly = true;
-            this.rtbHoaDon.Size = new System.Drawing.Size(643, 426);
+            this.rtbHoaDon.Size = new System.Drawing.Size(643, 459);
             this.rtbHoaDon.TabIndex = 0;
             this.rtbHoaDon.Text = "";
             // 
             // btnInHoaDon
             // 
-            this.btnInHoaDon.Location = new System.Drawing.Point(661, 12);
+            this.btnInHoaDon.Location = new System.Drawing.Point(240, 477);
             this.btnInHoaDon.Name = "btnInHoaDon";
-            this.btnInHoaDon.Size = new System.Drawing.Size(98, 48);
+            this.btnInHoaDon.Size = new System.Drawing.Size(172, 48);
             this.btnInHoaDon.TabIndex = 1;
             this.btnInHoaDon.Text = "In hóa đơn";
             this.btnInHoaDon.UseVisualStyleBackColor = true;
@@ -55,10 +55,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(768, 450);
+            this.ClientSize = new System.Drawing.Size(669, 537);
             this.Controls.Add(this.btnInHoaDon);
             this.Controls.Add(this.rtbHoaDon);
             this.Name = "FormHoaDon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormHoaDon";
             this.Load += new System.EventHandler(this.FormHoaDon_Load);
             this.ResumeLayout(false);

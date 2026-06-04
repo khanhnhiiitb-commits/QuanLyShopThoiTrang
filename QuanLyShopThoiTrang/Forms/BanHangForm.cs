@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BUSShopThoiTrang;
 using DTOQuanLyThoiTrang;
 using DTOShopThoiTrang;
+using GUIShopThoiTrang;
 using QuanLyShopThoiTrang.Forms;
 
 
@@ -42,6 +43,14 @@ namespace QuanLyShopThoiTrang
         }
         private void BanHangForm_Load(object sender, EventArgs e)
         {
+            if (nhanVienHienTai != null)
+            {
+                lblTenNhanVien.Text = "Xin chào, " + nhanVienHienTai.TenNV;
+            }
+            else
+            {
+                lblTenNhanVien.Text = "Chưa đăng nhập";
+            }
             if (cboGia.Items.Count > 0)
                 cboGia.SelectedIndex = 0; 
 
@@ -121,9 +130,6 @@ namespace QuanLyShopThoiTrang
             if (nhanVienHienTai != null)
             {
                 FormDoiTra frmTraHang = new FormDoiTra(nhanVienHienTai.MaNV);
-
-                // ShowDialog() sẽ khóa màn hình BanHangForm bên dưới lại. 
-                // Nhân viên bắt buộc phải tắt Pop-up Trả hàng thì mới thao tác bán hàng tiếp được.
                 frmTraHang.ShowDialog();
             }
             else
@@ -217,7 +223,6 @@ namespace QuanLyShopThoiTrang
 
         private async void btnFinalizeTransaction_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra tính hợp lệ cơ bản
             if (flpCurrentOrder.Controls.Count == 0)
             {
                 MessageBox.Show("Giỏ hàng đang trống, không thể thanh toán!", "Cảnh báo");
@@ -230,7 +235,7 @@ namespace QuanLyShopThoiTrang
                 return;
             }
 
-            // 2. TÍNH TỔNG TIỀN TRƯỚC (Quét giỏ hàng để lấy tổng tiền + 10% thuế)
+            //TÍNH TỔNG TIỀN TRƯỚC (Quét giỏ hàng để lấy tổng tiền + 10% thuế)
             decimal tongTienThucTe = 0;
             foreach (ProductCartControl item in flpCurrentOrder.Controls)
             {
@@ -238,13 +243,10 @@ namespace QuanLyShopThoiTrang
             }
             decimal tongTienHoaDon = tongTienThucTe + (tongTienThucTe * 0.1m);
             string maHoaDonMoi = "HD" + DateTime.Now.ToString("ddHHmmss");
-            // 3. XỬ LÝ NGHIỆP VỤ THANH TOÁN (Hỏi tiền mặt hoặc quét mã)
+            //XỬ LÝ NGHIỆP VỤ THANH TOÁN (Hỏi tiền mặt hoặc quét mã)
             if (_phuongThucThanhToan == "Tiền mặt")
             {
-                // Mở Form yêu cầu nhập tiền mặt
                 FormThanhToanTienMat frmCash = new FormThanhToanTienMat(tongTienHoaDon);
-
-                // NẾU NHÂN VIÊN BẤM HỦY THÌ DỪNG LẠI, KHÔNG LƯU DB
                 if (frmCash.ShowDialog() != DialogResult.OK)
                 {
                     return;
@@ -254,22 +256,17 @@ namespace QuanLyShopThoiTrang
             {
                 try
                 {
-                    // Bật form loading hoặc vô hiệu hóa nút để tránh nhân viên bấm 2 lần
                     btnFinalizeTransaction.Enabled = false;
 
-                    // Gọi API lên MoMo lấy link thanh toán
                     string payUrl = await UtilsShopThoiTrang.UtilsMoMoAPI.CreatePaymentRequest(maHoaDonMoi, tongTienHoaDon);
 
-                    // Mở trang thanh toán MoMo bằng trình duyệt web mặc định của máy tính (Chrome/Edge)
-                    System.Diagnostics.Process.Start(payUrl);
-
-                    // Hiện hộp thoại chờ nhân viên xác nhận khách đã chuyển tiền thành công
-                    DialogResult rs = MessageBox.Show("Hệ thống đã mở trang mã QR MoMo.\n\nVui lòng kiểm tra điện thoại hoặc tin nhắn. Bấm [Yes] NẾU KHÁCH ĐÃ CHUYỂN TIỀN THÀNH CÔNG để chốt đơn!", "Xác nhận thanh toán MoMo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    FormThanhToanMoMo frmQR = new FormThanhToanMoMo(payUrl, tongTienHoaDon);
+                    DialogResult rs = frmQR.ShowDialog();
 
                     if (rs != DialogResult.Yes)
                     {
                         btnFinalizeTransaction.Enabled = true;
-                        return; // Nếu khách hủy không chuyển nữa thì hủy lưu DB
+                        return; 
                     }
                 }
                 catch (Exception ex)
@@ -372,7 +369,7 @@ namespace QuanLyShopThoiTrang
             {
                 khachHangHienTai = kh;
                 lblCustomer.Text = kh.TenKH;
-                label.Text = "10%"; // Hiển thị 10%
+                lblMembershipDiscount.Text = "10%"; // Hiển thị 10%
 
                 MessageBox.Show($"Chào mừng khách hàng {kh.TenKH} trở lại!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -401,15 +398,25 @@ namespace QuanLyShopThoiTrang
                         {
                             khachHangHienTai = khMoi;
                             lblCustomer.Text = khMoi.TenKH;
-                            label.Text = "10%";
+                            lblMembershipDiscount.Text = "10%";
 
                             MessageBox.Show($"Đăng ký thành viên thành công! Mã KH: {khMoi.MaKH}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // CapNhatTongTien(); 
+                            //CapNhatTongTien(); 
                         }
                     }
                 }
             }
+        }
+
+        private void lblLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {           
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất khỏi ca làm việc không?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                Application.Restart();
+                }
+            
         }
     }
 }

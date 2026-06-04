@@ -50,7 +50,7 @@
             this.lblTenSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenSP.Location = new System.Drawing.Point(9, 222);
             this.lblTenSP.Name = "lblTenSP";
-            this.lblTenSP.Size = new System.Drawing.Size(168, 22);
+            this.lblTenSP.Size = new System.Drawing.Size(217, 22);
             this.lblTenSP.TabIndex = 1;
             this.lblTenSP.Text = "Tên";
             // 

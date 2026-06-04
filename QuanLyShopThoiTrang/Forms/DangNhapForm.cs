@@ -55,7 +55,10 @@ namespace GUIShopThoiTrang
 
                     f.ShowDialog();
 
-                    this.Show();
+                    if (!this.IsDisposed)
+                    {
+                        this.Close();
+                    }
                 }
             }
             else
