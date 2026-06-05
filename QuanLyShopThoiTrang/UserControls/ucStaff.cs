@@ -45,6 +45,16 @@ namespace QuanLyShopThoiTrang.UserControls
             nv.PhanQuyen = "Staff";
             nv.MatKhau = txtMatKhau.Text;
 
+            if (txtMaNV.Text.Trim().ToUpper() == "NV01")
+            {
+                MessageBox.Show(
+                    "Mã nhân viên NV01 đã được sử dụng cho tài khoản Admin!",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             if (tkBUS.ThemNhanVien(nv))
             {
                 MessageBox.Show("Thêm thành công");
@@ -64,6 +74,16 @@ namespace QuanLyShopThoiTrang.UserControls
             nv.GioiTinh = cboGioiTinh.Text;
            
             nv.MatKhau = txtMatKhau.Text;
+
+            if (txtMaNV.Text.Trim().ToUpper() == "NV01")
+            {
+                MessageBox.Show(
+                    "Không được phép chỉnh sửa tài khoản Admin!",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
             if (tkBUS.SuaNhanVien(nv))
             {
