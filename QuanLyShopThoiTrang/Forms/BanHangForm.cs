@@ -29,6 +29,23 @@ namespace QuanLyShopThoiTrang
             InitializeComponent();
             this.nhanVienHienTai = nhanVienHienTai;
         }
+        private void ActivateButton(object btnSender)
+        {
+            if (btnSender != null)
+            {
+                /*Button currentButton = (Button)btnSender;
+                pnlNav.Height = currentButton.Width;
+                pnlNav.Top = currentButton.Bottom;
+                pnlNav.Left = currentButton.Left;
+                pnlNav.BringToFront();*/
+                Button currentButton = (Button)btnSender;
+                pnlNav.Visible = true;
+                pnlNav.BringToFront();
+                pnlNav.Width = currentButton.Width;
+                pnlNav.Left = pnlLocSP.Left + currentButton.Left;
+                pnlNav.Top = pnlLocSP.Top + currentButton.Bottom;
+            }
+        }
         private void btnCash_Click(object sender, EventArgs e)
         {
             _phuongThucThanhToan = "Tiền mặt";
@@ -140,36 +157,41 @@ namespace QuanLyShopThoiTrang
 
         private void btnAll_Click(object sender, EventArgs e)
         {
+            ActivateButton(sender);
             _maLoaiHienTai = "All"; 
             ThucHienLocSanPham();
         }
 
         private void btnShirt_Click(object sender, EventArgs e)
         {
+            ActivateButton(sender);
             _maLoaiHienTai = "L01";
             ThucHienLocSanPham();
         }
 
         private void btnTShirt_Click(object sender, EventArgs e)
         {
+            ActivateButton(sender);
             _maLoaiHienTai = "L03";
             ThucHienLocSanPham();
         }
 
         private void btnPants_Click(object sender, EventArgs e)
         {
+            ActivateButton(sender);
             _maLoaiHienTai = "L02";
             ThucHienLocSanPham();
         }
 
         private void btnJeans_Click(object sender, EventArgs e)
-        {
+        {   ActivateButton(sender);
             _maLoaiHienTai = "L04";
             ThucHienLocSanPham();
         }
 
         private void btnJacket_Click(object sender, EventArgs e)
         {
+            ActivateButton(sender);
             _maLoaiHienTai = "L05";
             ThucHienLocSanPham();
         }

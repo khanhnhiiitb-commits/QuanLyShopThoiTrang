@@ -34,6 +34,9 @@
             this.lblTax = new System.Windows.Forms.Label();
             this.lblMembershipDiscount = new System.Windows.Forms.Label();
             this.lblSubtotal = new System.Windows.Forms.Label();
+            this.btnFinalizeTransaction = new System.Windows.Forms.Button();
+            this.btnCash = new System.Windows.Forms.Button();
+            this.btnMomo = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
@@ -42,11 +45,15 @@
             this.flpDanhSachSP = new System.Windows.Forms.FlowLayoutPanel();
             this.flpCurrentOrder = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblLogout = new System.Windows.Forms.LinkLabel();
+            this.lblTenNhanVien = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.cboGia = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlLocSP = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAll = new System.Windows.Forms.Button();
             this.btnShirt = new System.Windows.Forms.Button();
             this.btnTShirt = new System.Windows.Forms.Button();
@@ -54,22 +61,14 @@
             this.btnJeans = new System.Windows.Forms.Button();
             this.btnJacket = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.lblTenNhanVien = new System.Windows.Forms.Label();
-            this.lblLogout = new System.Windows.Forms.LinkLabel();
             this.lblCustomer = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnFinalizeTransaction = new System.Windows.Forms.Button();
-            this.btnCash = new System.Windows.Forms.Button();
-            this.btnMomo = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pnlNav = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
-            this.flpDanhSachSP.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.pnlLocSP.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -147,6 +146,60 @@
             this.lblSubtotal.Text = "...";
             this.lblSubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnFinalizeTransaction
+            // 
+            this.btnFinalizeTransaction.BackColor = System.Drawing.Color.Maroon;
+            this.btnFinalizeTransaction.FlatAppearance.BorderSize = 0;
+            this.btnFinalizeTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinalizeTransaction.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinalizeTransaction.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnFinalizeTransaction.Image = global::QuanLyShopThoiTrang.Properties.Resources.arrow_forward_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40;
+            this.btnFinalizeTransaction.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFinalizeTransaction.Location = new System.Drawing.Point(121, 230);
+            this.btnFinalizeTransaction.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFinalizeTransaction.Name = "btnFinalizeTransaction";
+            this.btnFinalizeTransaction.Size = new System.Drawing.Size(349, 59);
+            this.btnFinalizeTransaction.TabIndex = 9;
+            this.btnFinalizeTransaction.Text = "Finalize Transaction";
+            this.btnFinalizeTransaction.UseVisualStyleBackColor = false;
+            this.btnFinalizeTransaction.Click += new System.EventHandler(this.btnFinalizeTransaction_Click);
+            // 
+            // btnCash
+            // 
+            this.btnCash.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnCash.FlatAppearance.BorderSize = 0;
+            this.btnCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCash.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCash.Image = global::QuanLyShopThoiTrang.Properties.Resources.payments_24dp_000000_FILL0_wght400_GRAD0_opsz24;
+            this.btnCash.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCash.Location = new System.Drawing.Point(304, 165);
+            this.btnCash.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCash.Name = "btnCash";
+            this.btnCash.Size = new System.Drawing.Size(156, 57);
+            this.btnCash.TabIndex = 8;
+            this.btnCash.Text = "Cash";
+            this.btnCash.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCash.UseVisualStyleBackColor = false;
+            this.btnCash.Click += new System.EventHandler(this.btnCash_Click);
+            // 
+            // btnMomo
+            // 
+            this.btnMomo.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnMomo.FlatAppearance.BorderSize = 0;
+            this.btnMomo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMomo.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMomo.Image = global::QuanLyShopThoiTrang.Properties.Resources.credit_card_24dp_000000_FILL0_wght400_GRAD0_opsz24;
+            this.btnMomo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMomo.Location = new System.Drawing.Point(136, 165);
+            this.btnMomo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMomo.Name = "btnMomo";
+            this.btnMomo.Size = new System.Drawing.Size(160, 57);
+            this.btnMomo.TabIndex = 7;
+            this.btnMomo.Text = "Momo";
+            this.btnMomo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnMomo.UseVisualStyleBackColor = false;
+            this.btnMomo.Click += new System.EventHandler(this.btnMomoClick);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -200,11 +253,10 @@
             // 
             this.flpDanhSachSP.AutoScroll = true;
             this.flpDanhSachSP.BackColor = System.Drawing.SystemColors.Control;
-            this.flpDanhSachSP.Controls.Add(this.dateTimePicker1);
-            this.flpDanhSachSP.Location = new System.Drawing.Point(0, 105);
+            this.flpDanhSachSP.Location = new System.Drawing.Point(0, 108);
             this.flpDanhSachSP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flpDanhSachSP.Name = "flpDanhSachSP";
-            this.flpDanhSachSP.Size = new System.Drawing.Size(981, 591);
+            this.flpDanhSachSP.Size = new System.Drawing.Size(981, 588);
             this.flpDanhSachSP.TabIndex = 2;
             // 
             // flpCurrentOrder
@@ -228,6 +280,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(240, 59);
             this.panel1.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::QuanLyShopThoiTrang.Properties.Resources.person_24dp_000000_FILL0_wght400_GRAD0_opsz24;
+            this.pictureBox1.Location = new System.Drawing.Point(4, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblLogout
+            // 
+            this.lblLogout.AutoSize = true;
+            this.lblLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogout.Location = new System.Drawing.Point(160, 28);
+            this.lblLogout.Name = "lblLogout";
+            this.lblLogout.Size = new System.Drawing.Size(72, 25);
+            this.lblLogout.TabIndex = 0;
+            this.lblLogout.TabStop = true;
+            this.lblLogout.Text = "Logout";
+            this.lblLogout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLogout_LinkClicked);
+            // 
+            // lblTenNhanVien
+            // 
+            this.lblTenNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenNhanVien.Location = new System.Drawing.Point(41, 8);
+            this.lblTenNhanVien.Name = "lblTenNhanVien";
+            this.lblTenNhanVien.Size = new System.Drawing.Size(191, 26);
+            this.lblTenNhanVien.TabIndex = 0;
+            this.lblTenNhanVien.Text = "TenNhanVien";
             // 
             // panel3
             // 
@@ -267,6 +349,15 @@
             this.cboGia.TabIndex = 2;
             this.cboGia.SelectedIndexChanged += new System.EventHandler(this.cboGia_SelectedIndexChanged);
             // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.Snow;
+            this.label7.Image = global::QuanLyShopThoiTrang.Properties.Resources.search_32dp_000000_FILL0_wght400_GRAD0_opsz40;
+            this.label7.Location = new System.Drawing.Point(673, 10);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 39);
+            this.label7.TabIndex = 1;
+            // 
             // txtTimKiem
             // 
             this.txtTimKiem.Location = new System.Drawing.Point(301, 12);
@@ -276,21 +367,21 @@
             this.txtTimKiem.TabIndex = 0;
             this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
             // 
-            // flowLayoutPanel2
+            // pnlLocSP
             // 
-            this.flowLayoutPanel2.AutoScroll = true;
-            this.flowLayoutPanel2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.flowLayoutPanel2.Controls.Add(this.btnAll);
-            this.flowLayoutPanel2.Controls.Add(this.btnShirt);
-            this.flowLayoutPanel2.Controls.Add(this.btnTShirt);
-            this.flowLayoutPanel2.Controls.Add(this.btnPants);
-            this.flowLayoutPanel2.Controls.Add(this.btnJeans);
-            this.flowLayoutPanel2.Controls.Add(this.btnJacket);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 58);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(981, 46);
-            this.flowLayoutPanel2.TabIndex = 5;
+            this.pnlLocSP.AutoScroll = true;
+            this.pnlLocSP.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnlLocSP.Controls.Add(this.btnAll);
+            this.pnlLocSP.Controls.Add(this.btnShirt);
+            this.pnlLocSP.Controls.Add(this.btnTShirt);
+            this.pnlLocSP.Controls.Add(this.btnPants);
+            this.pnlLocSP.Controls.Add(this.btnJeans);
+            this.pnlLocSP.Controls.Add(this.btnJacket);
+            this.pnlLocSP.Location = new System.Drawing.Point(0, 58);
+            this.pnlLocSP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlLocSP.Name = "pnlLocSP";
+            this.pnlLocSP.Size = new System.Drawing.Size(981, 45);
+            this.pnlLocSP.TabIndex = 5;
             // 
             // btnAll
             // 
@@ -367,7 +458,7 @@
             this.btnJacket.FlatAppearance.BorderSize = 0;
             this.btnJacket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJacket.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJacket.Location = new System.Drawing.Point(809, 4);
+            this.btnJacket.Location = new System.Drawing.Point(4, 49);
             this.btnJacket.Margin = new System.Windows.Forms.Padding(4);
             this.btnJacket.Name = "btnJacket";
             this.btnJacket.Size = new System.Drawing.Size(153, 37);
@@ -387,27 +478,6 @@
             this.panel4.Size = new System.Drawing.Size(576, 59);
             this.panel4.TabIndex = 6;
             // 
-            // lblTenNhanVien
-            // 
-            this.lblTenNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenNhanVien.Location = new System.Drawing.Point(41, 8);
-            this.lblTenNhanVien.Name = "lblTenNhanVien";
-            this.lblTenNhanVien.Size = new System.Drawing.Size(191, 26);
-            this.lblTenNhanVien.TabIndex = 0;
-            this.lblTenNhanVien.Text = "TenNhanVien";
-            // 
-            // lblLogout
-            // 
-            this.lblLogout.AutoSize = true;
-            this.lblLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogout.Location = new System.Drawing.Point(164, 28);
-            this.lblLogout.Name = "lblLogout";
-            this.lblLogout.Size = new System.Drawing.Size(72, 25);
-            this.lblLogout.TabIndex = 0;
-            this.lblLogout.TabStop = true;
-            this.lblLogout.Text = "Logout";
-            this.lblLogout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLogout_LinkClicked);
-            // 
             // lblCustomer
             // 
             this.lblCustomer.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -421,84 +491,13 @@
             this.lblCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblCustomer.Click += new System.EventHandler(this.lblCustomer_Click);
             // 
-            // label7
+            // pnlNav
             // 
-            this.label7.BackColor = System.Drawing.Color.Snow;
-            this.label7.Image = global::QuanLyShopThoiTrang.Properties.Resources.search_32dp_000000_FILL0_wght400_GRAD0_opsz40;
-            this.label7.Location = new System.Drawing.Point(673, 10);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 39);
-            this.label7.TabIndex = 1;
-            // 
-            // btnFinalizeTransaction
-            // 
-            this.btnFinalizeTransaction.BackColor = System.Drawing.Color.Maroon;
-            this.btnFinalizeTransaction.FlatAppearance.BorderSize = 0;
-            this.btnFinalizeTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFinalizeTransaction.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinalizeTransaction.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnFinalizeTransaction.Image = global::QuanLyShopThoiTrang.Properties.Resources.arrow_forward_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40;
-            this.btnFinalizeTransaction.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFinalizeTransaction.Location = new System.Drawing.Point(121, 230);
-            this.btnFinalizeTransaction.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFinalizeTransaction.Name = "btnFinalizeTransaction";
-            this.btnFinalizeTransaction.Size = new System.Drawing.Size(349, 59);
-            this.btnFinalizeTransaction.TabIndex = 9;
-            this.btnFinalizeTransaction.Text = "Finalize Transaction";
-            this.btnFinalizeTransaction.UseVisualStyleBackColor = false;
-            this.btnFinalizeTransaction.Click += new System.EventHandler(this.btnFinalizeTransaction_Click);
-            // 
-            // btnCash
-            // 
-            this.btnCash.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnCash.FlatAppearance.BorderSize = 0;
-            this.btnCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCash.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCash.Image = global::QuanLyShopThoiTrang.Properties.Resources.payments_24dp_000000_FILL0_wght400_GRAD0_opsz24;
-            this.btnCash.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCash.Location = new System.Drawing.Point(304, 165);
-            this.btnCash.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCash.Name = "btnCash";
-            this.btnCash.Size = new System.Drawing.Size(156, 57);
-            this.btnCash.TabIndex = 8;
-            this.btnCash.Text = "Cash";
-            this.btnCash.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCash.UseVisualStyleBackColor = false;
-            this.btnCash.Click += new System.EventHandler(this.btnCash_Click);
-            // 
-            // btnMomo
-            // 
-            this.btnMomo.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnMomo.FlatAppearance.BorderSize = 0;
-            this.btnMomo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMomo.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMomo.Image = global::QuanLyShopThoiTrang.Properties.Resources.credit_card_24dp_000000_FILL0_wght400_GRAD0_opsz24;
-            this.btnMomo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMomo.Location = new System.Drawing.Point(136, 165);
-            this.btnMomo.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMomo.Name = "btnMomo";
-            this.btnMomo.Size = new System.Drawing.Size(160, 57);
-            this.btnMomo.TabIndex = 7;
-            this.btnMomo.Text = "Momo";
-            this.btnMomo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMomo.UseVisualStyleBackColor = false;
-            this.btnMomo.Click += new System.EventHandler(this.btnMomoClick);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(3, 3);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::QuanLyShopThoiTrang.Properties.Resources.person_24dp_000000_FILL0_wght400_GRAD0_opsz24;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.pnlNav.BackColor = System.Drawing.Color.White;
+            this.pnlNav.Location = new System.Drawing.Point(0, 106);
+            this.pnlNav.Name = "pnlNav";
+            this.pnlNav.Size = new System.Drawing.Size(157, 5);
+            this.pnlNav.TabIndex = 0;
             // 
             // BanHangForm
             // 
@@ -511,20 +510,20 @@
             this.Controls.Add(this.flpCurrentOrder);
             this.Controls.Add(this.flpDanhSachSP);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.flowLayoutPanel2);
+            this.Controls.Add(this.pnlNav);
+            this.Controls.Add(this.pnlLocSP);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BanHangForm";
             this.Load += new System.EventHandler(this.BanHangForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.flpDanhSachSP.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
+            this.pnlLocSP.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -541,7 +540,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel pnlLocSP;
         private System.Windows.Forms.Button btnAll;
         private System.Windows.Forms.Button btnShirt;
         private System.Windows.Forms.Button btnPants;
@@ -563,7 +562,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblTenNhanVien;
         private System.Windows.Forms.LinkLabel lblLogout;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel pnlNav;
     }
 }

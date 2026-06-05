@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlSidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnProducts = new System.Windows.Forms.Button();
@@ -37,27 +37,28 @@
             this.btnReports = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlContentQuanTri = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.pnlNav = new System.Windows.Forms.Panel();
+            this.pnlSidebar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // pnlSidebar
             // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.btnDashboard);
-            this.flowLayoutPanel1.Controls.Add(this.btnProducts);
-            this.flowLayoutPanel1.Controls.Add(this.btnInventory);
-            this.flowLayoutPanel1.Controls.Add(this.btnStaff);
-            this.flowLayoutPanel1.Controls.Add(this.btnReports);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(230, 729);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.pnlSidebar.BackColor = System.Drawing.Color.RosyBrown;
+            this.pnlSidebar.Controls.Add(this.label1);
+            this.pnlSidebar.Controls.Add(this.btnDashboard);
+            this.pnlSidebar.Controls.Add(this.btnProducts);
+            this.pnlSidebar.Controls.Add(this.btnInventory);
+            this.pnlSidebar.Controls.Add(this.btnStaff);
+            this.pnlSidebar.Controls.Add(this.btnReports);
+            this.pnlSidebar.Controls.Add(this.button1);
+            this.pnlSidebar.Location = new System.Drawing.Point(12, 0);
+            this.pnlSidebar.Name = "pnlSidebar";
+            this.pnlSidebar.Size = new System.Drawing.Size(215, 729);
+            this.pnlSidebar.TabIndex = 0;
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.RosyBrown;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label1.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
@@ -87,6 +88,7 @@
             // 
             // btnProducts
             // 
+            this.btnProducts.BackColor = System.Drawing.Color.RosyBrown;
             this.btnProducts.FlatAppearance.BorderSize = 0;
             this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -98,7 +100,7 @@
             this.btnProducts.Size = new System.Drawing.Size(227, 56);
             this.btnProducts.TabIndex = 2;
             this.btnProducts.Text = "Products";
-            this.btnProducts.UseVisualStyleBackColor = true;
+            this.btnProducts.UseVisualStyleBackColor = false;
             this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
             // btnInventory
@@ -167,29 +169,40 @@
             // 
             // pnlContentQuanTri
             // 
-            this.pnlContentQuanTri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContentQuanTri.Location = new System.Drawing.Point(230, 0);
+            this.pnlContentQuanTri.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlContentQuanTri.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlContentQuanTri.Location = new System.Drawing.Point(225, 0);
             this.pnlContentQuanTri.Name = "pnlContentQuanTri";
-            this.pnlContentQuanTri.Size = new System.Drawing.Size(1286, 729);
+            this.pnlContentQuanTri.Size = new System.Drawing.Size(1291, 729);
             this.pnlContentQuanTri.TabIndex = 1;
+            // 
+            // pnlNav
+            // 
+            this.pnlNav.BackColor = System.Drawing.Color.White;
+            this.pnlNav.Location = new System.Drawing.Point(-1, 75);
+            this.pnlNav.Name = "pnlNav";
+            this.pnlNav.Size = new System.Drawing.Size(12, 56);
+            this.pnlNav.TabIndex = 7;
             // 
             // QuanTriForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.RosyBrown;
             this.ClientSize = new System.Drawing.Size(1516, 729);
+            this.Controls.Add(this.pnlSidebar);
+            this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.pnlContentQuanTri);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "QuanTriForm";
-            this.Text = "KhoHangForm";
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.pnlSidebar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel pnlSidebar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Panel pnlContentQuanTri;
@@ -198,5 +211,6 @@
         private System.Windows.Forms.Button btnStaff;
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel pnlNav;
     }
 }

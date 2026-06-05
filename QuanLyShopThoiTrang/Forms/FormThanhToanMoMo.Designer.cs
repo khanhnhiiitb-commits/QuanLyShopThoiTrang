@@ -38,7 +38,7 @@
             // 
             // picQRCode
             // 
-            this.picQRCode.Location = new System.Drawing.Point(44, 37);
+            this.picQRCode.Location = new System.Drawing.Point(36, 37);
             this.picQRCode.Name = "picQRCode";
             this.picQRCode.Size = new System.Drawing.Size(361, 337);
             this.picQRCode.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             // btnHuy
             // 
-            this.btnHuy.Location = new System.Drawing.Point(94, 399);
+            this.btnHuy.Location = new System.Drawing.Point(80, 399);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(122, 45);
             this.btnHuy.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             // btnXacNhan
             // 
-            this.btnXacNhan.Location = new System.Drawing.Point(233, 399);
+            this.btnXacNhan.Location = new System.Drawing.Point(217, 399);
             this.btnXacNhan.Name = "btnXacNhan";
             this.btnXacNhan.Size = new System.Drawing.Size(122, 45);
             this.btnXacNhan.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(89, 9);
+            this.label1.Location = new System.Drawing.Point(66, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(289, 25);
             this.label1.TabIndex = 3;
