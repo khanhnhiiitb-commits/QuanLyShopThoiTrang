@@ -41,7 +41,6 @@
             this.colChonTra = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.txtLyDo = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.colChonTra = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietHD)).BeginInit();
             this.SuspendLayout();
@@ -180,18 +179,12 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Lý do:";
             // 
-            // colChonTra
-            // 
-            this.colChonTra.HeaderText = "Đổi trả";
-            this.colChonTra.MinimumWidth = 6;
-            this.colChonTra.Name = "colChonTra";
-            this.colChonTra.Width = 70;
-            // 
             // FormDoiTra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 493);
+            this.ControlBox = false;
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtLyDo);
             this.Controls.Add(this.dgvChiTietHD);

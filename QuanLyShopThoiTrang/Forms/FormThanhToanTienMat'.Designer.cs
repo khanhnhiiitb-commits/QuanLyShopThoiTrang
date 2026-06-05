@@ -100,7 +100,7 @@
             // 
             // btnHuy
             // 
-            this.btnHuy.Location = new System.Drawing.Point(12, 202);
+            this.btnHuy.Location = new System.Drawing.Point(82, 201);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(138, 39);
             this.btnHuy.TabIndex = 6;
@@ -110,7 +110,7 @@
             // 
             // btnXacNhan
             // 
-            this.btnXacNhan.Location = new System.Drawing.Point(170, 201);
+            this.btnXacNhan.Location = new System.Drawing.Point(237, 201);
             this.btnXacNhan.Name = "btnXacNhan";
             this.btnXacNhan.Size = new System.Drawing.Size(138, 39);
             this.btnXacNhan.TabIndex = 7;
@@ -123,6 +123,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(451, 252);
+            this.ControlBox = false;
             this.Controls.Add(this.btnXacNhan);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.lblTienThoi);
@@ -131,8 +132,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblTongTien);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormThanhToanTienMat";
-            this.Text = "FormThanhToanTienMat_";
             this.ResumeLayout(false);
             this.PerformLayout();
 
