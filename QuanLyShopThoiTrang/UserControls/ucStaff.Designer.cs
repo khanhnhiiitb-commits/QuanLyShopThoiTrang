@@ -248,10 +248,7 @@
             this.cboChucVu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboChucVu.FormattingEnabled = true;
             this.cboChucVu.Items.AddRange(new object[] {
-            "Quản lý",
-            "",
             "Nhân viên bán hàng",
-            "",
             "Nhân viên kho"});
             this.cboChucVu.Location = new System.Drawing.Point(132, 362);
             this.cboChucVu.Name = "cboChucVu";
