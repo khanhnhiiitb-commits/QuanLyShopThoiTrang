@@ -9,12 +9,9 @@ namespace BUSShopThoiTrang
 {
     public class ThongKeBUS
     {
-        // Khai báo DUY NHẤT 1 biến kết nối xuống tầng DAL
+      
         private ThongKeRepository _thongKeRepo = new ThongKeRepository();
 
-        // ==============================================================
-        // CÁC HÀM CŨ CỦA BẠN (Dùng cho các Form khác)
-        // ==============================================================
         public DataTable ThongKeDoanhThu(DateTime tuNgay, DateTime denNgay)
         {
             if (tuNgay > denNgay)
@@ -34,9 +31,7 @@ namespace BUSShopThoiTrang
             return _thongKeRepo.LayHangTonKhoDuoiDinhMuc();
         }
 
-        // ==============================================================
-        // CÁC HÀM MỚI DÀNH CHO DASHBOARD (ucReports)
-        // ==============================================================
+       
         public DataTable LayDoanhThuTheoNgay()
         {
             return _thongKeRepo.LayDoanhThuTheoNgay();
@@ -56,5 +51,6 @@ namespace BUSShopThoiTrang
         {
             return _thongKeRepo.LayTiLeHoanHang();
         }
+      
     }
 }

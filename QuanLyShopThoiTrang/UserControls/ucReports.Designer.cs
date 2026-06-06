@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblTongDoanhThu = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,10 +53,12 @@
             this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.btnXuatBaoCao = new System.Windows.Forms.Button();
+            this.chartTron = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTonKho)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTron)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTongDoanhThu
@@ -72,10 +77,10 @@
             this.panel1.BackColor = System.Drawing.Color.Maroon;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.lblAOV);
-            this.panel1.Location = new System.Drawing.Point(700, 34);
+            this.panel1.Location = new System.Drawing.Point(739, 10);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(251, 74);
+            this.panel1.Size = new System.Drawing.Size(206, 74);
             this.panel1.TabIndex = 3;
             // 
             // label3
@@ -94,7 +99,7 @@
             this.lblAOV.AutoSize = true;
             this.lblAOV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAOV.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblAOV.Location = new System.Drawing.Point(93, 34);
+            this.lblAOV.Location = new System.Drawing.Point(64, 35);
             this.lblAOV.Name = "lblAOV";
             this.lblAOV.Size = new System.Drawing.Size(59, 20);
             this.lblAOV.TabIndex = 0;
@@ -105,10 +110,10 @@
             this.panel2.BackColor = System.Drawing.Color.Maroon;
             this.panel2.Controls.Add(this.lblReturn);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(979, 34);
+            this.panel2.Location = new System.Drawing.Point(974, 10);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(245, 74);
+            this.panel2.Size = new System.Drawing.Size(186, 74);
             this.panel2.TabIndex = 4;
             // 
             // lblReturn
@@ -116,18 +121,19 @@
             this.lblReturn.AutoSize = true;
             this.lblReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReturn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblReturn.Location = new System.Drawing.Point(93, 33);
+            this.lblReturn.Location = new System.Drawing.Point(59, 38);
             this.lblReturn.Name = "lblReturn";
             this.lblReturn.Size = new System.Drawing.Size(59, 20);
             this.lblReturn.TabIndex = 1;
             this.lblReturn.Text = "label4";
+            this.lblReturn.Click += new System.EventHandler(this.lblReturn_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(59, 14);
+            this.label2.Location = new System.Drawing.Point(14, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 20);
             this.label2.TabIndex = 0;
@@ -135,20 +141,33 @@
             // 
             // chartDoanhThu
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartDoanhThu.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartDoanhThu.Legends.Add(legend1);
-            this.chartDoanhThu.Location = new System.Drawing.Point(29, 86);
+            chartArea3.AxisX.LabelAutoFitStyle = ((System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles)(((System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.IncreaseFont | System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.DecreaseFont) 
+            | System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.StaggeredLabels)));
+            chartArea3.AxisX.LabelStyle.Format = "dd/MM";
+            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea3.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea3.AxisY.LabelStyle.Format = "#,##0";
+            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea3.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea3.BorderColor = System.Drawing.Color.White;
+            chartArea3.Name = "ChartArea1";
+            this.chartDoanhThu.ChartAreas.Add(chartArea3);
+            legend3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend3.IsTextAutoFit = false;
+            legend3.Name = "Legend1";
+            this.chartDoanhThu.Legends.Add(legend3);
+            this.chartDoanhThu.Location = new System.Drawing.Point(19, 86);
             this.chartDoanhThu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chartDoanhThu.Name = "chartDoanhThu";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartDoanhThu.Series.Add(series1);
-            this.chartDoanhThu.Size = new System.Drawing.Size(617, 276);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            this.chartDoanhThu.Series.Add(series3);
+            this.chartDoanhThu.Size = new System.Drawing.Size(627, 289);
             this.chartDoanhThu.TabIndex = 5;
             this.chartDoanhThu.Text = "chart1";
+            this.chartDoanhThu.Click += new System.EventHandler(this.chartDoanhThu_Click);
             // 
             // label4
             // 
@@ -175,7 +194,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(665, 124);
+            this.label5.Location = new System.Drawing.Point(686, 377);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(222, 19);
             this.label5.TabIndex = 7;
@@ -198,14 +217,14 @@
             this.SoLuongTon,
             this.DinhMucToiThieu,
             this.TrangThai});
-            this.dgvTonKho.Location = new System.Drawing.Point(669, 148);
+            this.dgvTonKho.Location = new System.Drawing.Point(669, 398);
             this.dgvTonKho.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvTonKho.Name = "dgvTonKho";
             this.dgvTonKho.RowHeadersVisible = false;
             this.dgvTonKho.RowHeadersWidth = 51;
             this.dgvTonKho.RowTemplate.Height = 24;
             this.dgvTonKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTonKho.Size = new System.Drawing.Size(593, 516);
+            this.dgvTonKho.Size = new System.Drawing.Size(593, 313);
             this.dgvTonKho.TabIndex = 8;
             this.dgvTonKho.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTonKho_CellFormatting);
             // 
@@ -268,7 +287,7 @@
             this.btnXuatBaoCao.BackColor = System.Drawing.Color.RosyBrown;
             this.btnXuatBaoCao.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXuatBaoCao.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnXuatBaoCao.Location = new System.Drawing.Point(1117, 678);
+            this.btnXuatBaoCao.Location = new System.Drawing.Point(1076, 678);
             this.btnXuatBaoCao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnXuatBaoCao.Name = "btnXuatBaoCao";
             this.btnXuatBaoCao.Size = new System.Drawing.Size(124, 33);
@@ -277,11 +296,39 @@
             this.btnXuatBaoCao.UseVisualStyleBackColor = false;
             this.btnXuatBaoCao.Click += new System.EventHandler(this.btnXuatBaoCao_Click);
             // 
+            // chartTron
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.chartTron.ChartAreas.Add(chartArea4);
+            legend4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend4.IsTextAutoFit = false;
+            legend4.Name = "Legend1";
+            this.chartTron.Legends.Add(legend4);
+            this.chartTron.Location = new System.Drawing.Point(669, 107);
+            this.chartTron.Name = "chartTron";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series4.CustomProperties = "DoughnutRadius=50";
+            series4.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series4.IsValueShownAsLabel = true;
+            series4.Label = "#PERCENT{P0}";
+            series4.LabelForeColor = System.Drawing.Color.White;
+            series4.Legend = "Legend1";
+            series4.LegendText = "#VALX";
+            series4.Name = "Series1";
+            this.chartTron.Series.Add(series4);
+            this.chartTron.Size = new System.Drawing.Size(593, 250);
+            this.chartTron.TabIndex = 11;
+            this.chartTron.Text = "chart1";
+            this.chartTron.Click += new System.EventHandler(this.chartTron_Click);
+            // 
             // ucReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.btnXuatBaoCao);
+            this.Controls.Add(this.chartTron);
             this.Controls.Add(this.dgvTonKho);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -293,13 +340,15 @@
             this.Controls.Add(this.lblTongDoanhThu);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucReports";
-            this.Size = new System.Drawing.Size(1286, 729);
+            this.Size = new System.Drawing.Size(1286, 783);
+            this.Load += new System.EventHandler(this.ucReports_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTonKho)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTron)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,5 +374,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DinhMucToiThieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
         private System.Windows.Forms.Button btnXuatBaoCao;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTron;
     }
 }

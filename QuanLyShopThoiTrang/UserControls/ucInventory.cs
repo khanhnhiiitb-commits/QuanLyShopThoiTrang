@@ -41,7 +41,16 @@ namespace QuanLyShopThoiTrang.UserControls
         // Code cho nút + Add
         private void btnThemDong_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtMaBT.Text)) { MessageBox.Show("Enter variant ID."); return; }
+            if (string.IsNullOrWhiteSpace(txtMaBT.Text))
+            {
+                MessageBox.Show(
+                    "Enter variant ID.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
             if (!int.TryParse(txtSoLuong.Text, out int sl) || sl <= 0) { MessageBox.Show("Qty must be > 0."); return; }
             if (!decimal.TryParse(txtDonGia.Text, out decimal dg) || dg <= 0) { MessageBox.Show("Price must be > 0."); return; }
 
@@ -164,6 +173,7 @@ namespace QuanLyShopThoiTrang.UserControls
         {
             pnlAddStock.Visible = true;
             pnlAddStock.BringToFront();
+            txtMaPN.Text = _khoHangBUS.PhatSinhMaPhieuNhap();
         }
 
         // Sự kiện Paint này vô dụng, cứ để rỗng hoặc xóa sạch ruột đi

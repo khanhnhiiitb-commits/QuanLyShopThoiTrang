@@ -31,9 +31,7 @@ namespace DALShopThoiTrang
             return dt;
         }
 
-        // ==============================================================
-        // CÁC HÀM CŨ CỦA BẠN (Tui giữ lại để không bị lỗi các Form khác)
-        // ==============================================================
+     
         public DataTable ThongKeDoanhThu(DateTime tuNgay, DateTime denNgay)
         {
             string sql = $"SELECT * FROM HoaDon WHERE ngayLap >= '{tuNgay:yyyy-MM-dd}' AND ngayLap <= '{denNgay:yyyy-MM-dd}'";
@@ -52,9 +50,7 @@ namespace DALShopThoiTrang
             return ExecuteQuery(sql);
         }
 
-        // ==============================================================
-        // 3 HÀM MỚI DÀNH RIÊNG CHO MÀN HÌNH DASHBOARD (ucReports)
-        // ==============================================================
+      
         public DataTable LayDoanhThuTheoNgay()
         {
             string sql = @"
@@ -102,5 +98,6 @@ namespace DALShopThoiTrang
             END AS TiLeHoan";
             return ExecuteQuery(sql);
         }
+
     }
 }

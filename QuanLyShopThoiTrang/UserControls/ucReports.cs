@@ -29,6 +29,7 @@ namespace QuanLyShopThoiTrang.UserControls
                 LoadReturnRate();
                 LoadTopSanPham();
                 LoadBaoCaoTonKho();
+                LoadBieuDoTronSanPhamBanChay();
             }
             catch (Exception ex)
             {
@@ -43,22 +44,36 @@ namespace QuanLyShopThoiTrang.UserControls
         {
             DataTable dtDoanhThu = _thongKeBUS.LayDoanhThuTheoNgay();
 
+            // Dọn dẹp series cũ trên giao diện
             chartDoanhThu.Series.Clear();
+
+            // Tạo series mới
             Series series = new Series("Doanh Thu");
             series.ChartType = SeriesChartType.Column;
             series.Color = Color.FromArgb(171, 114, 129);
+
+            // THÊM 2 DÒNG NÀY ĐỂ GIỮ DÁNG CHO BIỂU ĐỒ:
+            // 1. Nhắc Chart biết trục X là thời gian (để nó chịu nhận format dd/MM bạn chỉnh ở ngoài)
+            series.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+
+            // 2. Ép các cột đứng sát nhau, mập mạp, không bị kéo dãn ra do các ngày trống
+            series.IsXValueIndexed = true;
 
             decimal tongDoanhThu = 0;
 
             foreach (DataRow row in dtDoanhThu.Rows)
             {
-                string ngay = row["Ngay"].ToString();
+                // SỬA Ở ĐÂY: Lấy chuỗi ngày và ép chuẩn sang kiểu DateTime (tránh lỗi String was not recognized)
+                string chuoiNgay = row["Ngay"].ToString().Substring(0, 10);
+                DateTime ngay = DateTime.ParseExact(chuoiNgay, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
                 decimal tien = Convert.ToDecimal(row["DoanhThu"]);
                 tongDoanhThu += tien;
 
                 series.Points.AddXY(ngay, tien);
             }
 
+            // Đẩy series đã hoàn thiện lên biểu đồ
             chartDoanhThu.Series.Add(series);
         }
 
@@ -369,6 +384,52 @@ namespace QuanLyShopThoiTrang.UserControls
         }
 
         private void flpTopSanPham_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ucReports_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chartDoanhThu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblReturn_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void LoadBieuDoTronSanPhamBanChay()
+        {
+            // 1. Gọi dữ liệu từ tầng BUS của bạn về
+            DataTable dtTop5 = _thongKeBUS.LayTop5BanChay();
+
+            // 2. Trao nguyên cái bảng dữ liệu đó cho biểu đồ tròn
+            chartTron.DataSource = dtTop5;
+
+            // 3. Báo cho Chart biết lấy cột nào làm Tên (X), cột nào làm Giá trị (Y)
+            chartTron.Series[0].XValueMember = "TenSanPham";
+            chartTron.Series[0].YValueMembers = "SoLuongBan";
+
+            // 4. Bấm nút "Bơm" dữ liệu lên giao diện!
+            chartTron.DataBind();
+            // Tắt bộ màu mặc định xanh đỏ lòe loẹt của Chart
+            chartTron.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+
+          
+            chartTron.PaletteCustomColors = new Color[] {
+        Color.FromArgb(171, 114, 129), // Hồng mận (màu chính xác của menu bên trái)
+        Color.FromArgb(204, 153, 162), // Hồng pastel mượt mà
+        Color.FromArgb(224, 187, 194), // Hồng nhạt
+        Color.FromArgb(138, 86, 100),  // Hồng mận đậm (tạo điểm nhấn)
+        Color.FromArgb(235, 212, 216)  // Hồng phấn siêu nhạt
+    };
+        }
+
+        private void chartTron_Click(object sender, EventArgs e)
         {
 
         }

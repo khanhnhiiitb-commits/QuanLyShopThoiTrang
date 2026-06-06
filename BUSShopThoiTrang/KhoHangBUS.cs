@@ -84,6 +84,11 @@ namespace BUSShopThoiTrang
 
             return _khoHangRepo.CapNhatDinhMuc(maBienThe, dinhMucMoi);
         }
+        public string PhatSinhMaPhieuNhap()
+        {
+           
+            return _khoHangRepo.PhatSinhMaPhieuNhap();
+        }
     }
 }
 
