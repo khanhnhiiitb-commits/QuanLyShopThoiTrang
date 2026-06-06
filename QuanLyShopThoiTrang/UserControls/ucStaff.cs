@@ -117,28 +117,20 @@ namespace QuanLyShopThoiTrang.UserControls
 
         private void dgvNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            // Kiểm tra dòng hợp lệ (không phải header, không phải dòng trống)
+            if (e.RowIndex < 0 || dgvNhanVien.Rows[e.RowIndex].IsNewRow) return;
 
-            DataGridViewRow row =
-                dgvNhanVien.Rows[e.RowIndex];
+            DataGridViewRow row = dgvNhanVien.Rows[e.RowIndex];
 
-            txtMaNV.Text =
-                row.Cells["maNV"].Value.ToString();
+            // Sử dụng Convert.ToString để tránh lỗi NullReferenceException
+            txtMaNV.Text = Convert.ToString(row.Cells["maNV"].Value);
+            txtTenNV.Text = Convert.ToString(row.Cells["tenNV"].Value);
+            txtSDT.Text = Convert.ToString(row.Cells["soDienThoai"].Value);
+            cboChucVu.Text = Convert.ToString(row.Cells["chucVu"].Value);
+            cboGioiTinh.Text = Convert.ToString(row.Cells["gioiTinh"].Value);
 
-            txtTenNV.Text =
-                row.Cells["tenNV"].Value.ToString();
-
-            txtSDT.Text =
-                row.Cells["soDienThoai"].Value.ToString();
-
-            cboChucVu.Text =
-                row.Cells["chucVu"].Value.ToString();
-
-            cboGioiTinh.Text =
-                row.Cells["gioiTinh"].Value.ToString();
-         
-            txtMatKhau.Text =
-                row.Cells["matKhau"].Value.ToString();
+            // Gán password (đã ẩn cột matKhau trên lưới nên vẫn lấy được giá trị)
+            txtMatKhau.Text = Convert.ToString(row.Cells["matKhau"].Value);
         }
     }
 }

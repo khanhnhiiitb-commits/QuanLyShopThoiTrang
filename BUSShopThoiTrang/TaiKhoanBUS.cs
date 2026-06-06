@@ -25,7 +25,7 @@ namespace BUSShopThoiTrang
 
             return tkRepo.KiemTraDangNhap(username, password);
         }
-        public DataTable LayDanhSachNhanVien()
+        public List<NhanVienDTO> LayDanhSachNhanVien()
         {
             return tkRepo.LayDanhSachNhanVien();
         }
@@ -40,7 +40,7 @@ namespace BUSShopThoiTrang
             return tkRepo.SuaNhanVien(nv);
         }
 
-        public DataTable TimNhanVien(string tuKhoa)
+        public List<NhanVienDTO> TimNhanVien(string tuKhoa)
         {
             return tkRepo.TimNhanVien(tuKhoa);
         }

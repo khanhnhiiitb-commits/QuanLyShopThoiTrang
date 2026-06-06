@@ -1,261 +1,135 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
-using System.Data.SqlClient;
-using DTOShopThoiTrang; 
+using DTOShopThoiTrang;
+using DALShopThoiTrang.EF; // Sửa lại dòng này theo đúng tên thư mục EF của bạn
 
 namespace DALShopThoiTrang
 {
-    public class TaiKhoanRepository : DBConnection
+    public class TaiKhoanRepository
     {
+        // Khởi tạo đối tượng Context của Entity Framework
+        private ShopThoiTrangEntities db = new ShopThoiTrangEntities();
         public NhanVienDTO KiemTraDangNhap(string username, string password)
         {
-            NhanVienDTO nv = null;
-            try
+            var nv = db.NhanViens.FirstOrDefault(x => x.maNV == username && x.matKhau == password && x.trangThai == "Đang làm việc");
+            if (nv != null)
             {
-                OpenConnection();
-                string query = "SELECT * FROM NhanVien WHERE maNV = @maNV AND matKhau = @matKhau AND trangThai = N'Đang làm việc'";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                // Chuyển EF Model thành DTO để giữ nguyên cấu trúc cũ
+                return new NhanVienDTO
                 {
-                    cmd.Parameters.AddWithValue("@maNV", username);
-                    cmd.Parameters.AddWithValue("@matKhau", password);
+                    MaNV = nv.maNV,
+                    TenNV = nv.tenNV,
+                    SoDienThoai = nv.soDienThoai,
+                    ChucVu = nv.chucVu,
+                    TrangThai = nv.trangThai,
+                    PhanQuyen = nv.phanQuyen,
+                    GioiTinh = nv.gioiTinh
+                };
+            }
+            return null;
+        }
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            nv = new NhanVienDTO
-                            {
-                                MaNV = reader["maNV"].ToString(),
-                                TenNV = reader["tenNV"].ToString(),
-                                SoDienThoai = reader["soDienThoai"].ToString(),
-                                ChucVu = reader["chucVu"].ToString(),
-                                TrangThai = reader["trangThai"].ToString(),
-                                PhanQuyen = reader["phanQuyen"].ToString(),
-                                GioiTinh = reader["gioiTinh"].ToString()
-                            };
-                        }
-                    }
+        public List<NhanVienDTO> LayDanhSachNhanVien()
+        {
+            return db.NhanViens.Where(x => x.phanQuyen == "Staff").Select(nv => new NhanVienDTO
+            {
+                MaNV = nv.maNV,
+                TenNV = nv.tenNV,
+                SoDienThoai = nv.soDienThoai,
+                ChucVu = nv.chucVu,
+                TrangThai = nv.trangThai,
+                PhanQuyen = nv.phanQuyen,
+                GioiTinh = nv.gioiTinh
+            }).ToList();
+        }
+
+        public bool ThemNhanVien(NhanVienDTO nvDTO)
+        {
+            try
+            {
+                var nvMoi = new NhanVien
+                {
+                    maNV = nvDTO.MaNV,
+                    tenNV = nvDTO.TenNV,
+                    soDienThoai = nvDTO.SoDienThoai,
+                    chucVu = nvDTO.ChucVu,
+                    trangThai = "Đang làm việc",
+                    matKhau = nvDTO.MatKhau,
+                    phanQuyen = nvDTO.PhanQuyen,
+                    gioiTinh = nvDTO.GioiTinh
+                };
+                db.NhanViens.Add(nvMoi);
+                return db.SaveChanges() > 0;
+            }
+            catch { return false; }
+        }
+
+        public bool SuaNhanVien(NhanVienDTO nvDTO)
+        {
+            try
+            {
+                var nvCu = db.NhanViens.FirstOrDefault(x => x.maNV == nvDTO.MaNV);
+                if (nvCu != null)
+                {
+                    nvCu.tenNV = nvDTO.TenNV;
+                    nvCu.soDienThoai = nvDTO.SoDienThoai;
+                    nvCu.chucVu = nvDTO.ChucVu;
+                    nvCu.matKhau = nvDTO.MatKhau;
+                    nvCu.phanQuyen = nvDTO.PhanQuyen;
+                    nvCu.gioiTinh = nvDTO.GioiTinh;
+                    return db.SaveChanges() > 0;
                 }
+                return false;
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi kết nối CSDL: " + ex.Message);
-            }
-            finally
-            {
-                CloseConnection();
-            }
-
-            return nv; 
+            catch { return false; }
         }
-        public DataTable LayDanhSachNhanVien()
+
+        public List<NhanVienDTO> TimNhanVien(string tuKhoa)
         {
-            DataTable dt = new DataTable();
-
-            try
-            {
-                OpenConnection();
-
-                string query = @"SELECT *
-                         FROM NhanVien
-                         WHERE phanQuyen = 'Staff'";
-
-                SqlDataAdapter adapter =
-                    new SqlDataAdapter(query, conn);
-
-                adapter.Fill(dt);
-            }
-            finally
-            {
-                CloseConnection();
-            }
-
-            return dt;
+            return db.NhanViens.Where(nv => nv.phanQuyen == "Staff" &&
+                                          (nv.maNV.Contains(tuKhoa) ||
+                                           nv.tenNV.Contains(tuKhoa) ||
+                                           nv.soDienThoai.Contains(tuKhoa)))
+                              .Select(nv => new NhanVienDTO
+                              {
+                                  MaNV = nv.maNV,
+                                  TenNV = nv.tenNV,
+                                  SoDienThoai = nv.soDienThoai,
+                                  ChucVu = nv.chucVu,
+                                  TrangThai = nv.trangThai,
+                                  PhanQuyen = nv.phanQuyen,
+                                  GioiTinh = nv.gioiTinh
+                              }).ToList();
         }
-        public bool ThemNhanVien(NhanVienDTO nv)
-        {
-            try
-            {
-                OpenConnection();
 
-                string query = @"INSERT INTO NhanVien
-VALUES
-(
-    @maNV,
-    @tenNV,
-    @soDienThoai,
-    @chucVu,
-    N'Đang làm việc',
-    @matKhau,
-    @phanQuyen,
-    @gioiTinh
-)";
-
-                SqlCommand cmd =
-                    new SqlCommand(query, conn);
-
-                cmd.Parameters.AddWithValue("@maNV", nv.MaNV);
-                cmd.Parameters.AddWithValue("@tenNV", nv.TenNV);
-                cmd.Parameters.AddWithValue("@soDienThoai", nv.SoDienThoai);
-                cmd.Parameters.AddWithValue("@chucVu", nv.ChucVu);
-                
-                cmd.Parameters.AddWithValue("@matKhau", nv.MatKhau);
-                cmd.Parameters.AddWithValue("@phanQuyen", nv.PhanQuyen);
-                cmd.Parameters.AddWithValue("@gioiTinh", nv.GioiTinh);
-
-                return cmd.ExecuteNonQuery() > 0;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-        public bool SuaNhanVien(NhanVienDTO nv)
-        {
-            try
-            {
-                OpenConnection();
-
-                string query = @"UPDATE NhanVien
-                        SET tenNV=@tenNV,
-                            soDienThoai=@soDienThoai,
-                            chucVu=@chucVu,
-                            matKhau=@matKhau,
-                            phanQuyen=@phanQuyen,
-                            gioiTinh=@gioiTinh
-                        WHERE maNV=@maNV";
-
-                SqlCommand cmd =
-                    new SqlCommand(query, conn);
-
-                cmd.Parameters.AddWithValue("@maNV", nv.MaNV);
-                cmd.Parameters.AddWithValue("@tenNV", nv.TenNV);
-                cmd.Parameters.AddWithValue("@soDienThoai", nv.SoDienThoai);
-                cmd.Parameters.AddWithValue("@chucVu", nv.ChucVu);
-                
-                cmd.Parameters.AddWithValue("@matKhau", nv.MatKhau);
-                cmd.Parameters.AddWithValue("@phanQuyen", nv.PhanQuyen);
-                cmd.Parameters.AddWithValue("@gioiTinh", nv.GioiTinh);
-
-                return cmd.ExecuteNonQuery() > 0;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-        public DataTable TimNhanVien(string tuKhoa)
-        {
-            DataTable dt = new DataTable();
-
-            try
-            {
-                OpenConnection();
-
-                string query = @"SELECT *
-                               FROM NhanVien
-                               WHERE phanQuyen='Staff'
-                               AND (
-                               maNV LIKE @tuKhoa
-                               OR tenNV LIKE @tuKhoa
-                               OR soDienThoai LIKE @tuKhoa
-                               )";
-
-                SqlCommand cmd =
-                    new SqlCommand(query, conn);
-
-                cmd.Parameters.AddWithValue(
-                    "@tuKhoa",
-                    "%" + tuKhoa + "%");
-
-                SqlDataAdapter adapter =
-                    new SqlDataAdapter(cmd);
-
-                adapter.Fill(dt);
-            }
-            finally
-            {
-                CloseConnection();
-            }
-
-            return dt;
-        }
         public bool KhoaNhanVien(string maNV)
         {
-            try
-            {
-                OpenConnection();
-
-                string query =
-                    "UPDATE NhanVien SET trangThai = N'Nghỉ việc' WHERE maNV = @maNV";
-
-                SqlCommand cmd =
-                    new SqlCommand(query, conn);
-
-                cmd.Parameters.AddWithValue("@maNV", maNV);
-
-                return cmd.ExecuteNonQuery() > 0;
-            }
-            finally
-            {
-                CloseConnection();
-            }
+            var nv = db.NhanViens.FirstOrDefault(x => x.maNV == maNV);
+            if (nv != null) { nv.trangThai = "Nghỉ việc"; return db.SaveChanges() > 0; }
+            return false;
         }
+
         public bool MoKhoaNhanVien(string maNV)
         {
-            try
-            {
-                OpenConnection();
-
-                string query =
-                    "UPDATE NhanVien SET trangThai = N'Đang làm việc' WHERE maNV = @maNV";
-
-                SqlCommand cmd =
-                    new SqlCommand(query, conn);
-
-                cmd.Parameters.AddWithValue("@maNV", maNV);
-
-                return cmd.ExecuteNonQuery() > 0;
-            }
-            finally
-            {
-                CloseConnection();
-            }
+            var nv = db.NhanViens.FirstOrDefault(x => x.maNV == maNV);
+            if (nv != null) { nv.trangThai = "Đang làm việc"; return db.SaveChanges() > 0; }
+            return false;
         }
-        public bool CapNhatTaiKhoan(NhanVienDTO nv)
+
+        public bool CapNhatTaiKhoan(NhanVienDTO nvDTO)
         {
-            try
+            var nvCu = db.NhanViens.FirstOrDefault(x => x.maNV == nvDTO.MaNV);
+            if (nvCu != null)
             {
-                OpenConnection();
-
-                string query = @"
-            UPDATE NhanVien
-            SET tenNV = @tenNV,
-                soDienThoai = @soDienThoai,
-                gioiTinh = @gioiTinh,
-                matKhau = @matKhau
-            WHERE maNV = @maNV";
-
-                SqlCommand cmd =
-                    new SqlCommand(query, conn);
-
-                cmd.Parameters.AddWithValue("@maNV", nv.MaNV);
-                cmd.Parameters.AddWithValue("@tenNV", nv.TenNV);
-                cmd.Parameters.AddWithValue("@soDienThoai", nv.SoDienThoai);
-                cmd.Parameters.AddWithValue("@gioiTinh", nv.GioiTinh);
-                cmd.Parameters.AddWithValue("@matKhau", nv.MatKhau);
-
-                return cmd.ExecuteNonQuery() > 0;
+                nvCu.tenNV = nvDTO.TenNV;
+                nvCu.soDienThoai = nvDTO.SoDienThoai;
+                nvCu.gioiTinh = nvDTO.GioiTinh;
+                nvCu.matKhau = nvDTO.MatKhau;
+                return db.SaveChanges() > 0;
             }
-            finally
-            {
-                CloseConnection();
-            }
+            return false;
         }
     }
 }

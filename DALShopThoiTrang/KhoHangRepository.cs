@@ -302,22 +302,28 @@ namespace DALShopThoiTrang
         // Hàm tự động phát sinh mã Phiếu Nhập mới
         public string PhatSinhMaPhieuNhap()
         {
-            string maMoi = "PN001"; // Mặc định nếu database chưa có phiếu nào
+            string maMoi = "PN001";
             try
             {
                 OpenConnection();
-                // Lấy cái mã phiếu nhập bự nhất hiện tại (ví dụ: PN002)
                 string query = "SELECT TOP 1 maPN FROM PhieuNhap ORDER BY maPN DESC";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     object result = cmd.ExecuteScalar();
-                    if (result != null && result.ToString() != "")
+                    if (result != null && result != DBNull.Value)
                     {
                         string maCu = result.ToString();
-                        // Cắt lấy phần số đằng sau chữ "PN" (bỏ 2 ký tự đầu)
-                        int so = int.Parse(maCu.Substring(2)) + 1;
-                        // Ghép chữ "PN" với số mới, ép nó luôn có 3 chữ số (003, 004...)
-                        maMoi = "PN" + so.ToString("D3");
+
+                        // KIỂM TRA ĐỘ DÀI AN TOÀN TRƯỚC KHI CẮT CHUỖI
+                        if (maCu.Length > 2 && maCu.StartsWith("PN"))
+                        {
+                            // Cắt lấy phần số sau chữ "PN"
+                            if (int.TryParse(maCu.Substring(2), out int so))
+                            {
+                                so = so + 1;
+                                maMoi = "PN" + so.ToString("D3");
+                            }
+                        }
                     }
                 }
             }
