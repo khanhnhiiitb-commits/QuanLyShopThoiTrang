@@ -17,16 +17,18 @@ namespace DTOQuanLyThoiTrang
         public string MaBienThe { get => _maBienThe; set => _maBienThe = value; }
         public int SoLuongNhap { get => _soLuongNhap; set => _soLuongNhap = value; }
         public decimal DonGiaNhap { get => _donGiaNhap; set => _donGiaNhap = value; }
+        public decimal ThanhTien { get; set; }
 
         public ChiTietPNDTO() { }
 
         public ChiTietPNDTO(string maPN, string maBienThe,
-                            int soLuongNhap, decimal donGiaNhap)
+                            int soLuongNhap, decimal donGiaNhap, decimal thanhTien)
         {
             _maPN = maPN;
             _maBienThe = maBienThe;
             _soLuongNhap = soLuongNhap;
             _donGiaNhap = donGiaNhap;
+            ThanhTien = thanhTien;
         }
     }
 }

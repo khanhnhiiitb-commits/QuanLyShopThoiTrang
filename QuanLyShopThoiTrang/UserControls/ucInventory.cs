@@ -21,21 +21,16 @@ namespace QuanLyShopThoiTrang.UserControls
         {
             try
             {
-                // Lấy dữ liệu từ BUS bỏ vào một cái bảng trung gian (DataTable)
                 DataTable dtTonKho = _khoHangBUS.LayDanhSachTonKho();
 
-                // Đổ bảng đó vào lưới
                 dgvInventory.DataSource = dtTonKho;
 
-                // BÓP CÒ: Gọi hàm tính KPI dựa trên cái bảng vừa lấy được
                 CalculateKPI(dtTonKho);
             }
             catch (Exception ex) { MessageBox.Show("Error: " + ex.Message); }
         }
 
-        // ═════════════════════════════════════════════════════
-        // SỰ KIỆN NÚT BẤM (EVENTS)
-        // ═════════════════════════════════════════════════════
+    
 
         // Code cho nút Cancel
         private void btnHuy_Click(object sender, EventArgs e)
@@ -66,6 +61,7 @@ namespace QuanLyShopThoiTrang.UserControls
         }
 
         // Code cho nút Save
+        // Code cho nút Save
         private void btnLuu_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtMaPN.Text) || string.IsNullOrWhiteSpace(txtMaNV.Text))
@@ -75,22 +71,55 @@ namespace QuanLyShopThoiTrang.UserControls
 
             try
             {
-                var phieu = new PhieuNhapDTO
-                { MaPN = txtMaPN.Text.Trim(), MaNV = txtMaNV.Text.Trim(), NgayNhap = dtpNgay.Value, GhiChu = txtGhiChu.Text.Trim() };
                 var chiTiet = new List<ChiTietPNDTO>();
+                decimal tongTienPhieu = 0; // Biến giữ tổng tiền của cả phiếu nhập
+                string maPhieu = txtMaPN.Text.Trim();
 
+                // GỘP CHUNG VÀO 1 VÒNG LẶP DUY NHẤT CHO TỐI ƯU
                 foreach (DataGridViewRow r in dgvChiTiet.Rows)
                 {
                     if (r.IsNewRow) continue;
-                    decimal.TryParse(r.Cells[2].Value?.ToString()?.Replace(",", ""), out decimal dg); // Cột Đơn giá
+
+                    // Lấy Đơn giá và Số lượng
+                    decimal.TryParse(r.Cells[2].Value?.ToString()?.Replace(",", ""), out decimal dg);
+                    int.TryParse(r.Cells[1].Value?.ToString(), out int sl);
+
+                    // 1. Tính Thành tiền cho từng dòng
+                    decimal thanhTien = sl * dg;
+
+                    // 2. Cộng dồn vào Tổng tiền của cả phiếu
+                    tongTienPhieu += thanhTien;
+
+                    // 3. Đóng gói dòng chi tiết
                     chiTiet.Add(new ChiTietPNDTO
-                    { MaPN = phieu.MaPN, MaBienThe = r.Cells[0].Value.ToString(), SoLuongNhap = int.Parse(r.Cells[1].Value.ToString()), DonGiaNhap = dg });
+                    {
+                        MaPN = maPhieu,
+                        MaBienThe = r.Cells[0].Value.ToString(),
+                        SoLuongNhap = sl,
+                        DonGiaNhap = dg,
+                        ThanhTien = thanhTien // ĐÃ GÁN ĐẦY ĐỦ ĐỂ TRÁNH LỖI NULL
+                    });
                 }
 
+                // 4. Khởi tạo đối tượng PhieuNhap sau khi đã có tổng tiền
+                var phieu = new PhieuNhapDTO
+                {
+                    MaPN = maPhieu,
+                    MaNV = txtMaNV.Text.Trim(),
+                    NgayNhap = dtpNgay.Value,
+                    GhiChu = txtGhiChu.Text.Trim(),
+                    TongTienNhap = tongTienPhieu // Gắn tổng tiền vào Phiếu
+                };
+
+                // 5. Gọi BUS để lưu xuống DB
                 if (_khoHangBUS.NhapHang(phieu, chiTiet))
                 {
                     MessageBox.Show("✅ Stock imported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgvChiTiet.Rows.Clear(); txtMaPN.Clear(); txtMaNV.Clear(); txtGhiChu.Clear(); lblTongTien.Text = "Total: 0 ₫";
+                    dgvChiTiet.Rows.Clear();
+                    txtMaPN.Clear();
+                    txtMaNV.Clear();
+                    txtGhiChu.Clear();
+                    lblTongTien.Text = "Total: 0 ₫";
                     pnlAddStock.Visible = false; // Xong thì đóng Panel
                     LoadInventory(); // Load lại kho
                 }
@@ -179,5 +208,7 @@ namespace QuanLyShopThoiTrang.UserControls
         {
 
         }
+
+       
     }
 }

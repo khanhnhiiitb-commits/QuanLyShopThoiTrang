@@ -124,6 +124,41 @@ namespace BUSShopThoiTrang
             }
         }
 
+        public bool ThemBienTheMoi(BienTheDTO bt)
+        {
+            if (string.IsNullOrWhiteSpace(bt.MaBienThe))
+                throw new Exception("Mã biến thể không được để trống!");
+            if (string.IsNullOrWhiteSpace(bt.MaSP))
+                throw new Exception("Mã sản phẩm gốc không được để trống!");
+            if (bt.DinhMucToiThieu < 0)
+                throw new Exception("Định mức tối thiểu không được là số âm!");
+            try
+            {
+                return _sanPhamRepo.ThemBienTheMoi(bt);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("PRIMARY KEY") || ex.Message.Contains("duplicate"))
+                    throw new Exception("Mã biến thể này đã tồn tại. Vui lòng nhập mã khác!");
+                throw new Exception("Lỗi hệ thống: " + ex.Message);
+            }
+        }
+
+        public bool XoaBienThe(string maBienThe)
+        {
+            if (string.IsNullOrWhiteSpace(maBienThe))
+                throw new Exception("Vui lòng chọn một biến thể cần xóa!");
+            try
+            {
+                return _sanPhamRepo.XoaBienThe(maBienThe);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("REFERENCE constraint") || ex.Message.Contains("FOREIGN KEY"))
+                    throw new Exception("Không thể xóa! Biến thể này đã phát sinh dữ liệu trong hóa đơn hoặc phiếu nhập kho.");
+                throw new Exception("Lỗi hệ thống: " + ex.Message);
+            }
+        }
         // 5. Tìm kiếm sản phẩm theo tên (Dùng Query SQL ở DAL)
         public List<SanPhamDTO> TimKiemSPTheoTen(string tuKhoa)
         {

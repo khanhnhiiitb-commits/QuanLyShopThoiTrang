@@ -114,8 +114,8 @@ namespace DALShopThoiTrang
                         foreach (var ct in danhSachChiTiet)
                         {
                             string queryChiTiet = @"
-                            INSERT INTO ChiTietPN (maPN, maBienThe, soLuongNhap, donGiaNhap)
-                            VALUES (@maPN, @maBienThe, @soLuongNhap, @donGiaNhap)";
+                            INSERT INTO ChiTietPN (maPN, maBienThe, soLuongNhap, donGiaNhap, thanhTien)
+                            VALUES (@maPN, @maBienThe, @soLuongNhap, @donGiaNhap, @thanhTien)";
 
                             using (SqlCommand cmd = new SqlCommand(queryChiTiet, conn, transaction))
                             {
@@ -123,6 +123,7 @@ namespace DALShopThoiTrang
                                 cmd.Parameters.AddWithValue("@maBienThe", ct.MaBienThe);
                                 cmd.Parameters.AddWithValue("@soLuongNhap", ct.SoLuongNhap);
                                 cmd.Parameters.AddWithValue("@donGiaNhap", ct.DonGiaNhap);
+                                cmd.Parameters.AddWithValue("@thanhTien", ct.ThanhTien);
                                 cmd.ExecuteNonQuery();
                             }
 

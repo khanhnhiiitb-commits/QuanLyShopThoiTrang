@@ -1,7 +1,4 @@
-﻿using BUSShopThoiTrang;
-using DTOQuanLyThoiTrang;
-using DTOShopThoiTrang;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BUSShopThoiTrang;
+using DTOQuanLyThoiTrang;
+using DTOShopThoiTrang;
+using QuanLyShopThoiTrang.Forms;
 
 namespace QuanLyShopThoiTrang.UserControls
 {
@@ -18,6 +19,7 @@ namespace QuanLyShopThoiTrang.UserControls
     {
         private SanPhamBUS _spBus = new SanPhamBUS();
         private LoaiSPBUS _loaiSPBus = new LoaiSPBUS();
+        private string duongDanAnhDaChon = "";
         public ucProducts()
         {
             InitializeComponent();
@@ -350,6 +352,98 @@ namespace QuanLyShopThoiTrang.UserControls
                 txtMaDM.Text = loaiDangChon.MaLoai;
                 txtTenDM.Text = loaiDangChon.TenLoai;
                 txtMaDM.Enabled = false; // Mã thì không được sửa, khóa ô này lại
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+                ofd.Title = "Chọn ảnh cho sản phẩm";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        duongDanAnhDaChon = ofd.FileName;
+                        pictureBox1.Image = Image.FromFile(duongDanAnhDaChon);
+                        pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi tải ảnh: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        public void LoadDanhSachBienThe(string maSP)
+        {
+            var dsBienThe = _spBus.LayBienTheTheoMaSP(maSP);
+            dgvBienThe.DataSource = dsBienThe;
+            if (dgvBienThe.Columns["HinhAnh"] != null)
+            {
+                dgvBienThe.Columns["HinhAnh"].Visible = false;
+            }
+        }
+        private void btnThemBTSP_Click(object sender, EventArgs e)
+        {
+            if (dgvDanhsachSP.CurrentRow == null || dgvDanhsachSP.CurrentRow.IsNewRow)
+            {
+                MessageBox.Show("Vui lòng chọn một Sản phẩm trên lưới trước khi thêm biến thể!", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            string maSanPhamDangChon = dgvDanhsachSP.CurrentRow.Cells["MaSP"].Value?.ToString();         
+            FormThemBienThe frmPopUp = new FormThemBienThe(maSanPhamDangChon);
+
+            // 4. Hiển thị form bằng ShowDialog() để nó khóa màn hình chính lại
+            // Nếu form Pop-up trả về cờ hiệu OK (tức là đã lưu thành công)
+            if (frmPopUp.ShowDialog() == DialogResult.OK)
+            {
+                // Thực hiện Load lại danh sách biến thể của sản phẩm đó để hiển thị dòng dữ liệu mới thêm
+                LoadDanhSachBienThe(maSanPhamDangChon);
+            }
+        }
+
+        private void btnXoaBienThe_Click(object sender, EventArgs e)
+        {
+            // 1. Kiểm tra xem người dùng đã chọn dòng nào trên lưới chưa
+            if (dgvBienThe.CurrentRow == null || dgvBienThe.CurrentRow.IsNewRow)
+            {
+                MessageBox.Show("Vui lòng chọn một biến thể cần xóa!", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string maBienTheDangChon = dgvBienThe.CurrentRow.Cells["MaBienThe"].Value?.ToString();
+            // 3. Hiển thị hộp thoại cảnh báo (Xác nhận kép)
+            DialogResult canhBao = MessageBox.Show(
+                $"Bạn có chắc chắn muốn xóa vĩnh viễn biến thể [{maBienTheDangChon}] không?\nHành động này không thể hoàn tác!",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2); // Đưa trỏ chuột mặc định vào nút No để tránh click nhầm
+
+            // 4. Nếu người dùng chọn Yes thì mới tiến hành xóa
+            if (canhBao == DialogResult.Yes)
+            {
+                try
+                {
+                    // Gọi hàm xóa từ tầng BUS
+                    if (_spBus.XoaBienThe(maBienTheDangChon))
+                    {
+                        MessageBox.Show("✅ Đã xóa biến thể thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // 5. Tải lại DataGridView để dòng vừa xóa biến mất khỏi màn hình
+                        string maSPGoc = txtMaSP.Text; // Lấy mã Sản phẩm gốc đang hiển thị
+                        LoadDanhSachBienThe(maSPGoc);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Nếu dính lỗi Khóa ngoại từ DAL ném lên, nó sẽ hiện thông báo ở đây
+                    MessageBox.Show(ex.Message, "Lỗi xóa dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

@@ -25,6 +25,8 @@ namespace QuanLyShopThoiTrang
         private string _phuongThucThanhToan = "";
         private KhachHangDTO khachHangHienTai = null;
         private Button btnDangChon = null;
+        decimal discount = 0;
+
         public BanHangForm(NhanVienDTO nhanVienHienTai)
         {
             InitializeComponent();
@@ -151,8 +153,7 @@ namespace QuanLyShopThoiTrang
             // Thuế VAT là 10% (0.1)
             decimal tax = subTotal * 0.1m;
             lblTax.Text = tax.ToString("N0") + "đ";
-            // Tính tổng cuối cùng
-            decimal total = subTotal + tax;
+            decimal total = subTotal + tax - discount*subTotal;
             lblTotal.Text = total.ToString("N0") + "đ";
         }
 
@@ -383,24 +384,18 @@ namespace QuanLyShopThoiTrang
             string sdt = ShowInputDialog("Nhập số điện thoại khách hàng:", "Tra cứu thành viên");
 
             if (string.IsNullOrEmpty(sdt)) return;
-
-            // 2. Tìm trong DB
             KhachHangDTO kh = giaoDichBUS.TimKhachHangTheoSDT(sdt);
 
             if (kh != null)
             {
                 khachHangHienTai = kh;
                 lblCustomer.Text = kh.TenKH;
-                lblMembershipDiscount.Text = "10%"; // Hiển thị 10%
+                lblMembershipDiscount.Text = "10%"; 
 
                 MessageBox.Show($"Chào mừng khách hàng {kh.TenKH} trở lại!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Cập nhật lại hóa đơn (bạn cần viết thêm hàm giảm 10% vào tổng tiền của bạn)
-                // CapNhatTongTien(); 
             }
             else
             {
-                // TRƯỜNG HỢP 2: CHƯA CÓ TRONG HỆ THỐNG
                 DialogResult result = MessageBox.Show("Số điện thoại này chưa đăng ký. Bạn có muốn thêm thành viên mới không?",
                                                       "Khách hàng mới", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -411,20 +406,19 @@ namespace QuanLyShopThoiTrang
                     if (!string.IsNullOrEmpty(tenKH))
                     {
                         KhachHangDTO khMoi = new KhachHangDTO();
-                        khMoi.MaKH = giaoDichBUS.TaoMaKhachHangMoi(); // Gọi hàm tự tăng mã (KH06, KH07...)
+                        khMoi.MaKH = giaoDichBUS.TaoMaKhachHangMoi(); 
                         khMoi.TenKH = tenKH;
                         khMoi.SoDienThoai = sdt;
 
-                        // Lưu xuống DB
                         if (giaoDichBUS.ThemKhachHang(khMoi))
                         {
                             khachHangHienTai = khMoi;
                             lblCustomer.Text = khMoi.TenKH;
                             lblMembershipDiscount.Text = "10%";
-
+                            discount = 0.1m; 
                             MessageBox.Show($"Đăng ký thành viên thành công! Mã KH: {khMoi.MaKH}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            TinhTongTienHoaDon();
 
-                            //CapNhatTongTien(); 
                         }
                     }
                 }

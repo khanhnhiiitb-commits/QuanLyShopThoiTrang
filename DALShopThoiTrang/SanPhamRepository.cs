@@ -221,7 +221,71 @@ namespace DALShopThoiTrang
 
             return sp; 
         }
+        public bool ThemBienTheMoi(BienTheDTO bienThe)
+        {
+            try
+            {
+                OpenConnection();
+                // Không INSERT cột soLuongTon vì SQL Server nên có Default Value = 0
+                string query = @"
+        INSERT INTO BienTheSP (maBienThe, maSP, mauSac, kichCo, soLuongTon, dinhMucToiThieu) 
+        VALUES (@maBienThe, @maSP, @mauSac, @kichCo, 0, @dinhMucToiThieu)";
 
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@maBienThe", bienThe.MaBienThe);
+                    cmd.Parameters.AddWithValue("@maSP", bienThe.MaSP);
+                    cmd.Parameters.AddWithValue("@mauSac", bienThe.MauSac);
+                    cmd.Parameters.AddWithValue("@kichCo", bienThe.KichCo);
+                    cmd.Parameters.AddWithValue("@dinhMucToiThieu", bienThe.DinhMucToiThieu);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi thêm phân loại hàng: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public bool XoaBienThe(string maBienThe)
+        {
+            try
+            {
+                OpenConnection();
+                string query = "DELETE FROM BienTheSP WHERE maBienThe = @maBienThe";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@maBienThe", maBienThe);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                // Mã lỗi 547 của SQL Server là lỗi vi phạm Khóa ngoại (Foreign Key Constraint)
+                if (ex.Number == 547)
+                {
+                    throw new Exception("Không thể xóa biến thể này vì đã phát sinh dữ liệu nhập kho hoặc hóa đơn bán hàng!");
+                }
+                else
+                {
+                    throw new Exception("Lỗi cơ sở dữ liệu: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi xóa biến thể: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
         // Hàm lấy toàn bộ danh sách biến thể sản phẩm
         public List<BienTheDTO> LayTatCaBienTheSanPham()
         {
