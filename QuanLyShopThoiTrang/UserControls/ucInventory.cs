@@ -46,7 +46,16 @@ namespace QuanLyShopThoiTrang.UserControls
         // Code cho nút + Add
         private void btnThemDong_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtMaBT.Text)) { MessageBox.Show("Enter variant ID."); return; }
+            if (string.IsNullOrWhiteSpace(txtMaBT.Text))
+            {
+                MessageBox.Show(
+                    "Enter variant ID.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
             if (!int.TryParse(txtSoLuong.Text, out int sl) || sl <= 0) { MessageBox.Show("Qty must be > 0."); return; }
             if (!decimal.TryParse(txtDonGia.Text, out decimal dg) || dg <= 0) { MessageBox.Show("Price must be > 0."); return; }
 
@@ -89,9 +98,18 @@ namespace QuanLyShopThoiTrang.UserControls
 
                 if (_khoHangBUS.NhapHang(phieu, chiTiet))
                 {
-                    MessageBox.Show("✅ Stock imported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgvChiTiet.Rows.Clear(); txtMaPN.Clear(); txtMaNV.Clear(); txtGhiChu.Clear(); lblTongTien.Text = "Total: 0 ₫";
-                    pnlAddStock.Visible = false; // Xong thì đóng Panel
+                    MessageBox.Show(
+                        "Stock imported successfully!",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+
+                    dgvChiTiet.Rows.Clear();
+                    txtMaPN.Text = _khoHangBUS.PhatSinhMaPhieuNhap();
+                    txtMaNV.Clear();
+                    txtGhiChu.Clear();
+                    lblTongTien.Text = "Total: 0 ₫"; 
                     LoadInventory(); // Load lại kho
                 }
             }
@@ -135,6 +153,7 @@ namespace QuanLyShopThoiTrang.UserControls
         {
             pnlAddStock.Visible = true;
             pnlAddStock.BringToFront();
+            txtMaPN.Text = _khoHangBUS.PhatSinhMaPhieuNhap();
         }
 
         // Sự kiện Paint này vô dụng, cứ để rỗng hoặc xóa sạch ruột đi

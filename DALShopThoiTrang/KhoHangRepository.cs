@@ -113,9 +113,10 @@ namespace DALShopThoiTrang
                         // 2. Thêm chi tiết + cập nhật tồn kho
                         foreach (var ct in danhSachChiTiet)
                         {
+                            // BỔ SUNG THÊM CỘT thanhTien VÀ BIẾN @thanhTien VÀO ĐÂY
                             string queryChiTiet = @"
-                            INSERT INTO ChiTietPN (maPN, maBienThe, soLuongNhap, donGiaNhap)
-                            VALUES (@maPN, @maBienThe, @soLuongNhap, @donGiaNhap)";
+    INSERT INTO ChiTietPN (maPN, maBienThe, soLuongNhap, donGiaNhap, thanhTien)
+    VALUES (@maPN, @maBienThe, @soLuongNhap, @donGiaNhap, @thanhTien)";
 
                             using (SqlCommand cmd = new SqlCommand(queryChiTiet, conn, transaction))
                             {
@@ -123,14 +124,18 @@ namespace DALShopThoiTrang
                                 cmd.Parameters.AddWithValue("@maBienThe", ct.MaBienThe);
                                 cmd.Parameters.AddWithValue("@soLuongNhap", ct.SoLuongNhap);
                                 cmd.Parameters.AddWithValue("@donGiaNhap", ct.DonGiaNhap);
+
+                                // TỰ ĐỘNG TÍNH THÀNH TIỀN VÀ TRUYỀN VÀO SQL
+                                cmd.Parameters.AddWithValue("@thanhTien", ct.SoLuongNhap * ct.DonGiaNhap);
+
                                 cmd.ExecuteNonQuery();
                             }
 
-                            // Cập nhật số lượng tồn kho
+                            // Cập nhật số lượng tồn kho (Giữ nguyên không đổi)
                             string queryTonKho = @"
-                            UPDATE BienTheSP
-                            SET soLuongTon = soLuongTon + @soLuongNhap
-                            WHERE maBienThe = @maBienThe";
+    UPDATE BienTheSP
+    SET soLuongTon = soLuongTon + @soLuongNhap
+    WHERE maBienThe = @maBienThe";
 
                             using (SqlCommand cmd = new SqlCommand(queryTonKho, conn, transaction))
                             {
@@ -296,6 +301,38 @@ namespace DALShopThoiTrang
                 CloseConnection();
             }
             return soLuong;
+        }
+        // Hàm tự động phát sinh mã Phiếu Nhập mới
+        public string PhatSinhMaPhieuNhap()
+        {
+            string maMoi = "PN001"; // Mặc định nếu database chưa có phiếu nào
+            try
+            {
+                OpenConnection();
+                // Lấy cái mã phiếu nhập bự nhất hiện tại (ví dụ: PN002)
+                string query = "SELECT TOP 1 maPN FROM PhieuNhap ORDER BY maPN DESC";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result.ToString() != "")
+                    {
+                        string maCu = result.ToString();
+                        // Cắt lấy phần số đằng sau chữ "PN" (bỏ 2 ký tự đầu)
+                        int so = int.Parse(maCu.Substring(2)) + 1;
+                        // Ghép chữ "PN" với số mới, ép nó luôn có 3 chữ số (003, 004...)
+                        maMoi = "PN" + so.ToString("D3");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi sinh mã phiếu: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return maMoi;
         }
     }
 }
