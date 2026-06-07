@@ -45,19 +45,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.flpTopSanPham = new System.Windows.Forms.FlowLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
-            this.dgvTonKho = new System.Windows.Forms.DataGridView();
-            this.TenSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhanLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoLuongTon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DinhMucToiThieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.btnXuatBaoCao = new System.Windows.Forms.Button();
             this.chartTron = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTonKho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartTron)).BeginInit();
             this.SuspendLayout();
             // 
@@ -201,73 +195,6 @@
             this.label5.Text = "Báo cáo tồn kho và Định mức";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // dgvTonKho
-            // 
-            this.dgvTonKho.AllowUserToAddRows = false;
-            this.dgvTonKho.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvTonKho.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dgvTonKho.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvTonKho.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvTonKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTonKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TenSanPham,
-            this.PhanLoai,
-            this.SoLuongTon,
-            this.DinhMucToiThieu,
-            this.TrangThai});
-            this.dgvTonKho.Location = new System.Drawing.Point(669, 398);
-            this.dgvTonKho.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvTonKho.Name = "dgvTonKho";
-            this.dgvTonKho.RowHeadersVisible = false;
-            this.dgvTonKho.RowHeadersWidth = 51;
-            this.dgvTonKho.RowTemplate.Height = 24;
-            this.dgvTonKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTonKho.Size = new System.Drawing.Size(593, 313);
-            this.dgvTonKho.TabIndex = 8;
-            this.dgvTonKho.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTonKho_CellFormatting);
-            // 
-            // TenSanPham
-            // 
-            this.TenSanPham.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TenSanPham.DataPropertyName = "TenSanPham";
-            this.TenSanPham.HeaderText = "Sản Phẩm";
-            this.TenSanPham.MinimumWidth = 6;
-            this.TenSanPham.Name = "TenSanPham";
-            this.TenSanPham.Width = 76;
-            // 
-            // PhanLoai
-            // 
-            this.PhanLoai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PhanLoai.DataPropertyName = "PhanLoai";
-            this.PhanLoai.HeaderText = "Phân Loại";
-            this.PhanLoai.MinimumWidth = 6;
-            this.PhanLoai.Name = "PhanLoai";
-            // 
-            // SoLuongTon
-            // 
-            this.SoLuongTon.DataPropertyName = "SoLuongTon";
-            this.SoLuongTon.HeaderText = "Tồn Kho";
-            this.SoLuongTon.MinimumWidth = 6;
-            this.SoLuongTon.Name = "SoLuongTon";
-            this.SoLuongTon.Width = 70;
-            // 
-            // DinhMucToiThieu
-            // 
-            this.DinhMucToiThieu.DataPropertyName = "DinhMucToiThieu";
-            this.DinhMucToiThieu.HeaderText = "Định Mức";
-            this.DinhMucToiThieu.MinimumWidth = 6;
-            this.DinhMucToiThieu.Name = "DinhMucToiThieu";
-            this.DinhMucToiThieu.Width = 70;
-            // 
-            // TrangThai
-            // 
-            this.TrangThai.HeaderText = "Trạng Thái";
-            this.TrangThai.MinimumWidth = 6;
-            this.TrangThai.Name = "TrangThai";
-            this.TrangThai.Width = 125;
-            // 
             // label6
             // 
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -287,12 +214,12 @@
             this.btnXuatBaoCao.BackColor = System.Drawing.Color.RosyBrown;
             this.btnXuatBaoCao.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXuatBaoCao.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnXuatBaoCao.Location = new System.Drawing.Point(1076, 678);
+            this.btnXuatBaoCao.Location = new System.Drawing.Point(1162, 716);
             this.btnXuatBaoCao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnXuatBaoCao.Name = "btnXuatBaoCao";
             this.btnXuatBaoCao.Size = new System.Drawing.Size(124, 33);
             this.btnXuatBaoCao.TabIndex = 10;
-            this.btnXuatBaoCao.Text = "Xuất Excel";
+            this.btnXuatBaoCao.Text = "Báo Cáo";
             this.btnXuatBaoCao.UseVisualStyleBackColor = false;
             this.btnXuatBaoCao.Click += new System.EventHandler(this.btnXuatBaoCao_Click);
             // 
@@ -322,14 +249,23 @@
             this.chartTron.Text = "chart1";
             this.chartTron.Click += new System.EventHandler(this.chartTron_Click);
             // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Location = new System.Drawing.Point(669, 399);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(632, 312);
+            this.reportViewer1.TabIndex = 12;
+            this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
+            // 
             // ucReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.btnXuatBaoCao);
+            this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.chartTron);
-            this.Controls.Add(this.dgvTonKho);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.flpTopSanPham);
@@ -347,7 +283,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTonKho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartTron)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -366,14 +301,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.FlowLayoutPanel flpTopSanPham;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dgvTonKho;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenSanPham;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PhanLoai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongTon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DinhMucToiThieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
         private System.Windows.Forms.Button btnXuatBaoCao;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTron;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

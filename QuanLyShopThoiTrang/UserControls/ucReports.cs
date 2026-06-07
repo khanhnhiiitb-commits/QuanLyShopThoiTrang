@@ -4,19 +4,18 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using OfficeOpenXml;
 using System.IO;
 
 namespace QuanLyShopThoiTrang.UserControls
 {
     public partial class ucReports : UserControl
     {
-        // Đồng bộ dùng đúng 1 tên biến này thôi nha
         private ThongKeBUS _thongKeBUS = new ThongKeBUS();
 
         public ucReports()
         {
             InitializeComponent();
+            this.reportViewer1.ShowToolBar = true; 
             LoadDuLieuDashboard();
         }
 
@@ -28,8 +27,9 @@ namespace QuanLyShopThoiTrang.UserControls
                 LoadAOV();
                 LoadReturnRate();
                 LoadTopSanPham();
-                LoadBaoCaoTonKho();
                 LoadBieuDoTronSanPhamBanChay();
+                this.reportViewer1.Visible = false;
+
             }
             catch (Exception ex)
             {
@@ -52,7 +52,6 @@ namespace QuanLyShopThoiTrang.UserControls
             series.ChartType = SeriesChartType.Column;
             series.Color = Color.FromArgb(171, 114, 129);
 
-            // THÊM 2 DÒNG NÀY ĐỂ GIỮ DÁNG CHO BIỂU ĐỒ:
             // 1. Nhắc Chart biết trục X là thời gian (để nó chịu nhận format dd/MM bạn chỉnh ở ngoài)
             series.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
 
@@ -156,50 +155,8 @@ namespace QuanLyShopThoiTrang.UserControls
             }
         }
 
-        // ═════════════════════════════════════════════════════
-        // 3. KHU VỰC CẢNH BÁO TỒN KHO & ĐỊNH MỨC
-        // ═════════════════════════════════════════════════════
-        private void LoadBaoCaoTonKho()
-        {
-            DataTable dtTonKho = _thongKeBUS.LayBaoCaoTonKho();
 
-            if (!dtTonKho.Columns.Contains("TrangThai"))
-            {
-                dtTonKho.Columns.Add("TrangThai", typeof(string));
-            }
 
-            dgvTonKho.AutoGenerateColumns = false;
-            dgvTonKho.DataSource = dtTonKho;
-        }
-
-        private void dgvTonKho_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.Value != null)
-            {
-                var cellSoLuong = dgvTonKho.Rows[e.RowIndex].Cells["SoLuongTon"].Value;
-                var cellDinhMuc = dgvTonKho.Rows[e.RowIndex].Cells["DinhMucToiThieu"].Value;
-
-                if (cellSoLuong != DBNull.Value && cellDinhMuc != DBNull.Value)
-                {
-                    int soLuong = Convert.ToInt32(cellSoLuong);
-                    int dinhMuc = Convert.ToInt32(cellDinhMuc);
-
-                    if (soLuong <= dinhMuc)
-                    {
-                        dgvTonKho.Rows[e.RowIndex].Cells["TrangThai"].Value = "CRITICAL";
-                        dgvTonKho.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 235, 238);
-                        dgvTonKho.Rows[e.RowIndex].Cells["TrangThai"].Style.ForeColor = Color.DarkRed;
-                        dgvTonKho.Rows[e.RowIndex].Cells["TrangThai"].Style.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-                    }
-                    else
-                    {
-                        dgvTonKho.Rows[e.RowIndex].Cells["TrangThai"].Value = "HEALTHY";
-                        dgvTonKho.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                        dgvTonKho.Rows[e.RowIndex].Cells["TrangThai"].Style.ForeColor = Color.SeaGreen;
-                    }
-                }
-            }
-        }
 
         private void label5_Click(object sender, EventArgs e)
         {
@@ -256,132 +213,30 @@ namespace QuanLyShopThoiTrang.UserControls
         {
 
         }
-
+        // Fix report báo cáo tôn kho va dinh muc
         private void btnXuatBaoCao_Click(object sender, EventArgs e)
         {
-            if (dgvTonKho.Rows.Count == 0)
+            this.reportViewer1.Visible = true;
+
+            DataTable dtTonKho = _thongKeBUS.LayBaoCaoTonKho();
+
+            if (dtTonKho.Rows.Count == 0)
             {
-                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Không có dữ liệu báo cáo!");
                 return;
             }
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Excel Files|*.xlsx";
-            saveFileDialog.Title = "Chọn nơi lưu file Báo Cáo Tồn Kho";
-            // Đặt tên file mặc định có luôn ngày tháng hiện tại cho xịn
-            saveFileDialog.FileName = "BaoCaoTonKho_" + DateTime.Now.ToString("ddMMyyyy") + ".xlsx";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyShopThoiTrang.ReportTonKho.rdlc";
+            this.reportViewer1.LocalReport.DataSources.Clear();
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    // Cấp phép xài thư viện miễn phí
-                    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            this.reportViewer1.LocalReport.DataSources.Add(
+                new Microsoft.Reporting.WinForms.ReportDataSource("DataSetTonKho", dtTonKho)
+            );
 
-                    using (ExcelPackage pck = new ExcelPackage())
-                    {
-                        ExcelWorksheet ws = pck.Workbook.Worksheets.Add("TonKho");
-
-                        // In Tiêu đề cột
-                        for (int i = 0; i < dgvTonKho.Columns.Count; i++)
-                        {
-                            ws.Cells[1, i + 1].Value = dgvTonKho.Columns[i].HeaderText;
-                            ws.Cells[1, i + 1].Style.Font.Bold = true;
-                            ws.Cells[1, i + 1].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                            ws.Cells[1, i + 1].Style.Fill.BackgroundColor.SetColor(Color.LightGray); // Tô màu xám cho dòng tiêu đề
-                        }
-
-                        // In Dữ liệu
-                        for (int i = 0; i < dgvTonKho.Rows.Count; i++)
-                        {
-                            for (int j = 0; j < dgvTonKho.Columns.Count; j++)
-                            {
-                                if (dgvTonKho.Rows[i].Cells[j].Value != null)
-                                {
-                                    ws.Cells[i + 2, j + 1].Value = dgvTonKho.Rows[i].Cells[j].Value.ToString();
-                                }
-                            }
-                        }
-
-                        // Tự động giãn cột cho đẹp
-                        ws.Cells[ws.Dimension.Address].AutoFitColumns();
-
-                        // Lưu và xuất file
-                        FileInfo fi = new FileInfo(saveFileDialog.FileName);
-                        pck.SaveAs(fi);
-
-                        MessageBox.Show("Đã xuất file báo cáo kho thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Trục trặc rồi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            this.reportViewer1.RefreshReport();
         }
 
-        private void btnXuatBaoCaoo_Click(object sender, EventArgs e)
-        {
-            if (dgvTonKho.Rows.Count == 0)
-            {
-                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Excel Files|*.xlsx";
-            saveFileDialog.Title = "Chọn nơi lưu file Báo Cáo Tồn Kho";
-            // Đặt tên file mặc định có luôn ngày tháng hiện tại cho xịn
-            saveFileDialog.FileName = "BaoCaoTonKho_" + DateTime.Now.ToString("ddMMyyyy") + ".xlsx";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    // Cấp phép xài thư viện miễn phí
-                    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-                    using (ExcelPackage pck = new ExcelPackage())
-                    {
-                        ExcelWorksheet ws = pck.Workbook.Worksheets.Add("TonKho");
-
-                        // In Tiêu đề cột
-                        for (int i = 0; i < dgvTonKho.Columns.Count; i++)
-                        {
-                            ws.Cells[1, i + 1].Value = dgvTonKho.Columns[i].HeaderText;
-                            ws.Cells[1, i + 1].Style.Font.Bold = true;
-                            ws.Cells[1, i + 1].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                            ws.Cells[1, i + 1].Style.Fill.BackgroundColor.SetColor(Color.LightGray); // Tô màu xám cho dòng tiêu đề
-                        }
-
-                        // In Dữ liệu
-                        for (int i = 0; i < dgvTonKho.Rows.Count; i++)
-                        {
-                            for (int j = 0; j < dgvTonKho.Columns.Count; j++)
-                            {
-                                if (dgvTonKho.Rows[i].Cells[j].Value != null)
-                                {
-                                    ws.Cells[i + 2, j + 1].Value = dgvTonKho.Rows[i].Cells[j].Value.ToString();
-                                }
-                            }
-                        }
-
-                        // Tự động giãn cột cho đẹp
-                        ws.Cells[ws.Dimension.Address].AutoFitColumns();
-
-                        // Lưu và xuất file
-                        FileInfo fi = new FileInfo(saveFileDialog.FileName);
-                        pck.SaveAs(fi);
-
-                        MessageBox.Show("Đã xuất file báo cáo kho thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Trục trặc rồi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
 
         private void flpTopSanPham_Paint(object sender, PaintEventArgs e)
         {
@@ -404,32 +259,33 @@ namespace QuanLyShopThoiTrang.UserControls
         }
         private void LoadBieuDoTronSanPhamBanChay()
         {
-            // 1. Gọi dữ liệu từ tầng BUS của bạn về
             DataTable dtTop5 = _thongKeBUS.LayTop5BanChay();
 
-            // 2. Trao nguyên cái bảng dữ liệu đó cho biểu đồ tròn
             chartTron.DataSource = dtTop5;
 
-            // 3. Báo cho Chart biết lấy cột nào làm Tên (X), cột nào làm Giá trị (Y)
             chartTron.Series[0].XValueMember = "TenSanPham";
             chartTron.Series[0].YValueMembers = "SoLuongBan";
 
-            // 4. Bấm nút "Bơm" dữ liệu lên giao diện!
             chartTron.DataBind();
-            // Tắt bộ màu mặc định xanh đỏ lòe loẹt của Chart
             chartTron.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
 
-          
-            chartTron.PaletteCustomColors = new Color[] {
-        Color.FromArgb(171, 114, 129), // Hồng mận (màu chính xác của menu bên trái)
-        Color.FromArgb(204, 153, 162), // Hồng pastel mượt mà
-        Color.FromArgb(224, 187, 194), // Hồng nhạt
-        Color.FromArgb(138, 86, 100),  // Hồng mận đậm (tạo điểm nhấn)
-        Color.FromArgb(235, 212, 216)  // Hồng phấn siêu nhạt
-    };
-        }
+
+            chartTron.PaletteCustomColors = new Color[]
+            {
+        Color.FromArgb(171, 114, 129),
+        Color.FromArgb(204, 153, 162),
+        Color.FromArgb(224, 187, 194),
+        Color.FromArgb(138, 86, 100),
+        Color.FromArgb(235, 212, 216)
+        };
+        } 
 
         private void chartTron_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reportViewer1_Load(object sender, EventArgs e)
         {
 
         }
