@@ -176,7 +176,6 @@ namespace QuanLyShopThoiTrang.UserControls
             txtMaPN.Text = _khoHangBUS.PhatSinhMaPhieuNhap();
         }
 
-        // Sự kiện Paint này vô dụng, cứ để rỗng hoặc xóa sạch ruột đi
         private void pnlAddStock_Paint(object sender, PaintEventArgs e)
         {
         }

@@ -102,6 +102,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSetTonKho1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTonKho1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsHoaDon.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -271,6 +276,7 @@
       <DependentUpon>QuanTriForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportHoaDon.rdlc" />
+    <EmbeddedResource Include="ReportTonKho1.rdlc" />
     <EmbeddedResource Include="UserControls\ProductCardControl.resx">
       <DependentUpon>ProductCardControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,6 +311,17 @@
     <EmbeddedResource Include="UserControls\ucStaff.resx">
       <DependentUpon>ucStaff.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DataSetTonKho1.xsc">
+      <DependentUpon>DataSetTonKho1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetTonKho1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTonKho1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetTonKho1.xss">
+      <DependentUpon>DataSetTonKho1.xsd</DependentUpon>
+    </None>
     <None Include="dsHoaDon.xsc">
       <DependentUpon>dsHoaDon.xsd</DependentUpon>
     </None>

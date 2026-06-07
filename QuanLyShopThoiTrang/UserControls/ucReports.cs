@@ -226,11 +226,11 @@ namespace QuanLyShopThoiTrang.UserControls
                 return;
             }
 
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyShopThoiTrang.ReportTonKho.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyShopThoiTrang.ReportTonKho1.rdlc";
             this.reportViewer1.LocalReport.DataSources.Clear();
 
             this.reportViewer1.LocalReport.DataSources.Add(
-                new Microsoft.Reporting.WinForms.ReportDataSource("DataSetTonKho", dtTonKho)
+                new Microsoft.Reporting.WinForms.ReportDataSource("DataSetTonKho1", dtTonKho)
             );
 
             this.reportViewer1.RefreshReport();
