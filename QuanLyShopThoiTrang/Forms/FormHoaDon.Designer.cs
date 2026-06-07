@@ -28,36 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rtbHoaDon = new System.Windows.Forms.RichTextBox();
-            this.btnInHoaDon = new System.Windows.Forms.Button();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
-            // rtbHoaDon
+            // reportViewer1
             // 
-            this.rtbHoaDon.Location = new System.Drawing.Point(12, 12);
-            this.rtbHoaDon.Name = "rtbHoaDon";
-            this.rtbHoaDon.ReadOnly = true;
-            this.rtbHoaDon.Size = new System.Drawing.Size(643, 459);
-            this.rtbHoaDon.TabIndex = 0;
-            this.rtbHoaDon.Text = "";
-            // 
-            // btnInHoaDon
-            // 
-            this.btnInHoaDon.Location = new System.Drawing.Point(240, 477);
-            this.btnInHoaDon.Name = "btnInHoaDon";
-            this.btnInHoaDon.Size = new System.Drawing.Size(172, 48);
-            this.btnInHoaDon.TabIndex = 1;
-            this.btnInHoaDon.Text = "In hóa đơn";
-            this.btnInHoaDon.UseVisualStyleBackColor = true;
-            this.btnInHoaDon.Click += new System.EventHandler(this.btnInHoaDon_Click);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyShopThoiTrang.ReportHoaDon.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(12, 26);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(1031, 640);
+            this.reportViewer1.TabIndex = 2;
             // 
             // FormHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 537);
-            this.Controls.Add(this.btnInHoaDon);
-            this.Controls.Add(this.rtbHoaDon);
+            this.ClientSize = new System.Drawing.Size(1055, 669);
+            this.Controls.Add(this.reportViewer1);
             this.Name = "FormHoaDon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormHoaDon_Load);
@@ -66,8 +54,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox rtbHoaDon;
-        private System.Windows.Forms.Button btnInHoaDon;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

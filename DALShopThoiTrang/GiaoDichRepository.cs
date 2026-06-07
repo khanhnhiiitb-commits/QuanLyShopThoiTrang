@@ -439,8 +439,55 @@ namespace DALShopThoiTrang
                     CloseConnection();
                 }
             }
-        }
 
+
+        }
+        public DataTable LayDuLieuInHoaDon(string maHD)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                OpenConnection();
+                string query = @"
+        SELECT 
+            hd.maHD, hd.ngayLap, 
+            nv.tenNV, kh.tenKH, kh.maKH,
+            sp.tenSP, ct.soLuongBan, ct.donGiaBan,
+            (ct.soLuongBan * ct.donGiaBan) AS thanhTien,
+            (SELECT SUM(soLuongBan * donGiaBan) FROM ChiTietHD WHERE maHD = hd.maHD) AS tongTienHang,
+            CASE 
+                WHEN kh.maKH IS NULL OR kh.maKH = 'KH01' THEN 0 
+                ELSE (SELECT SUM(soLuongBan * donGiaBan) FROM ChiTietHD WHERE maHD = hd.maHD) * 0.1 
+            END AS Discount,
+            ((SELECT SUM(soLuongBan * donGiaBan) FROM ChiTietHD WHERE maHD = hd.maHD) * 1.1) 
+            - (CASE WHEN kh.maKH IS NULL OR kh.maKH = 'KH01' THEN 0 ELSE (SELECT SUM(soLuongBan * donGiaBan) FROM ChiTietHD WHERE maHD = hd.maHD) * 0.1 END) AS TongCong
+        FROM HoaDon hd
+        JOIN ChiTietHD ct ON hd.maHD = ct.maHD
+        JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe
+        JOIN SanPham sp ON bt.maSP = sp.maSP
+        JOIN NhanVien nv ON hd.maNV = nv.maNV
+        LEFT JOIN KhachHang kh ON hd.maKH = kh.maKH
+        WHERE hd.maHD = @maHD";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@maHD", maHD);
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy dữ liệu in hóa đơn: " + ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return dt;
+        }
     }
 
 

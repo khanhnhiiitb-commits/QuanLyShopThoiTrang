@@ -72,7 +72,7 @@ namespace BUSShopThoiTrang
             string payUrl = await UtilsMoMoAPI.CreatePaymentRequest(maHD, tongTien);
             return payUrl;
         }
-
+        
         //Lập phiếu đổi trả 
         // Lưu ý: Cần truyền thêm DateTime ngayLapHoaDonGoc để kiểm tra chính sách
         public bool LapPhieuDoiTra(PhieuDoiTraDTO phieuDoiTra, List<ChiTietPDTDTO> danhSachChiTietDoiTra, DateTime ngayLapHoaDonGoc)
@@ -99,6 +99,9 @@ namespace BUSShopThoiTrang
         {
             return giaoDichDAL.LayChiTietHoaDon(maHD);
         }
-
+        public DataTable LayDuLieuInHoaDon(string maHD)
+        {
+            return giaoDichDAL.LayDuLieuInHoaDon(maHD);
+        }
     }
 }
