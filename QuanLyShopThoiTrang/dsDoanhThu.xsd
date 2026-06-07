@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsDoanhThu" targetNamespace="http://tempuri.org/dsDoanhThu.xsd" xmlns:mstns="http://tempuri.org/dsDoanhThu.xsd" xmlns="http://tempuri.org/dsDoanhThu.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="QuanLyShopThoiTrangConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="QuanLyShopThoiTrangConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.QuanLyShopThoiTrang.Properties.Settings.GlobalReference.Default.QuanLyShopThoiTrangConnectionString1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="HoaDonTableAdapter" GeneratorDataComponentClassName="HoaDonTableAdapter" Name="HoaDon" UserDataComponentName="HoaDonTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="QuanLyShopThoiTrangConnectionString1 (Settings)" DbObjectName="QuanLyShopThoiTrang.dbo.HoaDon" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ngayLap AS Ngày, tongTien
+FROM     HoaDon</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Ngày" DataSetColumn="Ngày" />
+              <Mapping SourceColumn="tongTien" DataSetColumn="tongTien" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsDoanhThu" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="dsDoanhThu" msprop:Generator_DataSetName="dsDoanhThu">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="HoaDon" msprop:Generator_RowEvHandlerName="HoaDonRowChangeEventHandler" msprop:Generator_RowDeletedName="HoaDonRowDeleted" msprop:Generator_RowDeletingName="HoaDonRowDeleting" msprop:Generator_RowEvArgName="HoaDonRowChangeEvent" msprop:Generator_TablePropName="HoaDon" msprop:Generator_RowChangedName="HoaDonRowChanged" msprop:Generator_RowChangingName="HoaDonRowChanging" msprop:Generator_TableClassName="HoaDonDataTable" msprop:Generator_RowClassName="HoaDonRow" msprop:Generator_TableVarName="tableHoaDon" msprop:Generator_UserTableName="HoaDon">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Ngày" msprop:Generator_ColumnPropNameInRow="Ngày" msprop:Generator_ColumnPropNameInTable="NgàyColumn" msprop:Generator_ColumnVarNameInTable="columnNgày" msprop:Generator_UserColumnName="Ngày" type="xs:dateTime" />
+              <xs:element name="tongTien" msprop:Generator_ColumnPropNameInRow="tongTien" msprop:Generator_ColumnPropNameInTable="tongTienColumn" msprop:Generator_ColumnVarNameInTable="columntongTien" msprop:Generator_UserColumnName="tongTien" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
