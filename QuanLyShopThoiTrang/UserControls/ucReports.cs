@@ -1,10 +1,11 @@
 ﻿using BUSShopThoiTrang;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.IO;
 
 namespace QuanLyShopThoiTrang.UserControls
 {
@@ -216,22 +217,22 @@ namespace QuanLyShopThoiTrang.UserControls
         // Fix report báo cáo tôn kho va dinh muc
         private void btnXuatBaoCao_Click(object sender, EventArgs e)
         {
-            this.reportViewer1.Visible = true;
+            var adpDoanhThu = new dsDoanhThuTableAdapters.HoaDonTableAdapter();
+            var adpTopSP = new dsTopSPTableAdapters.SanPhamTableAdapter();
+            var adpHoanTra = new dsHoanTraTableAdapters.PhieuDoiTraTableAdapter();
 
-            DataTable dtTonKho = _thongKeBUS.LayBaoCaoTonKho();
+            // 2. Lấy dữ liệu
+            DataTable dt1 = adpDoanhThu.GetData();
+            DataTable dt2 = adpTopSP.GetData();
+            DataTable dt3 = adpHoanTra.GetData();
 
-            if (dtTonKho.Rows.Count == 0)
-            {
-                MessageBox.Show("Không có dữ liệu báo cáo!");
-                return;
-            }
-
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyShopThoiTrang.ReportTonKho1.rdlc";
+            // 3. Đổ dữ liệu vào ReportViewer
             this.reportViewer1.LocalReport.DataSources.Clear();
 
-            this.reportViewer1.LocalReport.DataSources.Add(
-                new Microsoft.Reporting.WinForms.ReportDataSource("DataSetTonKho1", dtTonKho)
-            );
+            
+            this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsDoanhThu", dt1));
+            this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsTopSP", dt2));
+            this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsHoanTra", dt3));
 
             this.reportViewer1.RefreshReport();
         }

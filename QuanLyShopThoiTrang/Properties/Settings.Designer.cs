@@ -33,5 +33,16 @@ namespace QuanLyShopThoiTrang.Properties {
                 return ((string)(this["QuanLyShopThoiTrangConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=QuanLyShopThoiTrang;Integrated" +
+            " Security=True;Encrypt=True;TrustServerCertificate=True")]
+        public string QuanLyShopThoiTrangConnectionString1 {
+            get {
+                return ((string)(this["QuanLyShopThoiTrangConnectionString1"]));
+            }
+        }
     }
 }

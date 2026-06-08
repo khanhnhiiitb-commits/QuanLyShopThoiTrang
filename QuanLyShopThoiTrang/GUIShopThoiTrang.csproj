@@ -107,10 +107,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetTonKho1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsDoanhThu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsDoanhThu.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsHoaDon.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsHoaDon.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsHoanTra.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsHoanTra.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsTopSP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsTopSP.xsd</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormChonBienThe.cs">
       <SubType>Form</SubType>
@@ -276,6 +291,7 @@
       <DependentUpon>QuanTriForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportHoaDon.rdlc" />
+    <EmbeddedResource Include="ReportTongHop.rdlc" />
     <EmbeddedResource Include="ReportTonKho1.rdlc" />
     <EmbeddedResource Include="UserControls\ProductCardControl.resx">
       <DependentUpon>ProductCardControl.cs</DependentUpon>
@@ -322,6 +338,17 @@
     <None Include="DataSetTonKho1.xss">
       <DependentUpon>DataSetTonKho1.xsd</DependentUpon>
     </None>
+    <None Include="dsDoanhThu.xsc">
+      <DependentUpon>dsDoanhThu.xsd</DependentUpon>
+    </None>
+    <None Include="dsDoanhThu.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsDoanhThu.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsDoanhThu.xss">
+      <DependentUpon>dsDoanhThu.xsd</DependentUpon>
+    </None>
     <None Include="dsHoaDon.xsc">
       <DependentUpon>dsHoaDon.xsd</DependentUpon>
     </None>
@@ -332,6 +359,28 @@
     </None>
     <None Include="dsHoaDon.xss">
       <DependentUpon>dsHoaDon.xsd</DependentUpon>
+    </None>
+    <None Include="dsHoanTra.xsc">
+      <DependentUpon>dsHoanTra.xsd</DependentUpon>
+    </None>
+    <None Include="dsHoanTra.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsHoanTra.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsHoanTra.xss">
+      <DependentUpon>dsHoanTra.xsd</DependentUpon>
+    </None>
+    <None Include="dsTopSP.xsc">
+      <DependentUpon>dsTopSP.xsd</DependentUpon>
+    </None>
+    <None Include="dsTopSP.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTopSP.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsTopSP.xss">
+      <DependentUpon>dsTopSP.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
