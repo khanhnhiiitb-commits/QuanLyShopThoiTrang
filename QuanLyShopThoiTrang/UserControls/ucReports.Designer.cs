@@ -190,9 +190,9 @@
             this.label5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(686, 377);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(222, 19);
+            this.label5.Size = new System.Drawing.Size(67, 19);
             this.label5.TabIndex = 7;
-            this.label5.Text = "Báo cáo tồn kho và Định mức";
+            this.label5.Text = "Báo cáo";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6

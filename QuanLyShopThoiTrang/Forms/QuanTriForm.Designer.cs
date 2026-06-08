@@ -53,7 +53,7 @@
             this.pnlSidebar.Controls.Add(this.button1);
             this.pnlSidebar.Location = new System.Drawing.Point(12, 0);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Size = new System.Drawing.Size(215, 729);
+            this.pnlSidebar.Size = new System.Drawing.Size(255, 751);
             this.pnlSidebar.TabIndex = 0;
             // 
             // label1
@@ -171,9 +171,9 @@
             // 
             this.pnlContentQuanTri.BackColor = System.Drawing.SystemColors.Control;
             this.pnlContentQuanTri.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlContentQuanTri.Location = new System.Drawing.Point(225, 0);
+            this.pnlContentQuanTri.Location = new System.Drawing.Point(263, 0);
             this.pnlContentQuanTri.Name = "pnlContentQuanTri";
-            this.pnlContentQuanTri.Size = new System.Drawing.Size(1291, 729);
+            this.pnlContentQuanTri.Size = new System.Drawing.Size(1291, 763);
             this.pnlContentQuanTri.TabIndex = 1;
             // 
             // pnlNav
@@ -189,7 +189,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RosyBrown;
-            this.ClientSize = new System.Drawing.Size(1516, 729);
+            this.ClientSize = new System.Drawing.Size(1554, 763);
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.pnlContentQuanTri);

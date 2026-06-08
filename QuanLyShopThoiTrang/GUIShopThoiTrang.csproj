@@ -117,6 +117,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsHoaDon.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsHoanTra.cs">
+      <DependentUpon>dsHoanTra.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsHoanTra.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -758,7 +758,7 @@ namespace QuanLyShopThoiTrang.dsTopSPTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::QuanLyShopThoiTrang.Properties.Settings.Default.QuanLyShopThoiTrangConnectionString1;
+            this._connection.ConnectionString = global::QuanLyShopThoiTrang.Properties.Settings.Default.QuanLyShopThoiTrangConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
