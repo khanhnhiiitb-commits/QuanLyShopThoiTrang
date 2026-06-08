@@ -214,7 +214,7 @@
             this.btnXuatBaoCao.BackColor = System.Drawing.Color.RosyBrown;
             this.btnXuatBaoCao.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXuatBaoCao.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnXuatBaoCao.Location = new System.Drawing.Point(1201, 716);
+            this.btnXuatBaoCao.Location = new System.Drawing.Point(1285, 716);
             this.btnXuatBaoCao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnXuatBaoCao.Name = "btnXuatBaoCao";
             this.btnXuatBaoCao.Size = new System.Drawing.Size(124, 33);
@@ -255,7 +255,7 @@
             this.reportViewer1.Location = new System.Drawing.Point(669, 399);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(632, 312);
+            this.reportViewer1.Size = new System.Drawing.Size(737, 312);
             this.reportViewer1.TabIndex = 12;
             this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
@@ -277,7 +277,7 @@
             this.Controls.Add(this.lblTongDoanhThu);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ucReports";
-            this.Size = new System.Drawing.Size(1325, 783);
+            this.Size = new System.Drawing.Size(1409, 776);
             this.Load += new System.EventHandler(this.ucReports_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

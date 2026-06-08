@@ -62,7 +62,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.RosyBrown;
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -119,6 +119,7 @@
             // 
             // grpThongTin
             // 
+            this.grpThongTin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.grpThongTin.Controls.Add(this.btnMoKhoa);
             this.grpThongTin.Controls.Add(this.btnKhoa);
             this.grpThongTin.Controls.Add(this.btnSua);

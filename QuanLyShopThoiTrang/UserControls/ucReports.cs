@@ -217,7 +217,7 @@ namespace QuanLyShopThoiTrang.UserControls
         private DataTable GetDataTable(string sqlQuery)
         {
             DataTable dt = new DataTable();
-            // Đã cập nhật đúng tên Server DESKTOP-HD4B2VM
+            //cập nhật đúng tên Server 
             string connStr = @"Data Source=DESKTOP-HD4B2VM;Initial Catalog=QuanLyShopThoiTrang;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
 
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(connStr))
@@ -237,33 +237,28 @@ namespace QuanLyShopThoiTrang.UserControls
         {
             try
             {
-                // 1. Dữ liệu Doanh Thu theo ngày
-                string sqlDoanhThu = @"SELECT CAST(ngayLap AS DATE) AS Ngay, SUM(tongTien) AS TongDoanhThu 
+                string sqlDoanhThu = @"SELECT CAST(ngayLap AS DATE) AS [Ngày], SUM(tongTien) AS tongTien 
                                FROM HoaDon 
                                GROUP BY CAST(ngayLap AS DATE)";
                 DataTable dt1 = GetDataTable(sqlDoanhThu);
 
-                // 2. Dữ liệu Top 5 Sản Phẩm Bán Chạy
                 string sqlTopSP = @"SELECT TOP 5 sp.tenSP, SUM(ct.soLuongBan) AS TongSoLuongBan 
                             FROM SanPham sp 
                             JOIN BienTheSP bt ON sp.maSP = bt.maSP 
                             JOIN ChiTietHD ct ON bt.maBienThe = ct.maBienThe 
                             GROUP BY sp.tenSP 
-                            ORDER BY TongSoLuongBan DESC";
+                            ORDER BY SUM(ct.soLuongBan) DESC";
                 DataTable dt2 = GetDataTable(sqlTopSP);
 
-                // 3. Dữ liệu Đổi Trả
-                string sqlHoanTra = @"SELECT sp.tenSP, SUM(ct.soLuong) AS TongSoLuongBan 
-                              FROM SanPham sp 
-                              JOIN BienTheSP bt ON sp.maSP = bt.maSP 
-                              JOIN ChiTietPDT ct ON bt.maBienThe = ct.maBienThe 
-                              GROUP BY sp.tenSP";
+                string sqlHoanTra = @"SELECT pdt.maPDT AS maPDT, sp.tenSP AS tenSP, pdt.tongTienHoan AS tongTienHoan
+                              FROM PhieuDoiTra pdt 
+                              JOIN ChiTietPDT ct ON pdt.maPDT = ct.maPDT 
+                              JOIN BienTheSP bt ON ct.maBienThe = bt.maBienThe 
+                              JOIN SanPham sp ON bt.maSP = sp.maSP";
                 DataTable dt3 = GetDataTable(sqlHoanTra);
 
-                // 4. Chỉ định file giao diện báo cáo (.rdlc)
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyShopThoiTrang.ReportTongHop.rdlc";
 
-                // 5. Đổ dữ liệu vào ReportViewer
                 this.reportViewer1.LocalReport.DataSources.Clear();
                 this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsDoanhThu", dt1));
                 this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsTopSP", dt2));

@@ -51,9 +51,10 @@
             this.pnlSidebar.Controls.Add(this.btnStaff);
             this.pnlSidebar.Controls.Add(this.btnReports);
             this.pnlSidebar.Controls.Add(this.button1);
-            this.pnlSidebar.Location = new System.Drawing.Point(12, 0);
+            this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Size = new System.Drawing.Size(255, 751);
+            this.pnlSidebar.Size = new System.Drawing.Size(245, 763);
             this.pnlSidebar.TabIndex = 0;
             // 
             // label1
@@ -80,7 +81,7 @@
             this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDashboard.Location = new System.Drawing.Point(3, 75);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(227, 56);
+            this.btnDashboard.Size = new System.Drawing.Size(242, 56);
             this.btnDashboard.TabIndex = 1;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.UseVisualStyleBackColor = true;
@@ -97,7 +98,7 @@
             this.btnProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProducts.Location = new System.Drawing.Point(3, 137);
             this.btnProducts.Name = "btnProducts";
-            this.btnProducts.Size = new System.Drawing.Size(227, 56);
+            this.btnProducts.Size = new System.Drawing.Size(242, 56);
             this.btnProducts.TabIndex = 2;
             this.btnProducts.Text = "Products";
             this.btnProducts.UseVisualStyleBackColor = false;
@@ -113,7 +114,7 @@
             this.btnInventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventory.Location = new System.Drawing.Point(3, 199);
             this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(227, 56);
+            this.btnInventory.Size = new System.Drawing.Size(242, 56);
             this.btnInventory.TabIndex = 3;
             this.btnInventory.Text = "Inventory";
             this.btnInventory.UseVisualStyleBackColor = true;
@@ -129,7 +130,7 @@
             this.btnStaff.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStaff.Location = new System.Drawing.Point(3, 261);
             this.btnStaff.Name = "btnStaff";
-            this.btnStaff.Size = new System.Drawing.Size(227, 56);
+            this.btnStaff.Size = new System.Drawing.Size(242, 56);
             this.btnStaff.TabIndex = 4;
             this.btnStaff.Text = "Staff";
             this.btnStaff.UseVisualStyleBackColor = true;
@@ -145,7 +146,7 @@
             this.btnReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReports.Location = new System.Drawing.Point(3, 323);
             this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(227, 56);
+            this.btnReports.Size = new System.Drawing.Size(242, 56);
             this.btnReports.TabIndex = 5;
             this.btnReports.Text = "Reports";
             this.btnReports.UseVisualStyleBackColor = true;
@@ -161,7 +162,7 @@
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(3, 385);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(227, 56);
+            this.button1.Size = new System.Drawing.Size(242, 56);
             this.button1.TabIndex = 6;
             this.button1.Text = "Settings";
             this.button1.UseVisualStyleBackColor = true;
@@ -169,32 +170,33 @@
             // 
             // pnlContentQuanTri
             // 
-            this.pnlContentQuanTri.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlContentQuanTri.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlContentQuanTri.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlContentQuanTri.Location = new System.Drawing.Point(263, 0);
+            this.pnlContentQuanTri.Location = new System.Drawing.Point(-22, 0);
             this.pnlContentQuanTri.Name = "pnlContentQuanTri";
-            this.pnlContentQuanTri.Size = new System.Drawing.Size(1291, 763);
+            this.pnlContentQuanTri.Size = new System.Drawing.Size(1711, 763);
             this.pnlContentQuanTri.TabIndex = 1;
             // 
             // pnlNav
             // 
-            this.pnlNav.BackColor = System.Drawing.Color.White;
+            this.pnlNav.BackColor = System.Drawing.Color.Snow;
             this.pnlNav.Location = new System.Drawing.Point(-1, 75);
             this.pnlNav.Name = "pnlNav";
-            this.pnlNav.Size = new System.Drawing.Size(12, 56);
+            this.pnlNav.Size = new System.Drawing.Size(5, 56);
             this.pnlNav.TabIndex = 7;
             // 
             // QuanTriForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.RosyBrown;
-            this.ClientSize = new System.Drawing.Size(1554, 763);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1689, 763);
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.pnlNav);
             this.Controls.Add(this.pnlContentQuanTri);
             this.Name = "QuanTriForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlSidebar.ResumeLayout(false);
             this.ResumeLayout(false);
 

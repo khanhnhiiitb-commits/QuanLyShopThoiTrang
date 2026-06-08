@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.26667in</Width>
+              <Width>1.24667in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1in</Width>
@@ -18,7 +18,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox20">
+                    <Textbox Name="Textbox1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -32,7 +32,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox20</rd:DefaultName>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -83,7 +83,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Ngày">
+                    <Textbox Name="Ngày1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -97,7 +97,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Ngày</rd:DefaultName>
+                      <rd:DefaultName>Ngày1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -121,7 +121,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!tongTien.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>#,0;(#,0)</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -165,7 +167,7 @@
         <Top>0.75778in</Top>
         <Left>0.11667in</Left>
         <Height>0.5in</Height>
-        <Width>2.26667in</Width>
+        <Width>2.24667in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -176,10 +178,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.35833in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.58834in</Width>
+              <Width>1.23001in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -350,10 +352,10 @@
               <Width>1.27in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.58834in</Width>
+              <Width>2.18833in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.9in</Width>
+              <Width>1.40001in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -525,7 +527,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!tongTienHoan.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>#,0;(#,0)</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -567,10 +571,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsHoanTra</DataSetName>
-        <Top>1.625in</Top>
-        <Left>0.48in</Left>
+        <Top>1.725in</Top>
+        <Left>0.32167in</Left>
         <Height>0.5in</Height>
-        <Width>5.75834in</Width>
+        <Width>4.85834in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -674,8 +678,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>1.31333in</Top>
-        <Left>1.69166in</Left>
+        <Top>1.41333in</Top>
+        <Left>1.53333in</Left>
         <Height>0.23333in</Height>
         <Width>2.24667in</Width>
         <ZIndex>5</ZIndex>
@@ -733,7 +737,7 @@
       </Border>
     </Style>
   </Body>
-  <Width>6.43833in</Width>
+  <Width>5.53833in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
