@@ -33,20 +33,20 @@ GROUP BY SanPham.tenSP</CommandText>
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="dsTopSP" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="dsTopSP" msprop:Generator_DataSetName="dsTopSP">
+  <xs:element name="dsTopSP" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsTopSP" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsTopSP">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SanPham" msprop:Generator_RowEvHandlerName="SanPhamRowChangeEventHandler" msprop:Generator_RowDeletedName="SanPhamRowDeleted" msprop:Generator_RowDeletingName="SanPhamRowDeleting" msprop:Generator_RowEvArgName="SanPhamRowChangeEvent" msprop:Generator_TablePropName="SanPham" msprop:Generator_RowChangedName="SanPhamRowChanged" msprop:Generator_RowChangingName="SanPhamRowChanging" msprop:Generator_TableClassName="SanPhamDataTable" msprop:Generator_RowClassName="SanPhamRow" msprop:Generator_TableVarName="tableSanPham" msprop:Generator_UserTableName="SanPham">
+        <xs:element name="SanPham" msprop:Generator_RowClassName="SanPhamRow" msprop:Generator_RowEvHandlerName="SanPhamRowChangeEventHandler" msprop:Generator_RowDeletedName="SanPhamRowDeleted" msprop:Generator_RowDeletingName="SanPhamRowDeleting" msprop:Generator_RowEvArgName="SanPhamRowChangeEvent" msprop:Generator_TablePropName="SanPham" msprop:Generator_RowChangedName="SanPhamRowChanged" msprop:Generator_UserTableName="SanPham" msprop:Generator_RowChangingName="SanPhamRowChanging" msprop:Generator_TableClassName="SanPhamDataTable" msprop:Generator_TableVarName="tableSanPham">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="tenSP" msprop:Generator_ColumnPropNameInRow="tenSP" msprop:Generator_ColumnPropNameInTable="tenSPColumn" msprop:Generator_ColumnVarNameInTable="columntenSP" msprop:Generator_UserColumnName="tenSP">
+              <xs:element name="tenSP" msprop:Generator_UserColumnName="tenSP" msprop:Generator_ColumnPropNameInTable="tenSPColumn" msprop:Generator_ColumnPropNameInRow="tenSP" msprop:Generator_ColumnVarNameInTable="columntenSP">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="150" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TongSoLuongBan" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="TongSoLuongBan" msprop:Generator_ColumnPropNameInTable="TongSoLuongBanColumn" msprop:Generator_ColumnVarNameInTable="columnTongSoLuongBan" msprop:Generator_UserColumnName="TongSoLuongBan" type="xs:int" minOccurs="0" />
+              <xs:element name="TongSoLuongBan" msdata:ReadOnly="true" msprop:Generator_UserColumnName="TongSoLuongBan" msprop:Generator_ColumnPropNameInTable="TongSoLuongBanColumn" msprop:Generator_ColumnPropNameInRow="TongSoLuongBan" msprop:Generator_ColumnVarNameInTable="columnTongSoLuongBan" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
