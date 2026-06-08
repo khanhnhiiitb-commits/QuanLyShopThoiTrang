@@ -9,14 +9,12 @@ namespace DALShopThoiTrang
 {
     public class TaiKhoanRepository
     {
-        // Khởi tạo đối tượng Context của Entity Framework
         private ShopThoiTrangEntities db = new ShopThoiTrangEntities();
         public NhanVienDTO KiemTraDangNhap(string username, string password)
         {
             var nv = db.NhanViens.FirstOrDefault(x => x.maNV == username && x.matKhau == password && x.trangThai == "Đang làm việc");
             if (nv != null)
             {
-                // Chuyển EF Model thành DTO để giữ nguyên cấu trúc cũ
                 return new NhanVienDTO
                 {
                     MaNV = nv.maNV,

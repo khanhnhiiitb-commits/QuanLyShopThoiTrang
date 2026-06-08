@@ -65,7 +65,7 @@ namespace QuanLyShopThoiTrang
         private void btnCash_Click(object sender, EventArgs e)
         {
             _phuongThucThanhToan = "Tiền mặt";
-            btnCash.BackColor = Color.LightGreen; // Nút được chọn sáng lên
+            btnCash.BackColor = Color.LightGreen; 
             btnMomo.BackColor = Color.WhiteSmoke;
         }
         private void btnMomoClick(object sender, EventArgs e)

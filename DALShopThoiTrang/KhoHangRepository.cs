@@ -130,9 +130,9 @@ namespace DALShopThoiTrang
 
                             // Cập nhật số lượng tồn kho (Giữ nguyên không đổi)
                             string queryTonKho = @"
-    UPDATE BienTheSP
-    SET soLuongTon = soLuongTon + @soLuongNhap
-    WHERE maBienThe = @maBienThe";
+                                                      UPDATE BienTheSP
+                                                      SET soLuongTon = soLuongTon + @soLuongNhap
+                                                      WHERE maBienThe = @maBienThe";
 
                             using (SqlCommand cmd = new SqlCommand(queryTonKho, conn, transaction))
                             {
