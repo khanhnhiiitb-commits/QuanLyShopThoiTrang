@@ -2,40 +2,11 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Textbox Name="Textbox1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>BÁO CÁO THỐNG KÊ TỔNG HỢP</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.14667in</Top>
-        <Left>2.005in</Left>
-        <Height>0.25in</Height>
-        <Width>2.675in</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Tablix Name="Tablix4">
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.26667in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1in</Width>
@@ -84,7 +55,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>tong Tien</Value>
+                              <Value>Tổng Tiền</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -191,11 +162,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsDoanhThu</DataSetName>
-        <Top>0.73in</Top>
-        <Left>0.48in</Left>
+        <Top>0.75778in</Top>
+        <Left>0.11667in</Left>
         <Height>0.5in</Height>
-        <Width>2in</Width>
-        <ZIndex>1</ZIndex>
+        <Width>2.26667in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -225,7 +195,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ten SP</Value>
+                              <Value>Tên Sản Phẩm</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -255,7 +225,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Tong So Luong Ban</Value>
+                              <Value>Tổng Số Lượng Bán</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -362,11 +332,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>dsTopSP</DataSetName>
-        <Top>0.73in</Top>
-        <Left>3.68in</Left>
+        <Top>0.77167in</Top>
+        <Left>2.75in</Left>
         <Height>0.5in</Height>
         <Width>2in</Width>
-        <ZIndex>2</ZIndex>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -396,7 +366,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ten SP</Value>
+                              <Value>Tên Sản Phẩm</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -426,7 +396,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Tong So Luong Ban</Value>
+                              <Value>Tổng Số Lượng Bán</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -537,7 +507,7 @@
         <Left>1.48in</Left>
         <Height>0.5in</Height>
         <Width>2.45833in</Width>
-        <ZIndex>3</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -566,11 +536,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>0.44111in</Top>
-        <Left>0.35in</Left>
+        <Top>0.455in</Top>
+        <Left>0.11667in</Left>
         <Height>0.23333in</Height>
         <Width>2.24667in</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -603,11 +573,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>0.49667in</Top>
-        <Left>3.43333in</Left>
+        <Top>0.46889in</Top>
+        <Left>2.75in</Left>
         <Height>0.23333in</Height>
         <Width>2.58834in</Width>
-        <ZIndex>5</ZIndex>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -640,10 +610,46 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>1.33611in</Top>
+        <Top>1.31333in</Top>
         <Left>1.69166in</Left>
         <Height>0.23333in</Height>
         <Width>2.24667in</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox9">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>BÁO CÁO THỐNG KÊ TỔNG HỢP 
+</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox9</rd:DefaultName>
+        <Top>0.10778in</Top>
+        <Left>0.65833in</Left>
+        <Height>0.27778in</Height>
+        <Width>3.58333in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -656,7 +662,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>2.125in</Height>
+    <Height>3.48834in</Height>
     <Style>
       <Border>
         <Style>None</Style>
@@ -735,30 +741,6 @@
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
         <rd:TableAdapterName>SanPhamTableAdapter</rd:TableAdapterName>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="DataSet1">
-      <Query>
-        <DataSourceName>dsDoanhThu</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="Ngày">
-          <DataField>Ngày</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="tongTien">
-          <DataField>tongTien</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>dsDoanhThu</rd:DataSetName>
-        <rd:SchemaPath>D:\8_6\QuanLyShopThoiTrang\dsDoanhThu.xsd</rd:SchemaPath>
-        <rd:TableName>HoaDon</rd:TableName>
-        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
-        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>HoaDonTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
     <DataSet Name="dsTopSP">

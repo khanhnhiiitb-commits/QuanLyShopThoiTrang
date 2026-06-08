@@ -214,27 +214,68 @@ namespace QuanLyShopThoiTrang.UserControls
         {
 
         }
+        private DataTable GetDataTable(string sqlQuery)
+        {
+            DataTable dt = new DataTable();
+            // Cắm cứng luôn chuỗi kết nối chuẩn vào đây, không cho nó đọc bậy bạ nữa
+            string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QuanLyShopThoiTrang;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(connStr))
+            {
+                using (System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(sqlQuery, conn))
+                {
+                    using (System.Data.SqlClient.SqlDataAdapter adapter = new System.Data.SqlClient.SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            return dt;
+        }
         // Fix report báo cáo tôn kho va dinh muc
         private void btnXuatBaoCao_Click(object sender, EventArgs e)
         {
-            var adpDoanhThu = new dsDoanhThuTableAdapters.HoaDonTableAdapter();
-            var adpTopSP = new dsTopSPTableAdapters.SanPhamTableAdapter();
-            var adpHoanTra = new dsHoanTraTableAdapters.PhieuDoiTraTableAdapter();
+            try
+            {
+                // 1. Dữ liệu Doanh Thu (LẤY CÁI NÀY VÌ ĐÃ ĐỔI TÊN CỘT THÀNH 'Ngay')
+                // Đổi dòng dt1 thành như thế này:
+                DataTable dt1 = GetDataTable("SELECT ngayLap AS Ngày, tongTien FROM HoaDon");
+                // 2. Dữ liệu Top 5 Sản Phẩm Bán Chạy
+                string sqlTopSP = @"SELECT TOP 5 sp.tenSP, SUM(ct.soLuongBan) AS TongSoLuongBan 
+                    FROM SanPham sp 
+                    JOIN BienTheSP bt ON sp.maSP = bt.maSP 
+                    JOIN ChiTietHD ct ON bt.maBienThe = ct.maBienThe 
+                    GROUP BY sp.tenSP 
+                    ORDER BY TongSoLuongBan DESC";
+                DataTable dt2 = GetDataTable(sqlTopSP);
 
-            // 2. Lấy dữ liệu
-            DataTable dt1 = adpDoanhThu.GetData();
-            DataTable dt2 = adpTopSP.GetData();
-            DataTable dt3 = adpHoanTra.GetData();
+                // 3. Dữ liệu Đổi Trả
+                string sqlHoanTra = @"SELECT sp.tenSP, SUM(ct.soLuong) AS TongSoLuongBan 
+                      FROM SanPham sp 
+                      JOIN BienTheSP bt ON sp.maSP = bt.maSP 
+                      JOIN ChiTietPDT ct ON bt.maBienThe = ct.maBienThe 
+                      GROUP BY sp.tenSP";
+                DataTable dt3 = GetDataTable(sqlHoanTra);
 
-            // 3. Đổ dữ liệu vào ReportViewer
-            this.reportViewer1.LocalReport.DataSources.Clear();
+                // 4. Chỉ định file giao diện báo cáo (.rdlc)
+                this.reportViewer1.LocalReport.ReportEmbeddedResource = "QuanLyShopThoiTrang.ReportTongHop.rdlc";
 
-            
-            this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsDoanhThu", dt1));
-            this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsTopSP", dt2));
-            this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsHoanTra", dt3));
+                // 5. Đổ dữ liệu vào ReportViewer
+                this.reportViewer1.LocalReport.DataSources.Clear();
 
-            this.reportViewer1.RefreshReport();
+                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsDoanhThu", dt1));
+                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsTopSP", dt2));
+                this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("dsHoanTra", dt3));
+
+                this.reportViewer1.RefreshReport();
+
+                // 6. Bật hiển thị
+                this.reportViewer1.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lấy dữ liệu báo cáo: " + ex.Message);
+            }
         }
 
 
